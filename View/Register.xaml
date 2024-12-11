@@ -1,0 +1,102 @@
+﻿<Window x:Class="Attendance_system.View.Register"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Attendance_system.View"
+        mc:Ignorable="d"
+        Title="Sign up" Height="1100" Width="1100">
+    <Grid >
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" MappingMode="RelativeToBoundingBox">
+                <GradientStop Color="#000000" Offset="0.0"/>
+                <!-- Black at top-left -->
+                <GradientStop Color="#1A0F2E" Offset="0.5"/>
+                <!-- Dark purple in the middle -->
+                <GradientStop Color="#4C0D6D" Offset="1.0"/>
+                <!-- Purple at bottom-right -->
+            </LinearGradientBrush>
+        </Grid.Background>
+        <!--logo-->
+        <Image HorizontalAlignment="Left" Height="119" Margin="47,30,0,0" VerticalAlignment="Top" Width="165" Source="/View/zeiterfassung.png"/>
+        <!--Welcome label-->
+        <Label Content="Create a new Account" HorizontalAlignment="Left"  VerticalAlignment="Top" Height="72" Width="595" FontSize="38" FontFamily="Calisto MT" FontWeight="Bold" HorizontalContentAlignment="Center" Margin="265,150,0,0">
+            <Label.Style>
+                <Style TargetType="Label">
+                    <!-- Default Foreground color (white) -->
+                    <Setter Property="Foreground" Value="White"/>
+                    <!-- Trigger to change color on mouse over -->
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="#FF9539E6"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
+
+        <!-- Card Container -->
+        <StackPanel HorizontalAlignment="Center" Width="968" Margin="0,233,0,58">
+            <Border CornerRadius="20" Padding="20" Margin="0,40,0,40" Background="#1A0F2E" Height="729">
+                <Grid>
+                    <!-- Inner Gradient Background -->
+                    <Grid.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" MappingMode="RelativeToBoundingBox">
+                            <GradientStop Color="#000000" Offset="0.0"/>
+                            <GradientStop Color="#1A0F2E" Offset="0.5"/>
+                            <GradientStop Color="#4C0D6D" Offset="1.0"/>
+                        </LinearGradientBrush>
+                    </Grid.Background>
+
+                    <!-- Username Label and TextBox -->
+                    <Label Content="Firstname:" Foreground="White" FontFamily="Calisto MT" FontSize="18" Height="38"  VerticalAlignment="Top" Margin="65,51,0,0" HorizontalAlignment="Left" Width="132"/>
+                    <TextBox x:Name="txtFirstname" Height="34" Background="#2A2A2A" Foreground="White" 
+                                BorderBrush="#FF71737B" FontSize="14" FontFamily="Calisto MT" Margin="256,55,347,600"/>
+
+
+
+                    <Label Content="Lastname:" Foreground="White" FontFamily="Calisto MT" FontSize="18" Height="38"  VerticalAlignment="Top" Margin="65,130,0,0" HorizontalAlignment="Left" Width="132"/>
+                    <TextBox x:Name="txtLastname" Height="34" Background="#2A2A2A" Foreground="White" 
+                        BorderBrush="#FF71737B" FontSize="14" FontFamily="Calisto MT" Margin="256,134,346,521"/>
+                    <Label Content="Username:" Foreground="White" FontFamily="Calisto MT" FontSize="18" Height="38"  VerticalAlignment="Top" Margin="65,209,0,0" HorizontalAlignment="Left" Width="132"/>
+                    <TextBox x:Name="txtUsername" Height="34" Background="#2A2A2A" Foreground="White" 
+                        BorderBrush="#FF71737B" FontSize="14" FontFamily="Calisto MT" Margin="256,213,347,442"/>
+                    <Label Content="E-Mail:" Foreground="White" FontFamily="Calisto MT" FontSize="18" Height="38"  VerticalAlignment="Top" Margin="65,287,0,0" HorizontalAlignment="Left" Width="132"/>
+                    <TextBox x:Name="txtEmail" Height="34" Background="#2A2A2A" Foreground="White" 
+                        BorderBrush="#FF71737B" FontSize="14" FontFamily="Calisto MT" Margin="257,291,346,364"/>
+                    <Label Content="Password:" Foreground="White" FontFamily="Calisto MT" FontSize="18" Height="35" Margin="65,374,751,280"/>
+                    <PasswordBox x:Name="txtPassword" Height="34" Background="#2A2A2A" Foreground="White" 
+                        BorderBrush="#FF71737B" FontSize="14" FontFamily="Calisto MT" Margin="256,375,347,280" />
+                    <Label Content="Confirm password:" Foreground="White" FontFamily="Calisto MT" FontSize="18" Height="35" Margin="65,456,702,198"/>
+                    <PasswordBox x:Name="txtCPassword" Height="34" Background="#2A2A2A" Foreground="White" 
+                        BorderBrush="#FF71737B" FontSize="14" FontFamily="Calisto MT" Margin="256,457,347,198" />
+                    <!--sign up-->
+                    <Button Click="btnRegister" Content="Create Account" Height="40" Background="#FF8231C8" Foreground="White"
+                        FontFamily="Calisto MT" FontWeight="Bold" Margin="332,536,422,113"/>
+                    <!-- Activation Button -->
+                    <Button Click="btnActivate" Content="Activate" Width="120" Height="40" Background="#FF8231C8" Foreground="White"
+                         FontFamily="Calisto MT" FontWeight="Bold" Margin="755,581,53,28"/>
+                    <!--sign in-->
+                    <Label Content="Already have an account? Sign in" HorizontalAlignment="Left"  VerticalAlignment="Top" 
+                            Width="244" Cursor="Hand" AllowDrop="True" MouseLeftButtonDown="btnLogin" HorizontalContentAlignment="Center" Margin="668,10,0,0">
+                        <Label.Style>
+                            <Style TargetType="Label">
+                                <!-- Default Foreground color (white) -->
+                                <Setter Property="Foreground" Value="White"/>
+                                <!-- Trigger to change color on mouse over -->
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Foreground" Value="#FF9539E6"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Label.Style>
+                    </Label>
+
+
+
+                </Grid>
+            </Border>
+        </StackPanel>
+    </Grid>
+</Window>
