@@ -78,6 +78,21 @@
                             </Style>
                         </Label.Style>
                     </Label>
+                    <Label Content="Forgot password?" HorizontalAlignment="Left"  VerticalAlignment="Top" 
+                        Width="116" Cursor="Hand" AllowDrop="True" MouseLeftButtonDown="btnForgotPassword" HorizontalContentAlignment="Center" Margin="371,186,0,0">
+                        <Label.Style>
+                            <Style TargetType="{x:Type Label}">
+                                <!-- Default Foreground color (white) -->
+                                <Setter Property="Foreground" Value="White"/>
+                                <!-- Trigger to change color on mouse over -->
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Foreground" Value="#FF9539E6"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Label.Style>
+                    </Label>
                 </Grid>
             </Border>
         </StackPanel>

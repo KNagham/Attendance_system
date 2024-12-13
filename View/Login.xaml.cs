@@ -59,5 +59,12 @@ namespace Attendance_system.View
             }
 
         }
+
+        private void btnForgotPassword(object sender, MouseButtonEventArgs e)
+        {
+            ResetPassword resetPassword= new ResetPassword();
+            resetPassword.Show();
+            this.Close();
+        }
     }
 }

@@ -19,5 +19,9 @@ public partial class Employee
 
     public string? ActivationCode { get; set; }
 
-    public virtual Passowrd? Passowrd { get; set; }
+    public DateTime CreatedAt { get; set; }
+
+    public DateTime UpdatedAt { get; set; }
+
+    public virtual Password? Password { get; set; }
 }

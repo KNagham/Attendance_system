@@ -66,7 +66,7 @@ namespace Attendance_system.View
                 ActivationCode = "",
                 Confirmed = false
             };
-            Passowrd password = new Passowrd() { PasswordKey = PasswordController.ComputeSHA256(txtPassword.Password) };
+            Password password = new Password() { PasswordKey = PasswordController.ComputeSHA256(txtPassword.Password) };
 
             bool state = EmployeeController.AddEmployee(employee, password);
             if (state)

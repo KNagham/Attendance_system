@@ -20,9 +20,9 @@ namespace Attendance_system.Service
         {
             MailMessage mailMessage = new MailMessage
             {
-                Subject = "Activation code",
+                Subject = "Confirmed code",
                 From = new MailAddress(_emailSendSetting.email),
-                Body = $"Hier is your activation code: {activationCode}"
+                Body = $"Hier is your confirmed code: {activationCode}"
             };
             mailMessage.To.Add(recipientEmail);
 

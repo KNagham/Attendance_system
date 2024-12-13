@@ -5,8 +5,53 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Attendance_system.View"
         mc:Ignorable="d"
-        Title="EmployeeView" Height="450" Width="800">
-    <Grid>
+        Title="EmployeeView" Height="1100" Width="1100">
+    <Grid Margin="-720,0,0,-644" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="196*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" MappingMode="RelativeToBoundingBox">
+                <GradientStop Color="#000000" Offset="0.0"/>
+                <!-- Black at top-left -->
+                <GradientStop Color="#1A0F2E" Offset="0.5"/>
+                <!-- Dark purple in the middle -->
+                <GradientStop Color="#4C0D6D" Offset="1.0"/>
+                <!-- Purple at bottom-right -->
+            </LinearGradientBrush>
+        </Grid.Background>
+        <!--logo-->
+        <!--Welcome label-->
+        <Label Content="Attendance system" HorizontalAlignment="Left"  VerticalAlignment="Top" Height="72" Width="364" FontSize="38" FontFamily="Calisto MT" FontWeight="Bold" HorizontalContentAlignment="Center" Margin="48,33,0,0">
+            <Label.Style>
+                <Style TargetType="Label">
+                    <!-- Default Foreground color (white) -->
+                    <Setter Property="Foreground" Value="White"/>
+                    <!-- Trigger to change color on mouse over -->
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="#FF9539E6"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
 
+        <!-- Card Container -->
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Width="1764" Height="1575" Margin="0,105,0,0">
+            <Border CornerRadius="20" Padding="20" Margin="0,40,0,40" Background="#1A0F2E" Height="1404">
+                <Grid>
+                    <!-- Inner Gradient Background -->
+                    <Grid.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" MappingMode="RelativeToBoundingBox">
+                            <GradientStop Color="#000000" Offset="0.0"/>
+                            <GradientStop Color="#1A0F2E" Offset="0.5"/>
+                            <GradientStop Color="#4C0D6D" Offset="1.0"/>
+                        </LinearGradientBrush>
+                    </Grid.Background>
+                </Grid>
+            </Border>
+        </StackPanel>
     </Grid>
 </Window>

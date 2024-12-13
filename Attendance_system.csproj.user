@@ -19,6 +19,9 @@
     <Compile Update="View\Register.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\ResetPassword.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="View\Activate.xaml">
@@ -31,6 +34,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\Register.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\ResetPassword.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

@@ -66,7 +66,7 @@ namespace Attendance_system.Controller
                 reason = "Bitte aktivieren Sie Ihr Konto zuerst.";
                 return false;
             }
-            Passowrd? employeePassword = context.Passowrds.Where(x => x.Id == employee.Id).FirstOrDefault();
+            Password? employeePassword = context.Passwords.Where(x => x.Id == employee.Id).FirstOrDefault();
             if (employeePassword == null || employeePassword.PasswordKey != password)
             {
                 reason = "Password ist falsch";
@@ -83,7 +83,7 @@ namespace Attendance_system.Controller
         }
 
         // Add new employee
-        public static bool AddEmployee(Employee employee, Passowrd password)
+        public static bool AddEmployee(Employee employee, Password password)
         {
             bool result = false;
             AttendanceDbContext context = new AttendanceDbContext();
@@ -99,7 +99,7 @@ namespace Attendance_system.Controller
                 context.SaveChanges();
 
                 password.Id = employee.Id;
-                context.Passowrds.Add(password);
+                context.Passwords.Add(password);
                 context.SaveChanges();
                 result = true;
             }
