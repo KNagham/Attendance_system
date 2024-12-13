@@ -61,6 +61,8 @@ namespace Attendance_system.View
                     txtResetCode.Text = string.Empty;
                     txtPassword.IsEnabled = true;
                     txtCPassword.IsEnabled = true;
+                    txtResetCode.IsEnabled = false;
+
                 }
                 else
                 {

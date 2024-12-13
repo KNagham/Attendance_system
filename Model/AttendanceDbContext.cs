@@ -19,6 +19,10 @@ public partial class AttendanceDbContext : DbContext
 
     public virtual DbSet<Password> Passwords { get; set; }
 
+    public virtual DbSet<Projekt> Projekts { get; set; }
+
+    public virtual DbSet<Task> Tasks { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseSqlServer("Server=.\\SQLEXPRESS;Database=AttendanceDB;Trusted_Connection=True;TrustServerCertificate=True;");
@@ -82,6 +86,51 @@ public partial class AttendanceDbContext : DbContext
                 .HasForeignKey<Password>(d => d.Id)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Passowrd__Id__4BAC3F29");
+        });
+
+        modelBuilder.Entity<Projekt>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__Projekt__3214EC07D54A7192");
+
+            entity.ToTable("Projekt", tb => tb.HasTrigger("trg_UpdateProjektTimestamp"));
+
+            entity.Property(e => e.CreatedAt)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime")
+                .HasColumnName("createdAt");
+            entity.Property(e => e.Description)
+                .HasMaxLength(255)
+                .IsUnicode(false);
+            entity.Property(e => e.Name)
+                .HasMaxLength(100)
+                .IsUnicode(false);
+            entity.Property(e => e.UpdatedAt)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime")
+                .HasColumnName("updatedAt");
+
+            entity.HasOne(d => d.Task).WithMany(p => p.Projekts)
+                .HasForeignKey(d => d.TaskId)
+                .HasConstraintName("FK__Projekt__TaskId__66603565");
+        });
+
+        modelBuilder.Entity<Task>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__Task__3214EC0799973CF1");
+
+            entity.ToTable("Task", tb => tb.HasTrigger("trg_UpdateTaskTimestamp"));
+
+            entity.Property(e => e.CreatedAt)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime")
+                .HasColumnName("createdAt");
+            entity.Property(e => e.Description)
+                .HasMaxLength(255)
+                .IsUnicode(false);
+            entity.Property(e => e.UpdatedAt)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime")
+                .HasColumnName("updatedAt");
         });
 
         OnModelCreatingPartial(modelBuilder);
