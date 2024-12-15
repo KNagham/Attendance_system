@@ -23,5 +23,7 @@ public partial class Projekt
 
     public bool? IsDone { get; set; }
 
+    public virtual ICollection<EmployeeProjekt> EmployeeProjekts { get; set; } = new List<EmployeeProjekt>();
+
     public virtual Task? Task { get; set; }
 }
