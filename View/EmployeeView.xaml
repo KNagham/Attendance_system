@@ -5,57 +5,106 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Attendance_system.View"
         mc:Ignorable="d"
-        Title="EmployeeView" Height="3321" Width="2477">
-    <Grid HorizontalAlignment="Center" Width="2477" Margin="0,0,0,-6" >
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="909*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="196*"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Grid.Background>
-            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" MappingMode="RelativeToBoundingBox">
-                <GradientStop Color="#000000" Offset="0.0"/>
-                <!-- Black at top-left -->
-                <GradientStop Color="#1A0F2E" Offset="0.5"/>
-                <!-- Dark purple in the middle -->
-                <GradientStop Color="#4C0D6D" Offset="1.0"/>
-                <!-- Purple at bottom-right -->
-            </LinearGradientBrush>
-        </Grid.Background>
-        <!--logo-->
-        <!--Welcome label-->
-        <Label Content="Attendance system" HorizontalAlignment="Left"  VerticalAlignment="Top" Height="72" Width="364" FontSize="38" FontFamily="Calisto MT" FontWeight="Bold" HorizontalContentAlignment="Center" Margin="46,33,0,0" Grid.Column="1">
-            <Label.Style>
-                <Style TargetType="Label">
-                    <!-- Default Foreground color (white) -->
-                    <Setter Property="Foreground" Value="White"/>
-                    <!-- Trigger to change color on mouse over -->
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Foreground" Value="#FF9539E6"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Label.Style>
-        </Label>
+        Title="EmployeeView" Height="800" Width="1200">
+    <!-- Hintergrundfarbe des Windows -->
+    <Window.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" MappingMode="RelativeToBoundingBox">
+            <GradientStop Color="#000000" Offset="0.0"/>
+            <GradientStop Color="#1A0F2E" Offset="0.5"/>
+            <GradientStop Color="#4C0D6D" Offset="1.0"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    <!--scrollbar Bereich-->
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <!-- Header -->
+                <RowDefinition Height="Auto"/>
+                <!-- Hauptinhalt -->
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-        <!-- Card Container -->
-        <StackPanel HorizontalAlignment="Left" Width="2371" Margin="46,105,0,55" Grid.Column="1">
-            <Border CornerRadius="20" Padding="20" Margin="0,40,0,40" Background="#1A0F2E" Height="3073" Width="2314">
-                <Grid Margin="38,0,32,0">
-                    <!-- Inner Gradient Background -->
-                    <Grid.Background>
-                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" MappingMode="RelativeToBoundingBox">
-                            <GradientStop Color="#000000" Offset="0.0"/>
-                            <GradientStop Color="#1A0F2E" Offset="0.5"/>
-                            <GradientStop Color="#4C0D6D" Offset="1.0"/>
-                        </LinearGradientBrush>
-                    </Grid.Background>
-                </Grid>
-            </Border>
-        </StackPanel>
-    </Grid>
+            <!-- Header -->
+            <Label Content="Attendance System"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Top"
+                   FontSize="38"
+                   FontFamily="Calisto MT"
+                   FontWeight="Bold"
+                   Foreground="White"
+                   Margin="10"/>
+
+            <!-- Hauptinhalt -->
+            <Grid Grid.Row="1" Margin="0,20,0,0">
+                <Grid.ColumnDefinitions>
+                    <!-- Linkes Menü -->
+                    <ColumnDefinition Width="1*"/>
+                    <!-- Hauptbereich -->
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Linkes Menü -->
+                <Border Background="#1A0F2E" Margin="10" Padding="10" CornerRadius="10">
+                    <StackPanel>
+                        <Button Click="btnDashboard" Content="Dashboard" Height="40" Margin="0,10" Foreground="White" FontSize="20">
+                            <Button.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#000000" Offset="0.0"/>
+                                    <GradientStop Color="#1A0F2E" Offset="0.5"/>
+                                    <GradientStop Color="#4C0D6D" Offset="1.0"/>
+                                </LinearGradientBrush>
+                            </Button.Background>
+                        </Button>
+                        <Button Click="btnWorkingHour" Content="Working Hours" Height="40" Margin="0,10" Foreground="White" FontSize="20">
+                            <Button.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#000000" Offset="0.0"/>
+                                    <GradientStop Color="#1A0F2E" Offset="0.5"/>
+                                    <GradientStop Color="#4C0D6D" Offset="1.0"/>
+                                </LinearGradientBrush>
+                            </Button.Background>
+                        </Button>
+                        <Button Click="btnAttendenceStatement" Content="Attendance Statement" Height="40" Margin="0,10" Foreground="White" FontSize="20">
+                            <Button.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#000000" Offset="0.0"/>
+                                    <GradientStop Color="#1A0F2E" Offset="0.5"/>
+                                    <GradientStop Color="#4C0D6D" Offset="1.0"/>
+                                </LinearGradientBrush>
+                            </Button.Background>
+                        </Button>
+                    </StackPanel>
+                </Border>
+
+                <!-- Hauptinhalt -->
+                <StackPanel Grid.Column="1" Margin="20">
+                    <Grid Grid.Column="1" Margin="20" HorizontalAlignment="Stretch">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Label x:Name="lblGreeting" Content="" FontSize="24" FontFamily="Calisto MT" Foreground="White" Width="279" Background="Red" HorizontalAlignment="Left" Margin="0,0,0,33"/>
+                        <Label x:Name="lblCurrentDate" Content="" FontSize="24" FontFamily="Calisto MT" Foreground="White" Background="Red" HorizontalContentAlignment="Right" Margin="545,0,10,33"/>
+                        <Button Click="btnCheckIn" Content="CheckIn" Height="50" Width="136" Background="#FF911FCC" Foreground="White" HorizontalAlignment="Left" Margin="0,130,0,-103"/>
+                        <Button Click="btnCheckOut" Content="CheckOut" Height="50" Width="136" Background="#FF320948" Foreground="White" HorizontalAlignment="Left" Margin="154,130,0,-103"/>
+                        <ComboBox x:Name="cbProject" Width="200" Height="30" Background="#FF911FCC" Foreground="White" FontSize="14" Margin="0,277,0,-230" HorizontalAlignment="Left"/>
+                        <ComboBox x:Name="cbTask" Width="200" Height="30" Background="#FF911FCC" Foreground="White" FontSize="14" Margin="230,277,0,-230" HorizontalAlignment="Left"/>
+                        <Label x:Name="lblTimer" Content="" Background="Red" Foreground="White" FontFamily="Calisto MT" FontSize="48" FontWeight="Bold" Margin="528,0,0,-325" Height="42" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="243"/>
+                        <Button Click="btnPause" Content="Pause" Height="40" Margin="678,422,0,-385" Background="#FF1F052D" Foreground="White" HorizontalAlignment="Left" Width="93"/>
+                        <Button Click="btnStop" Content="Stop" Height="40" Background="#FF1F052D" Foreground="White" Margin="678,475,0,-438" HorizontalAlignment="Left" Width="93"/>
+                        <Button Click="btnStart" Content="Start" Height="40" Background="#FF911FCC" Foreground="White" Margin="528,422,0,-385" HorizontalAlignment="Left" Width="93"/>
+                        <Button Click="btnResume" Content="Resume" Height="40" Background="#FF911FCC" Foreground="White" Margin="528,475,0,-438" HorizontalAlignment="Left" Width="93"/>
+                        <Label Content="Project" FontSize="20" Foreground="White" Margin="0,240,0,-200" HorizontalAlignment="Left" Width="84"/>
+                        <Label Content="Task" FontSize="20" Foreground="White" Margin="230,240,0,-200" HorizontalAlignment="Left" Width="84"/>
+                        <TextBox x:Name="txtAttendanceNote" Height="121" Background="#2A2A2A" Foreground="White" 
+                                BorderBrush="#FF71737B" FontSize="14" FontFamily="Calisto MT" Margin="561,0,-1,-190" VerticalAlignment="Bottom" />
+                        <Label Content="Note" FontSize="20" Foreground="White" Margin="561,0,150,-69" Height="37" VerticalAlignment="Bottom" />
+                        <TextBox x:Name="txtEmployeeTaskNote" Height="121" Background="#2A2A2A" Foreground="White" 
+                            BorderBrush="#FF71737B" FontSize="14" FontFamily="Calisto MT" Margin="16,0,544,-505" VerticalAlignment="Bottom"/>
+                        <Label Content="Task note" FontSize="20" Foreground="White" Margin="16,423,0,-383" HorizontalAlignment="Left" Width="94"/>
+                    </Grid>
+
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </ScrollViewer>
 </Window>
