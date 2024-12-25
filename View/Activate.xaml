@@ -5,71 +5,110 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Attendance_system.View"
         mc:Ignorable="d"
-        Title="Activate" Height="1100" Width="1100">
-    <Grid>
-        <Grid.Background>
-            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" MappingMode="RelativeToBoundingBox">
-                <GradientStop Color="#000000" Offset="0.0"/>
-                <!-- Black at top-left -->
-                <GradientStop Color="#1A0F2E" Offset="0.5"/>
-                <!-- Dark purple in the middle -->
-                <GradientStop Color="#4C0D6D" Offset="1.0"/>
-                <!-- Purple at bottom-right -->
-            </LinearGradientBrush>
-        </Grid.Background>
-        <!--logo-->
-        <Image HorizontalAlignment="Left" Height="119" Margin="47,30,0,0" VerticalAlignment="Top" Width="165" Source="/View/zeiterfassung.png"/>
-        <!--Welcome label-->
-        <Label Content="Activation your Account" HorizontalAlignment="Left"  VerticalAlignment="Top" Height="72" Width="595" FontSize="38" FontFamily="Calisto MT" FontWeight="Bold" HorizontalContentAlignment="Center" Margin="260,171,0,0">
-            <Label.Style>
-                <Style TargetType="Label">
-                    <!-- Default Foreground color (white) -->
-                    <Setter Property="Foreground" Value="White"/>
-                    <!-- Trigger to change color on mouse over -->
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Foreground" Value="#FF9539E6"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Label.Style>
-        </Label>
-        <!-- Card Container -->
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Width="714" Height="618" Margin="0,301,0,0">
-            <Border CornerRadius="20" Padding="20" Margin="0,40,0,40" Background="#1A0F2E" Height="534">
-                <Grid>
-                    <!-- Inner Gradient Background -->
-                    <Grid.Background>
-                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" MappingMode="RelativeToBoundingBox">
+        Title="Activate" Height="700" Width="1100">
+    <!-- Hintergrundfarbe des Windows -->
+    <Window.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" MappingMode="RelativeToBoundingBox">
+            <GradientStop Color="#000000" Offset="0.0"/>
+            <GradientStop Color="#1A0F2E" Offset="0.5"/>
+            <GradientStop Color="#4C0D6D" Offset="1.0"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    <!--scrollbar Bereich-->
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <!-- Header -->
+                <RowDefinition Height="Auto"/>
+                <!-- Hauptinhalt -->
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!--Header-->
+            <Label Content="Activation your Account" 
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Top"
+                   FontSize="38"
+                   FontFamily="Calisto MT"
+                   FontWeight="Bold"
+                   Margin="10">
+                <Label.Style>
+                    <Style TargetType="Label">
+                        <!-- Default Foreground color (white) -->
+                        <Setter Property="Foreground" Value="White"/>
+                        <!-- Trigger to change color on mouse over -->
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="#FF9539E6"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Label.Style>
+            </Label>
+            <!-- Hauptinhalt -->
+            <Grid Grid.Row="1" Margin="10,20,20,20">
+                <Border BorderThickness="9" CornerRadius="5" Margin="10">
+                    <Border.BorderBrush>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                             <GradientStop Color="#000000" Offset="0.0"/>
                             <GradientStop Color="#1A0F2E" Offset="0.5"/>
                             <GradientStop Color="#4C0D6D" Offset="1.0"/>
                         </LinearGradientBrush>
-                    </Grid.Background>
+                    </Border.BorderBrush>
+                    <StackPanel  >
+                        <Grid Grid.Column="1" Margin="20" HorizontalAlignment="Stretch">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <!-- Username Label and TextBox -->
+                            <Label Content="E-Mail address" 
+                               Foreground="White" 
+                               FontFamily="Calisto MT" 
+                               FontSize="20" Height="38" 
+                               Width="234" Margin="350,21,368,21"/>
+                            <TextBox x:Name="txtEmail" Height="34" 
+                                 Background="#2A2A2A" Foreground="White" 
+                                 BorderBrush="#FF71737B" FontSize="18" 
+                                 FontFamily="Calisto MT" Margin="350,64,350,-18" />
 
-                    <!-- Username Label and TextBox -->
-                    <Label Content="E-Mail address" Foreground="White" FontFamily="Calisto MT" FontSize="18" Height="38"  VerticalAlignment="Top" Margin="187,48,0,0" HorizontalAlignment="Left" Width="234"/>
-                    <TextBox x:Name="txtEmail" Width="300" Height="34" Background="#2A2A2A" Foreground="White" 
-                                BorderBrush="#FF71737B" FontSize="14" FontFamily="Calisto MT" Margin="187,96,187,364"/>
-
-                    <!-- Sign In Button -->
-                    <Button Click="btnSendCode" Content="send code" Width="120" Height="40" Background="#FF8231C8" Foreground="White"
-                            FontFamily="Calisto MT" FontWeight="Bold" Margin="277,187,277,267" />
-                    <!-- Activate Label and ActivateBox -->
-                    <Label Content="Activation code" Foreground="White" FontFamily="Calisto MT" FontSize="18" Height="35" Margin="187,267,327,192"/>
-                    <TextBox x:Name="txtActivationCode" Width="300" Height="34" Background="#2A2A2A" Foreground="White" 
-                            BorderBrush="#FF71737B" FontSize="14" FontFamily="Calisto MT" Margin="187,324,187,136"/>
-
-                    <!-- Activate Button -->
-                    <Button Click="btnActivate" Content="Activate" Width="120" Height="40" Background="#FF8231C8" Foreground="White"
-                            FontFamily="Calisto MT" FontWeight="Bold" Margin="519,420,35,34"/>
-                    <!-- Sign In Button -->
-                    <Button Click="btnLogin" Content="Sign in" Width="120" Height="40" Background="#FF8231C8" Foreground="White"
-                            FontFamily="Calisto MT" FontWeight="Bold" Margin="48,420,506,34"/>
-
-                    <!--sign up-->
-                </Grid>
-            </Border>
-        </StackPanel>
-    </Grid>
+                            <!-- Send code Button -->
+                            <Button Click="btnSendCode" 
+                                Content="send code" Height="40" 
+                                Background="#FF8231C8" 
+                                Foreground="White"
+                                FontFamily="Calisto MT" 
+                                FontSize="20"
+                                FontWeight="Bold" Margin="390,150,376,-110"/>
+                            <Label Content="Activation code" 
+                               Foreground="White" 
+                               FontFamily="Calisto MT" 
+                               FontSize="20" 
+                               Height="35" Width="302" Margin="350,248,300,-203"
+                               />
+                            <!-- Activate Label and ActivateBox -->
+                            <TextBox x:Name="txtActivationCode" Height="34" 
+                                 Background="#2A2A2A" Foreground="White" 
+                                 BorderBrush="#FF71737B" 
+                                 FontSize="18" FontFamily="Calisto MT" Margin="350,298,349,-252" />
+                            <!-- Activate Button -->
+                            <Button Click="btnActivate" 
+                                Content="Activate" Width="127" 
+                                Height="40" Background="#FF8231C8" 
+                                Foreground="White"
+                                FontFamily="Calisto MT" 
+                                FontWeight="Bold" 
+                                FontSize="20"
+                                Margin="811,383,0,-343" HorizontalAlignment="Left" RenderTransformOrigin="0.322,-0.804"/>
+                            <Button Click="btnLogin" 
+                                Content="Sign in" 
+                                Height="40" Background="#FF8231C8" 
+                                Foreground="White" FontFamily="Calisto MT" 
+                                FontWeight="Bold" FontSize="20"
+                                Margin="13,383,814,-343"/>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </Grid>
+    </ScrollViewer>
 </Window>

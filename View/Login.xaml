@@ -5,96 +5,126 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Attendance_system.View"
         mc:Ignorable="d"
-        Title="Sign in" Height="1100" Width="1100">
-    <Grid >
-        <Grid.Background>
-            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" MappingMode="RelativeToBoundingBox">
-                <GradientStop Color="#000000" Offset="0.0"/>
-                <!-- Black at top-left -->
-                <GradientStop Color="#1A0F2E" Offset="0.5"/>
-                <!-- Dark purple in the middle -->
-                <GradientStop Color="#4C0D6D" Offset="1.0"/>
-                <!-- Purple at bottom-right -->
-            </LinearGradientBrush>
-        </Grid.Background>
-        <!--logo-->
-        <Image HorizontalAlignment="Left" Height="119" Margin="47,30,0,0" VerticalAlignment="Top" Width="165" Source="/View/zeiterfassung.png"/>
-        <!--Welcome label-->
-        <Label Content="Sign in to the Attendance system" HorizontalAlignment="Left"  VerticalAlignment="Top" Height="72" Width="595" FontSize="38" FontFamily="Calisto MT" FontWeight="Bold" HorizontalContentAlignment="Center" Margin="260,171,0,0">
-            <Label.Style>
-                <Style TargetType="Label">
-                    <!-- Default Foreground color (white) -->
-                    <Setter Property="Foreground" Value="White"/>
-                    <!-- Trigger to change color on mouse over -->
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Foreground" Value="#FF9539E6"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Label.Style>
-        </Label>
+        Title="Sign in" Height="800" Width="1100">
+    <!-- Hintergrundfarbe des Windows -->
+    <Window.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" MappingMode="RelativeToBoundingBox">
+            <GradientStop Color="#000000" Offset="0.0"/>
+            <GradientStop Color="#1A0F2E" Offset="0.5"/>
+            <GradientStop Color="#4C0D6D" Offset="1.0"/>
+        </LinearGradientBrush>
+    </Window.Background>
 
-        <!-- Card Container -->
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Width="714" Height="618" Margin="0,301,0,0">
-            <Border CornerRadius="20" Padding="20" Margin="0,40,0,40" Background="#1A0F2E" Height="534">
-                <Grid>
-                    <!-- Inner Gradient Background -->
-                    <Grid.Background>
-                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" MappingMode="RelativeToBoundingBox">
+    <!--scrollbar Bereich-->
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <!-- Header -->
+                <RowDefinition Height="Auto"/>
+                <!-- Hauptinhalt -->
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!--Header-->
+            <Label Content="Sign in to the Attendance system" 
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Top"
+                   FontSize="38"
+                   FontFamily="Calisto MT"
+                   FontWeight="Bold"
+                   Margin="10">
+                <Label.Style>
+                    <Style TargetType="Label">
+                        <!-- Default Foreground color (white) -->
+                        <Setter Property="Foreground" Value="White"/>
+                        <!-- Trigger to change color on mouse over -->
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="#FF9539E6"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Label.Style>
+            </Label>
+            <!-- Hauptinhalt -->
+            <Grid Grid.Row="1" Margin="10,20,20,20">
+                <Border BorderThickness="9" CornerRadius="5" Margin="10">
+                    <Border.BorderBrush>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                             <GradientStop Color="#000000" Offset="0.0"/>
                             <GradientStop Color="#1A0F2E" Offset="0.5"/>
                             <GradientStop Color="#4C0D6D" Offset="1.0"/>
                         </LinearGradientBrush>
-                    </Grid.Background>
+                    </Border.BorderBrush>
+                    <StackPanel>
+                        <Grid Grid.Column="1" Margin="20" HorizontalAlignment="Stretch">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <!-- Username Label and TextBox -->
+                            <Label Content="Username or email address" 
+                                   Foreground="White" FontFamily="Calisto MT" 
+                                   FontSize="20" Margin="341,98,347,-96"/>
+                            <TextBox x:Name="txtUsername" Width="300" 
+                                     Height="34" Background="#2A2A2A" 
+                                     Foreground="White" BorderBrush="#FF71737B" 
+                                     FontSize="18" FontFamily="Calisto MT" Margin="347,136,305,-130" />
+                            <!-- Password Label and PasswordBox -->
+                            <Label Content="Password" Foreground="White" 
+                                   FontFamily="Calisto MT" FontSize="20" 
+                                   Height="35" Margin="347,265,491,-260" RenderTransformOrigin="0.181,0.262" />
+                            <PasswordBox x:Name="txtPassword" Width="300" 
+                                         Height="34" Background="#2A2A2A" 
+                                         Foreground="White" BorderBrush="#FF71737B" 
+                                         FontSize="18" FontFamily="Calisto MT" Margin="347,305,305,-299" />
+                            <!-- Sign In Button -->
+                            <Button Click="btnLogin" Content="Sign in" 
+                                    Width="120" Height="40" FontSize="20"
+                                    Background="#FF8231C8" Foreground="White"
+                                    FontFamily="Calisto MT" FontWeight="Bold" Margin="810,0,22,-482" VerticalAlignment="Bottom" />
+                            <Button Click="btnBack" Content="Back" 
+                                    Height="40" Background="#FF8231C8" FontSize="20"
+                                    Foreground="White" FontFamily="Calisto MT" 
+                                    FontWeight="Bold" Margin="24,0,808,-482" VerticalAlignment="Bottom" />
+                            <!--sign up-->
+                            <Label Content="New to the Attendance system? Sign Up" VerticalAlignment="Bottom" Cursor="Hand" AllowDrop="True" 
+                                   MouseLeftButtonDown="btnSignUp" 
+                                   HorizontalContentAlignment="Center" Margin="361,0,347,-343">
+                                <Label.Style>
+                                    <Style TargetType="Label">
+                                        <!-- Default Foreground color (white) -->
+                                        <Setter Property="Foreground" Value="White"/>
+                                        <!-- Trigger to change color on mouse over -->
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Foreground" Value="#FF9539E6"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Label.Style>
+                            </Label>
+                            <Label Content="Forgot password?"  
+                                   VerticalAlignment="Bottom" Cursor="Hand" 
+                                   AllowDrop="True" MouseLeftButtonDown="btnForgotPassword" 
+                                   HorizontalContentAlignment="Center" Margin="540,0,305,-260" >
+                                <Label.Style>
+                                    <Style TargetType="{x:Type Label}">
+                                        <!-- Default Foreground color (white) -->
+                                        <Setter Property="Foreground" Value="White"/>
+                                        <!-- Trigger to change color on mouse over -->
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Foreground" Value="#FF9539E6"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Label.Style>
+                            </Label>
 
-                    <!-- Username Label and TextBox -->
-                    <Label Content="Username or email address" Foreground="White" FontFamily="Calisto MT" FontSize="18" Height="38"  VerticalAlignment="Top" Margin="187,59,0,0" HorizontalAlignment="Left" Width="234"/>
-                    <TextBox x:Name="txtUsername" Width="300" Height="34" Background="#2A2A2A" Foreground="White" 
-                                BorderBrush="#FF71737B" FontSize="14" FontFamily="Calisto MT" Margin="187,115,187,345"/>
-
-                    <!-- Password Label and PasswordBox -->
-                    <Label Content="Password" Foreground="White" FontFamily="Calisto MT" FontSize="18" Height="35" Margin="187,182,327,277"/>
-                    <PasswordBox x:Name="txtPassword" Width="300" Height="34" Background="#2A2A2A" Foreground="White" 
-                                    BorderBrush="#FF71737B" FontSize="14" FontFamily="Calisto MT" Margin="187,222,187,238" />
-                    <!-- Sign In Button -->
-                    <Button Click="btnLogin" Content="Sign in" Width="120" Height="40" Background="#FF8231C8" Foreground="White"
-                            FontFamily="Calisto MT" FontWeight="Bold" Margin="519,420,35,34"/>
-                    <Button Click="btnBack" Content="Back" Width="120" Height="40" Background="#FF8231C8" Foreground="White"
-                        FontFamily="Calisto MT" FontWeight="Bold" Margin="35,420,519,34"/>
-                    <!--sign up-->
-                    <Label Content="New to the Attendance system? Sign Up" HorizontalAlignment="Left"  VerticalAlignment="Top" 
-                           Width="244" Cursor="Hand" AllowDrop="True" MouseLeftButtonDown="btnSignUp" HorizontalContentAlignment="Center" Margin="209,285,0,0">
-                        <Label.Style>
-                            <Style TargetType="Label">
-                                <!-- Default Foreground color (white) -->
-                                <Setter Property="Foreground" Value="White"/>
-                                <!-- Trigger to change color on mouse over -->
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Foreground" Value="#FF9539E6"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Label.Style>
-                    </Label>
-                    <Label Content="Forgot password?" HorizontalAlignment="Left"  VerticalAlignment="Top" 
-                        Width="116" Cursor="Hand" AllowDrop="True" MouseLeftButtonDown="btnForgotPassword" HorizontalContentAlignment="Center" Margin="371,186,0,0">
-                        <Label.Style>
-                            <Style TargetType="{x:Type Label}">
-                                <!-- Default Foreground color (white) -->
-                                <Setter Property="Foreground" Value="White"/>
-                                <!-- Trigger to change color on mouse over -->
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Foreground" Value="#FF9539E6"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Label.Style>
-                    </Label>
-                </Grid>
-            </Border>
-        </StackPanel>
-    </Grid>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </Grid>
+    </ScrollViewer>
 </Window>

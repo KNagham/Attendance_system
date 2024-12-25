@@ -23,7 +23,6 @@
                 <!-- Hauptinhalt -->
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-
             <!-- Header -->
             <Label Content="Attendance System"
                    HorizontalAlignment="Center"
@@ -33,7 +32,6 @@
                    FontWeight="Bold"
                    Foreground="White"
                    Margin="10"/>
-
             <!-- Hauptinhalt -->
             <Grid Grid.Row="1" Margin="0,20,0,0">
                 <Grid.ColumnDefinitions>
@@ -42,7 +40,6 @@
                     <!-- Hauptbereich -->
                     <ColumnDefinition Width="893*"/>
                 </Grid.ColumnDefinitions>
-
                 <!-- Linkes Menü -->
                 <Border Background="#1A0F2E" Margin="10,10,0,10" Padding="10" CornerRadius="10" HorizontalAlignment="Left" Width="240">
                     <StackPanel>
@@ -75,34 +72,32 @@
                         </Button>
                     </StackPanel>
                 </Border>
-
                 <!-- Hauptinhalt -->
                 <StackPanel Grid.Column="1" Margin="10,20,20,20">
                     <Grid Grid.Column="1" Margin="20" HorizontalAlignment="Stretch">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        <Label x:Name="lblGreeting" Content="" FontSize="24" FontFamily="Calisto MT" Foreground="White" Width="279" Background="Red" HorizontalAlignment="Left" Margin="0,0,0,33"/>
-                        <Label x:Name="lblCurrentDate" Content="" FontSize="24" FontFamily="Calisto MT" Foreground="White" Background="Red" HorizontalContentAlignment="Right" Margin="545,0,10,33"/>
-                        <Button Click="btnCheckIn" Content="CheckIn" Height="50" Width="136" Background="#FF911FCC" Foreground="White" HorizontalAlignment="Left" Margin="0,130,0,-103"/>
-                        <Button Click="btnCheckOut" Content="CheckOut" Height="50" Width="136" Background="#FF320948" Foreground="White" HorizontalAlignment="Left" Margin="154,130,0,-103"/>
-                        <ComboBox x:Name="cbProject" Width="200" Height="30" Background="#FF911FCC" Foreground="White" FontSize="14" Margin="0,277,0,-230" HorizontalAlignment="Left"/>
-                        <ComboBox x:Name="cbTask" Width="200" Height="30" Background="#FF911FCC" Foreground="White" FontSize="14" Margin="230,277,0,-230" HorizontalAlignment="Left"/>
-                        <Label x:Name="lblTimer" Content="" Background="Red" Foreground="White" FontFamily="Calisto MT" FontSize="48" FontWeight="Bold" Margin="528,0,0,-325" Height="42" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="243"/>
-                        <Button Click="btnPause" Content="Pause" Height="40" Margin="678,422,0,-385" Background="#FF1F052D" Foreground="White" HorizontalAlignment="Left" Width="93"/>
-                        <Button Click="btnStop" Content="Stop" Height="40" Background="#FF1F052D" Foreground="White" Margin="678,475,0,-438" HorizontalAlignment="Left" Width="93"/>
-                        <Button Click="btnStart" Content="Start" Height="40" Background="#FF911FCC" Foreground="White" Margin="528,422,0,-385" HorizontalAlignment="Left" Width="93"/>
-                        <Button Click="btnResume" Content="Resume" Height="40" Background="#FF911FCC" Foreground="White" Margin="528,475,0,-438" HorizontalAlignment="Left" Width="93"/>
+                        <Label x:Name="lblGreeting" Content="" FontSize="20" FontFamily="Calisto MT" Foreground="White" Width="279" Background="Red" HorizontalAlignment="Left" Margin="0,0,0,33"/>
+                        <Label x:Name="lblCurrentDate" Content="" FontSize="20" FontFamily="Calisto MT" Foreground="White" Background="Red" HorizontalContentAlignment="Center" Margin="511,0,0,33" HorizontalAlignment="Left" Width="302"/>
+                        <Button Click="btnCheckIn" Content="CheckIn" Height="50" FontWeight="Bold" FontSize="20" Width="136" Background="#FF911FCC" Foreground="White" HorizontalAlignment="Left" Margin="0,130,0,-103"/>
+                        <Button Click="btnCheckOut" Content="CheckOut" Height="50" Width="136" FontWeight="Bold" FontSize="20" Background="#FF320948" Foreground="White" HorizontalAlignment="Left" Margin="154,130,0,-103"/>
+                        <ComboBox x:Name="cbProject" Width="200" Height="30" Background="#FF911FCC" Foreground="White" FontSize="18" Margin="0,277,0,-230" HorizontalAlignment="Left"/>
+                        <ComboBox x:Name="cbTask" Width="200" Height="30" Background="#FF911FCC" Foreground="White" FontSize="18" Margin="230,277,0,-230" HorizontalAlignment="Left"/>
+                        <Label x:Name="lblTimer" Content="" Background="Red" Foreground="White"  FontSize="20" FontFamily="Calisto MT" Margin="528,0,0,-325" Height="42" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="243"/>
+                        <Button Click="btnPause" Content="Pause" Height="40" Margin="678,422,0,-385" FontWeight="Bold" FontSize="20" Background="#FF1F052D" Foreground="White" HorizontalAlignment="Left" Width="93"/>
+                        <Button Click="btnStop" Content="Stop" Height="40" Background="#FF1F052D" FontWeight="Bold" FontSize="20" Foreground="White" Margin="678,475,0,-438" HorizontalAlignment="Left" Width="93"/>
+                        <Button Click="btnStart" Content="Start" Height="40" Background="#FF911FCC" FontWeight="Bold" FontSize="20" Foreground="White" Margin="528,422,0,-385" HorizontalAlignment="Left" Width="93"/>
+                        <Button Click="btnResume" Content="Resume" Height="40" Background="#FF911FCC" FontWeight="Bold" FontSize="20" Foreground="White" Margin="528,475,0,-438" HorizontalAlignment="Left" Width="93"/>
                         <Label Content="Project" FontSize="20" Foreground="White" Margin="0,240,0,-200" HorizontalAlignment="Left" Width="84"/>
                         <Label Content="Task" FontSize="20" Foreground="White" Margin="230,240,0,-200" HorizontalAlignment="Left" Width="84"/>
                         <TextBox x:Name="txtAttendanceNote" Height="121" Background="#2A2A2A" Foreground="White" 
-                                BorderBrush="#FF71737B" FontSize="14" FontFamily="Calisto MT" Margin="561,0,-1,-190" VerticalAlignment="Bottom" />
-                        <Label Content="Note" FontSize="20" Foreground="White" Margin="561,0,150,-69" Height="37" VerticalAlignment="Bottom" />
+                                BorderBrush="#FF71737B" FontSize="18" FontFamily="Calisto MT" Margin="561,0,0,-190" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="263" />
+                        <Label Content="Note" FontSize="20" Foreground="White" Margin="561,0,0,-69" Height="37" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="113" />
                         <TextBox x:Name="txtEmployeeTaskNote" Height="121" Background="#2A2A2A" Foreground="White" 
-                            BorderBrush="#FF71737B" FontSize="14" FontFamily="Calisto MT" Margin="0,0,560,-466" VerticalAlignment="Bottom"/>
+                            BorderBrush="#FF71737B" FontSize="18" FontFamily="Calisto MT" Margin="0,0,0,-466" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="264"/>
                         <Label Content="Task note" FontSize="20" Foreground="White" Margin="0,385,0,-345" HorizontalAlignment="Left" Width="94"/>
                     </Grid>
-
                 </StackPanel>
             </Grid>
         </Grid>
