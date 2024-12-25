@@ -85,7 +85,7 @@ namespace Attendance_system.View {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Attendance_system;V1.0.0.0;component/view/resetpassword.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Attendance_system;component/view/resetpassword.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\View\ResetPassword.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

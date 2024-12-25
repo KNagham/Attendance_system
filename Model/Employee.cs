@@ -23,5 +23,9 @@ public partial class Employee
 
     public DateTime UpdatedAt { get; set; }
 
+    public virtual ICollection<Attendance> Attendances { get; set; } = new List<Attendance>();
+
+    public virtual ICollection<EmployeeProjekt> EmployeeProjekts { get; set; } = new List<EmployeeProjekt>();
+
     public virtual Password? Password { get; set; }
 }

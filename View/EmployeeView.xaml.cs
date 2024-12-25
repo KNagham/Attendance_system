@@ -22,12 +22,75 @@ namespace Attendance_system.View
     {
         private Employee _currentEmployee;
 
-        public EmployeeView(Employee employee)
+        /*public EmployeeView(Employee employee)
         {
             this._currentEmployee = employee;
             InitializeComponent();
 
-            //MessageBox.Show($@"Welcome {employee.FirstName} {employee.LastName}");
+            setGreeting();
+
+        }*/
+
+        public EmployeeView()
+        {
+            InitializeComponent();
+            setCurrentDate();
         }
+
+        private void setCurrentDate()
+        {
+            lblCurrentDate.Content = DateTime.Now.ToString("dddd, dd. MMMM yyyy");
+        }
+
+        private void setGreeting()
+        {
+            lblGreeting.Content = $"Hello {_currentEmployee.FirstName} {_currentEmployee.LastName}";
+        }
+
+        private void btnDashboard(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnWorkingHour(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnAttendenceStatement(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnCheckIn(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnCheckOut(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnStart(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnPause(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnResume(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnStop(object sender, RoutedEventArgs e)
+        {
+
+        }
+
     }
 }
