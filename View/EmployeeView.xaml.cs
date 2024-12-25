@@ -30,11 +30,14 @@ namespace Attendance_system.View
             setGreeting();
 
         }*/
-
+        // muss deleted
         public EmployeeView()
         {
             InitializeComponent();
             setCurrentDate();
+            disabled(true);
+
+
         }
 
         private void setCurrentDate()
@@ -64,32 +67,57 @@ namespace Attendance_system.View
 
         private void btnCheckIn(object sender, RoutedEventArgs e)
         {
+            disabled(false);
 
         }
 
         private void btnCheckOut(object sender, RoutedEventArgs e)
         {
+            disabled(true);
 
         }
 
-        private void btnStart(object sender, RoutedEventArgs e)
+        private void btnStartClick(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void btnPause(object sender, RoutedEventArgs e)
+        private void btnPauseClick(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void btnResume(object sender, RoutedEventArgs e)
+        private void btnResumeClick(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void btnStop(object sender, RoutedEventArgs e)
+        private void btnStopClick(object sender, RoutedEventArgs e)
         {
 
+        }
+        private void disabled(bool state)
+        {
+            if (state)
+            {
+                cbProject.IsEnabled = false;
+                cbTask.IsEnabled = false;
+                btnStart.IsEnabled = false;
+                btnStop.IsEnabled = false;
+                btnResume.IsEnabled = false;
+                btnPause.IsEnabled = false;
+                txtEmployeeTaskNote.IsEnabled = false;
+            }
+            else
+            {
+                cbProject.IsEnabled = true;
+                cbTask.IsEnabled = true;
+                btnStart.IsEnabled = true;
+                btnStop.IsEnabled = true;
+                btnResume.IsEnabled = true;
+                btnPause.IsEnabled = true;
+                txtEmployeeTaskNote.IsEnabled = true;
+            }
         }
 
     }

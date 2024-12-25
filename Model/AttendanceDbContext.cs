@@ -179,6 +179,9 @@ public partial class AttendanceDbContext : DbContext
             entity.Property(e => e.Description)
                 .HasMaxLength(255)
                 .IsUnicode(false);
+            entity.Property(e => e.Name)
+                .HasMaxLength(100)
+                .IsUnicode(false);
             entity.Property(e => e.UpdatedAt)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")

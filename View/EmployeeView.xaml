@@ -85,10 +85,10 @@
                         <ComboBox x:Name="cbProject" Width="200" Height="30" Background="#FF911FCC" Foreground="White" FontSize="18" Margin="0,277,0,-230" HorizontalAlignment="Left"/>
                         <ComboBox x:Name="cbTask" Width="200" Height="30" Background="#FF911FCC" Foreground="White" FontSize="18" Margin="230,277,0,-230" HorizontalAlignment="Left"/>
                         <Label x:Name="lblTimer" Content="" Background="Red" Foreground="White"  FontSize="20" FontFamily="Calisto MT" Margin="528,0,0,-325" Height="42" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="243"/>
-                        <Button Click="btnPause" Content="Pause" Height="40" Margin="678,422,0,-385" FontWeight="Bold" FontSize="20" Background="#FF1F052D" Foreground="White" HorizontalAlignment="Left" Width="93"/>
-                        <Button Click="btnStop" Content="Stop" Height="40" Background="#FF1F052D" FontWeight="Bold" FontSize="20" Foreground="White" Margin="678,475,0,-438" HorizontalAlignment="Left" Width="93"/>
-                        <Button Click="btnStart" Content="Start" Height="40" Background="#FF911FCC" FontWeight="Bold" FontSize="20" Foreground="White" Margin="528,422,0,-385" HorizontalAlignment="Left" Width="93"/>
-                        <Button Click="btnResume" Content="Resume" Height="40" Background="#FF911FCC" FontWeight="Bold" FontSize="20" Foreground="White" Margin="528,475,0,-438" HorizontalAlignment="Left" Width="93"/>
+                        <Button x:Name="btnPause" Click="btnPauseClick" Content="Pause" Height="40" Margin="678,422,0,-385" FontWeight="Bold" FontSize="20" Background="#FF1F052D" Foreground="White" HorizontalAlignment="Left" Width="93"/>
+                        <Button x:Name="btnStop" Click="btnStopClick" Content="Stop" Height="40" Background="#FF1F052D" FontWeight="Bold" FontSize="20" Foreground="White" Margin="678,475,0,-438" HorizontalAlignment="Left" Width="93"/>
+                        <Button x:Name="btnStart" Click="btnStartClick" Content="Start" Height="40" Background="#FF911FCC" FontWeight="Bold" FontSize="20" Foreground="White" Margin="528,422,0,-385" HorizontalAlignment="Left" Width="93"/>
+                        <Button x:Name="btnResume" Click="btnResumeClick" Content="Resume" Height="40" Background="#FF911FCC" FontWeight="Bold" FontSize="20" Foreground="White" Margin="528,475,0,-438" HorizontalAlignment="Left" Width="93"/>
                         <Label Content="Project" FontSize="20" Foreground="White" Margin="0,240,0,-200" HorizontalAlignment="Left" Width="84"/>
                         <Label Content="Task" FontSize="20" Foreground="White" Margin="230,240,0,-200" HorizontalAlignment="Left" Width="84"/>
                         <TextBox x:Name="txtAttendanceNote" Height="121" Background="#2A2A2A" Foreground="White" 

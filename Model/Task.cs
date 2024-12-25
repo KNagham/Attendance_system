@@ -19,6 +19,8 @@ public partial class Task
 
     public bool? IsDeleted { get; set; }
 
+    public string? Name { get; set; }
+
     public virtual ICollection<EmployeeProjekt> EmployeeProjekts { get; set; } = new List<EmployeeProjekt>();
 
     public virtual ICollection<Projekt> Projekts { get; set; } = new List<Projekt>();
