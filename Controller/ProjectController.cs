@@ -12,10 +12,19 @@ namespace Attendance_system.Controller
     {
 
         // check, ob ein Project vorhanden ist
-        private static bool CheckProjectExist(string projectName)
+        private static bool CheckProjectExist<T>(T item)
         {
+            bool exist = false;
             AttendanceDbContext context = new AttendanceDbContext();
-            return context.Projects.Any(x => x.Name == projectName);
+            if (item is int id)
+            {
+                exist = context.Projects.Any(x => x.Id == id);
+            }
+            else if(item is string name)
+            {
+                exist = context.Projects.Any(x => x.Name == name);
+            }
+            return exist;
         }
         // Add new project
         public static bool AddProject(Project project)
@@ -68,6 +77,32 @@ namespace Attendance_system.Controller
             {
                 return null;
             }
+        }
+
+        // project update
+        public static bool UpdateProject(Project project)
+        {
+            AttendanceDbContext context = new AttendanceDbContext();
+            Project? projectAlt = context.Projects.Where(p => p.Id == project.Id).FirstOrDefault();
+            if (projectAlt != null)
+            {
+                projectAlt.Name = project.Name;
+                projectAlt.Description = project.Description;
+                projectAlt.IsActive = project.IsActive;
+                projectAlt.IsDone = project.IsDone;
+                //context.Projects.Update(projectAlt);
+                context.SaveChanges();
+                return true;
+            }
+            return false;
+        }
+
+        // project delete
+        public static void DeleteProject(Project project)
+        {
+            AttendanceDbContext context = new AttendanceDbContext();
+            context.Projects.Remove(project);
+            context.SaveChanges();
         }
     }
 }

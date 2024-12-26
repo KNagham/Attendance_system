@@ -38,7 +38,7 @@ namespace Attendance_system.View
         {
 
         }
-
+        
         private void btnLogin(object sender, RoutedEventArgs e)
         {
             string reason = "";

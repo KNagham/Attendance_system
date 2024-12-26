@@ -85,7 +85,7 @@ public partial class AttendanceDbContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PK__Employee__3214EC0724CE640A");
 
-            entity.ToTable("EmployeeProject", tb => tb.HasTrigger("trg_UpdateEmployeeProjektTimestamp"));
+            entity.ToTable("EmployeeProject", tb => tb.HasTrigger("trg_EmployeeProjectTimestamp"));
 
             entity.Property(e => e.CreatedAt)
                 .HasDefaultValueSql("(getdate())")
@@ -103,8 +103,8 @@ public partial class AttendanceDbContext : DbContext
                 .HasForeignKey(d => d.EmployeeId)
                 .HasConstraintName("FK__EmployeeP__Emplo__72C60C4A");
 
-            entity.HasOne(d => d.Projekt).WithMany(p => p.EmployeeProjects)
-                .HasForeignKey(d => d.ProjektId)
+            entity.HasOne(d => d.Project).WithMany(p => p.EmployeeProjects)
+                .HasForeignKey(d => d.ProjectId)
                 .HasConstraintName("FK__EmployeeP__Proje__73BA3083");
 
             entity.HasOne(d => d.Task).WithMany(p => p.EmployeeProjects)
@@ -142,9 +142,9 @@ public partial class AttendanceDbContext : DbContext
 
         modelBuilder.Entity<Project>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Projekt__3214EC07D54A7192");
+            entity.HasKey(e => e.Id).HasName("PK__Project__3214EC07D54A7192");
 
-            entity.ToTable("Project", tb => tb.HasTrigger("trg_UpdateProjektTimestamp"));
+            entity.ToTable("Project", tb => tb.HasTrigger("trg_ProjectTimestamp"));
 
             entity.Property(e => e.CreatedAt)
                 .HasDefaultValueSql("(getdate())")
@@ -163,7 +163,7 @@ public partial class AttendanceDbContext : DbContext
 
             entity.HasOne(d => d.Task).WithMany(p => p.Projects)
                 .HasForeignKey(d => d.TaskId)
-                .HasConstraintName("FK__Projekt__TaskId__66603565");
+                .HasConstraintName("FK__Project__TaskId__66603565");
         });
 
         modelBuilder.Entity<Task>(entity =>

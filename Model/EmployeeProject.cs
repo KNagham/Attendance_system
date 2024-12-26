@@ -9,7 +9,7 @@ public partial class EmployeeProject
 
     public int? EmployeeId { get; set; }
 
-    public int? ProjektId { get; set; }
+    public int? ProjectId { get; set; }
 
     public int? TaskId { get; set; }
 
@@ -23,7 +23,7 @@ public partial class EmployeeProject
 
     public virtual Employee? Employee { get; set; }
 
-    public virtual Project? Projekt { get; set; }
+    public virtual Project? Project { get; set; }
 
     public virtual Task? Task { get; set; }
 }

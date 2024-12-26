@@ -1,5 +1,6 @@
 ﻿using Attendance_system.Controller;
 using Attendance_system.Model;
+using Microsoft.EntityFrameworkCore.Query;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,10 +44,7 @@ namespace Attendance_system.View
             IsDone.IsChecked = false;
         }
 
-        private void cbProjectActive(object sender, RoutedEventArgs e)
-        {
-
-        }
+        
 
         private void btnProject(object sender, RoutedEventArgs e)
         {
@@ -63,18 +61,10 @@ namespace Attendance_system.View
 
         }
 
-        private void cbProjectDone(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void cbProjectDelete(object sender, RoutedEventArgs e)
-        {
-
-        }
-
+        
         private void btnAddProject(object sender, RoutedEventArgs e)
         {
+        
             if (txtProjectName.Text == string.Empty)
             {
                 MessageBox.Show("Bitte geben Name des Projekts ein", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -109,6 +99,7 @@ namespace Attendance_system.View
 
         private void btnSearchProject(object sender, RoutedEventArgs e)
         {
+        
             if(txtProjectId.Text == string.Empty && txtProjectName.Text == string.Empty)
             {
                 MessageBox.Show("Bitte geben Sie entweder (ID) oder (Name) eines Projekt ein.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -126,7 +117,7 @@ namespace Attendance_system.View
                 }
                 else
                 {
-                    MessageBox.Show($"Project mit der ID: {txtProjectId.Text} wurde nicht gefunden", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show($"Project mit der ID: {txtProjectId.Text} wurde nicht gefunden", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     clear();
                 }
             }
@@ -142,7 +133,7 @@ namespace Attendance_system.View
                 }
                 else
                 {
-                    MessageBox.Show($"Project mit der Name: {txtProjectName.Text} wurde nicht gefunden", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show($"Project mit der Name: {txtProjectName.Text} wurde nicht gefunden", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     clear();
                 }
             }
@@ -151,12 +142,49 @@ namespace Attendance_system.View
 
         private void btnUpdateProject(object sender, RoutedEventArgs e)
         {
+        
+            if(txtProjectName.Text == string.Empty)
+            {
+                MessageBox.Show("Name eines Projects darf nicht leer sein.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            Project project = new Project()
+            {
+                Id = int.Parse(txtProjectId.Text),
+                Name = txtProjectName.Text,
+                Description = txtProjectDescription.Text,
+                IsActive = IsActive.IsChecked,
+                IsDone = IsDone.IsChecked
+            };
+            
+            bool result = ProjectController.UpdateProject(project);
+            if (result)
+            {
+                MessageBox.Show($"Das Project {txtProjectName.Text} wurde erfolgreich aktualisiert", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                clear();
+                updateListView();
+                return;
+            }
+            else
+            {
+                MessageBox.Show($"Das Project kann aktuell nicht geändert werden", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                clear();
+                return;
+            }
 
         }
 
         private void btnDeleteProject(object sender, RoutedEventArgs e)
         {
-
+            MessageBoxResult result = MessageBox.Show( "Do you really want to Delete this element ?", "Delete", MessageBoxButton.OKCancel, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {
+                Button button = (Button)sender;
+                Project project = (Project)button.CommandParameter;
+                ProjectController.DeleteProject(project);
+                clear();
+                updateListView();
+            }
         }
     }
 }
