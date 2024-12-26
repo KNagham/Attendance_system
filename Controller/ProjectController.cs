@@ -3,6 +3,7 @@ using Attendance_system.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,7 +21,7 @@ namespace Attendance_system.Controller
             {
                 exist = context.Projects.Any(x => x.Id == id);
             }
-            else if(item is string name)
+            else if (item is string name)
             {
                 exist = context.Projects.Any(x => x.Name == name);
             }
@@ -70,7 +71,7 @@ namespace Attendance_system.Controller
                 return context.Projects.Where(p => p.Id == id).FirstOrDefault();
             }
             else if (item is string name)
-            { 
+            {
                 return context.Projects.Where(p => p.Name == name).FirstOrDefault();
             }
             else
@@ -98,11 +99,17 @@ namespace Attendance_system.Controller
         }
 
         // project delete
-        public static void DeleteProject(Project project)
+        public static bool DeleteProject(Project project)
         {
             AttendanceDbContext context = new AttendanceDbContext();
-            context.Projects.Remove(project);
-            context.SaveChanges();
+            //Project? deleteProject = context.Projects.Where(p => p.Id == project.Id).FirstOrDefault();
+            if (project != null)
+            {
+                context.Projects.Remove(project);
+                context.SaveChanges();
+                return true;
+            }
+            return false;
         }
     }
 }

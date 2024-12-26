@@ -53,6 +53,9 @@ namespace Attendance_system.View
 
         private void btnTask(object sender, RoutedEventArgs e)
         {
+            ManagerTask task = new ManagerTask();
+            task.Show();
+            this.Close();
 
         }
 
@@ -177,13 +180,31 @@ namespace Attendance_system.View
         private void btnDeleteProject(object sender, RoutedEventArgs e)
         {
             MessageBoxResult result = MessageBox.Show( "Do you really want to Delete this element ?", "Delete", MessageBoxButton.OKCancel, MessageBoxImage.Question);
-            if (result == MessageBoxResult.Yes)
+            if (result == MessageBoxResult.OK)
             {
-                Button button = (Button)sender;
-                Project project = (Project)button.CommandParameter;
-                ProjectController.DeleteProject(project);
-                clear();
-                updateListView();
+                Project project = new Project()
+                {
+                    Id = int.Parse(txtProjectId.Text),
+                    Name = txtProjectName.Text,
+                    Description = txtProjectDescription.Text,
+                    IsActive = IsActive.IsChecked,
+                    IsDone = IsDone.IsChecked
+                };
+                bool state = ProjectController.DeleteProject(project);
+                if (state)
+                {
+                    MessageBox.Show($"Das Project {txtProjectName.Text} wurde entfernt", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                    clear();
+                    updateListView();
+                    return;
+                }
+                else
+                {
+                    MessageBox.Show($"Das Project kann aktuell nicht entfernt werden", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    clear();
+                    return;
+                }
+                
             }
         }
     }
