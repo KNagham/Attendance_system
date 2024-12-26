@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Attendance_system.Model;
 
-public partial class Projekt
+public partial class Project
 {
     public int Id { get; set; }
 
@@ -13,8 +13,6 @@ public partial class Projekt
 
     public bool? IsActive { get; set; }
 
-    public bool? IsDeleted { get; set; }
-
     public int? TaskId { get; set; }
 
     public DateTime CreatedAt { get; set; }
@@ -23,7 +21,7 @@ public partial class Projekt
 
     public bool? IsDone { get; set; }
 
-    public virtual ICollection<EmployeeProjekt> EmployeeProjekts { get; set; } = new List<EmployeeProjekt>();
+    public virtual ICollection<EmployeeProject> EmployeeProjects { get; set; } = new List<EmployeeProject>();
 
     public virtual Task? Task { get; set; }
 }

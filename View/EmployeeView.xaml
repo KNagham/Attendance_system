@@ -25,13 +25,25 @@
             </Grid.RowDefinitions>
             <!-- Header -->
             <Label Content="Attendance System"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Top"
-                   FontSize="38"
-                   FontFamily="Calisto MT"
-                   FontWeight="Bold"
-                   Foreground="White"
-                   Margin="10"/>
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Top"
+                      FontSize="38"
+                      FontFamily="Calisto MT"
+                      FontWeight="Bold"
+                      Margin="10">         
+                <Label.Style>
+                    <Style TargetType="Label">
+                        <!-- Default Foreground color (white) -->
+                        <Setter Property="Foreground" Value="White"/>
+                        <!-- Trigger to change color on mouse over -->
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="#FF9539E6"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Label.Style>
+            </Label>
             <!-- Hauptinhalt -->
             <Grid Grid.Row="1" Margin="0,20,0,0">
                 <Grid.ColumnDefinitions>
@@ -52,7 +64,7 @@
                                 </LinearGradientBrush>
                             </Button.Background>
                         </Button>
-                        <Button Click="btnWorkingHour" Content="Working Hours" Height="40" Margin="0,10" Foreground="White" FontSize="20" Width="220">
+                        <Button Click="btnWorkingHour" Content="Working Hour" Height="40" Margin="0,10" Foreground="White" FontSize="20" Width="220">
                             <Button.Background>
                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                     <GradientStop Color="#000000" Offset="0.0"/>

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Attendance_system.Model;
 
-public partial class EmployeeProjekt
+public partial class EmployeeProject
 {
     public int Id { get; set; }
 
@@ -23,7 +23,7 @@ public partial class EmployeeProjekt
 
     public virtual Employee? Employee { get; set; }
 
-    public virtual Projekt? Projekt { get; set; }
+    public virtual Project? Projekt { get; set; }
 
     public virtual Task? Task { get; set; }
 }

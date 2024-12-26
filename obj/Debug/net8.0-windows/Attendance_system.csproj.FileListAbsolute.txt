@@ -141,3 +141,5 @@ C:\Programmierung\C#\Attendance_system\obj\Debug\net8.0-windows\Attendance_syste
 C:\Programmierung\C#\Attendance_system\obj\Debug\net8.0-windows\Attendance_system.sourcelink.json
 C:\Programmierung\C#\Attendance_system\obj\Debug\net8.0-windows\View\ResetPassword.g.cs
 C:\Programmierung\C#\Attendance_system\obj\Debug\net8.0-windows\View\ResetPassword.baml
+C:\Programmierung\C#\Attendance_system\obj\Debug\net8.0-windows\View\ManagerView.g.cs
+C:\Programmierung\C#\Attendance_system\obj\Debug\net8.0-windows\View\ManagerView.baml

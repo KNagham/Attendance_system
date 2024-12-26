@@ -1,0 +1,219 @@
+﻿<Window x:Class="Attendance_system.View.ManagerView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Attendance_system.View"
+        mc:Ignorable="d"
+        Title="ManagerView" Height="800" Width="1200">
+    <!-- Ressourcen für das Fenster -->
+    <Window.Resources>
+        <LinearGradientBrush x:Key="GradientBackgroundBrush" StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#000000" Offset="0.0"/>
+            <GradientStop Color="#1A0F2E" Offset="0.5"/>
+            <GradientStop Color="#4C0D6D" Offset="1.0"/>
+        </LinearGradientBrush>
+    </Window.Resources>
+    <!-- Hintergrundfarbe des Windows -->
+    <Window.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" MappingMode="RelativeToBoundingBox">
+            <GradientStop Color="#000000" Offset="0.0"/>
+            <GradientStop Color="#1A0F2E" Offset="0.5"/>
+            <GradientStop Color="#4C0D6D" Offset="1.0"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    <!--scrollbar Bereich-->
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <!-- Header -->
+                <RowDefinition Height="Auto"/>
+                <!-- Hauptinhalt -->
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <!-- Header -->
+            <Label Content="Attendance System"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Top"
+                      FontSize="38"
+                      FontFamily="Calisto MT"
+                      FontWeight="Bold"
+                      Margin="10">
+                <Label.Style>
+                    <Style TargetType="Label">
+                        <!-- Default Foreground color (white) -->
+                        <Setter Property="Foreground" Value="White"/>
+                        <!-- Trigger to change color on mouse over -->
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="#FF9539E6"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Label.Style>
+            </Label>
+            <!-- Hauptinhalt -->
+            <Grid Grid.Row="1" Margin="0,20,0,0">
+                <Grid.ColumnDefinitions>
+                    <!-- Linkes Menü -->
+                    <ColumnDefinition Width="267*"/>
+                    <!-- Hauptbereich -->
+                    <ColumnDefinition Width="893*"/>
+                </Grid.ColumnDefinitions>
+                <!-- Linkes Menü -->
+                <Border Background="#1A0F2E" Margin="10,10,0,10" Padding="10" CornerRadius="10" HorizontalAlignment="Left" Width="240">
+                    <StackPanel>
+                        <Button Click="btnProject" Content="Project" Height="40" Margin="0,10" Foreground="White" FontSize="20" Width="220">
+                            <Button.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#000000" Offset="0.0"/>
+                                    <GradientStop Color="#1A0F2E" Offset="0.5"/>
+                                    <GradientStop Color="#4C0D6D" Offset="1.0"/>
+                                </LinearGradientBrush>
+                            </Button.Background>
+                        </Button>
+                        <Button Click="btnTask" Content="Task" Height="40" Margin="0,10" Foreground="White" FontSize="20" Width="220">
+                            <Button.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#000000" Offset="0.0"/>
+                                    <GradientStop Color="#1A0F2E" Offset="0.5"/>
+                                    <GradientStop Color="#4C0D6D" Offset="1.0"/>
+                                </LinearGradientBrush>
+                            </Button.Background>
+                        </Button>
+                        <Button Click="btnEmployee" Content="Employee" Height="40" Margin="0,10" Foreground="White" FontSize="20" Width="220">
+                            <Button.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#000000" Offset="0.0"/>
+                                    <GradientStop Color="#1A0F2E" Offset="0.5"/>
+                                    <GradientStop Color="#4C0D6D" Offset="1.0"/>
+                                </LinearGradientBrush>
+                            </Button.Background>
+                        </Button>
+                    </StackPanel>
+                </Border>
+                <!-- Hauptinhalt -->
+                <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                    <Grid Grid.Column="1" Margin="20" HorizontalAlignment="Stretch">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Label Content="ID:" Foreground="White" 
+                                FontFamily="Calisto MT" FontSize="20" 
+                                Height="38"  VerticalAlignment="Bottom" 
+                                HorizontalAlignment="Left" Width="115" Margin="0,0,0,-8"/>
+                        <TextBox x:Name="txtProjectId" Height="34" 
+                                Background="#2A2A2A" Foreground="White" 
+                                BorderBrush="#FF71737B" FontSize="18" 
+                                FontFamily="Calisto MT" HorizontalAlignment="Left" Margin="159,79,0,-4" Width="360" />
+                        <Label x:Name="lblGreeting" Content="" FontSize="20" FontFamily="Calisto MT" 
+                               Foreground="White" Width="279" Background="Red" 
+                               HorizontalAlignment="Left" Margin="539,0,0,0" Height="54" VerticalAlignment="Top"/>
+                        <Label Content="Name:" Foreground="White" 
+                                FontFamily="Calisto MT" FontSize="20" 
+                                Height="38"  VerticalAlignment="Bottom" 
+                                HorizontalAlignment="Left" Width="115" Margin="0,0,0,-53"/>
+                        <TextBox x:Name="txtProjectName" Height="34" 
+                                   Background="#2A2A2A" Foreground="White" 
+                                   BorderBrush="#FF71737B" FontSize="18" 
+                                   FontFamily="Calisto MT" HorizontalAlignment="Left" Margin="159,124,0,-49" Width="360" />
+                        <Label Content="Description:" Foreground="White" 
+                            FontFamily="Calisto MT" FontSize="20" 
+                            Height="38"  VerticalAlignment="Bottom" 
+                            HorizontalAlignment="Left" Width="115" Margin="0,0,0,-130"/>
+                        <TextBox x:Name="txtProjectDescription" 
+                            Background="#2A2A2A" Foreground="White" 
+                            BorderBrush="#FF71737B" FontSize="18" 
+                            FontFamily="Calisto MT" HorizontalAlignment="Left" Margin="159,168,0,-202" Width="360" />
+                        <Label Content="Active:" Foreground="White" 
+                            FontFamily="Calisto MT" FontSize="20" 
+                            Height="38"  VerticalAlignment="Bottom" 
+                            HorizontalAlignment="Left" Width="115" Margin="0,0,0,-244"/>
+                        <CheckBox Checked="cbProjectActive" x:Name="IsActive" Margin="159,325,636,-244" 
+                                  Background="White" Width="28" Height="28"
+                                  BorderBrush="Black" />
+                        <Label Content="Done:" Foreground="White" 
+                            FontFamily="Calisto MT" FontSize="20" 
+                            Height="38"  VerticalAlignment="Bottom" 
+                            HorizontalAlignment="Left" Width="115" Margin="0,0,0,-288"/>
+                        <CheckBox Checked="cbProjectDone" x:Name="IsDone" Margin="159,368,636,-287" 
+                            Background="White" Width="28" Height="28"
+                            BorderBrush="Black"/>
+                        <Button Click="btnAddProject" Content="ADD" 
+                                Height="40" Background="#4C0D6D" FontSize="20"
+                                Foreground="White" FontFamily="Calisto MT" 
+                                FontWeight="Bold" Width="120" Margin="0,194,145,-132" HorizontalAlignment="Right"/>
+                        <Button Click="btnSearchProject" Content="Search" 
+                                Height="40" Background="#4C0D6D" FontSize="20"
+                                Foreground="White" FontFamily="Calisto MT" 
+                                FontWeight="Bold" Width="120" Margin="0,194,5,-132" HorizontalAlignment="Right"/>
+                        <Button Click="btnUpdateProject" Content="Update" 
+                                Height="40" Background="#4C0D6D" FontSize="20"
+                                Foreground="White" FontFamily="Calisto MT" 
+                                FontWeight="Bold" Width="120" Margin="0,258,145,-196" HorizontalAlignment="Right"/>
+                        <Button Click="btnDeleteProject" Content="Delete" 
+                                Height="40" Background="#4C0D6D" FontSize="20"
+                                Foreground="White" FontFamily="Calisto MT" 
+                                FontWeight="Bold" Width="120" Margin="0,258,5,-196" HorizontalAlignment="Right"/>
+                        <GroupBox Margin="10,413,-10,-478" >
+                            <ListView x:Name="listViewProject" Height="167" 
+                                      Background="{StaticResource GradientBackgroundBrush}" 
+                                      Foreground="White"
+                                      FontSize="16" BorderBrush="Black">
+                                <ListView.Resources>
+                                    <Style TargetType="ListViewItem">
+                                        <Setter Property="Foreground" Value="White"/>
+                                        <Setter Property="FontSize" Value="16"/>
+                                        <Setter Property="Background" Value="Transparent"/>
+                                        <Setter Property="BorderBrush" Value="#4C0D6D"/>
+                                        <Setter Property="Padding" Value="5"/>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="#FF5A5A8B"/>
+                                                <Setter Property="Foreground" Value="White"/>
+                                            </Trigger>
+                                            <Trigger Property="IsSelected" Value="True">
+                                                <Setter Property="Background" Value="#FF9539E6"/>
+                                                <Setter Property="Foreground" Value="White"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                    <!-- Header Style -->
+                                    <Style TargetType="GridViewColumnHeader">
+                                        <Setter Property="Background">
+                                            <Setter.Value>
+                                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                                    <GradientStop Color="#1A0F2E" Offset="0.0"/>
+                                                    <GradientStop Color="#4C0D6D" Offset="1.0"/>
+                                                </LinearGradientBrush>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Setter Property="Foreground" Value="White"/>
+                                        <Setter Property="FontFamily" Value="Calisto MT"/>
+                                        <Setter Property="FontSize" Value="18"/>
+                                        <Setter Property="FontWeight" Value="Bold"/>
+                                        <Setter Property="Height" Value="40"/>
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                        <Setter Property="BorderBrush" Value="#4C0D6D"/>
+                                        <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                                    </Style>
+                                </ListView.Resources>
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Header="ID" Width="50" DisplayMemberBinding="{Binding Id}" />
+                                        <GridViewColumn Header="Name" Width="150" DisplayMemberBinding="{Binding Name}" />
+                                        <GridViewColumn Header="Description" Width="200" DisplayMemberBinding="{Binding Description}" />
+                                        <GridViewColumn Header="Create At" Width="120" DisplayMemberBinding="{Binding CreatedDateOnly}" />
+                                        <GridViewColumn Header="Update At" Width="120" DisplayMemberBinding="{Binding UpdatedDateOnly}" />
+                                        <GridViewColumn Header="Status" Width="100" DisplayMemberBinding="{Binding Status}" />
+                                        <GridViewColumn Header="Tasks" Width="80" DisplayMemberBinding="{Binding CountOfTasks}" />
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </GroupBox>
+                    </Grid>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </ScrollViewer>
+</Window>
