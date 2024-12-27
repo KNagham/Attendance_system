@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Attendance_system.View"
         mc:Ignorable="d"
-        Title="ManagerView" Height="800" Width="1200">
+        Title="ManagerView" Height="900" Width="1200">
     <!-- Ressourcen für das Fenster -->
     <Window.Resources>
         <LinearGradientBrush x:Key="GradientBackgroundBrush" StartPoint="0,0" EndPoint="1,1">
@@ -52,6 +52,9 @@
                     </Style>
                 </Label.Style>
             </Label>
+            <Label x:Name="lblGreeting" Content="" FontSize="20" FontFamily="Calisto MT" 
+       Foreground="White" Width="279" Background="Red" 
+       HorizontalAlignment="Left"  Height="54" VerticalAlignment="Top" Margin="871,0,0,0"/>
             <!-- Hauptinhalt -->
             <Grid Grid.Row="1" Margin="0,20,0,0">
                 <Grid.ColumnDefinitions>
@@ -101,42 +104,40 @@
                         <Label Content="ID:" Foreground="White" 
                                 FontFamily="Calisto MT" FontSize="20" 
                                 Height="38"  VerticalAlignment="Bottom" 
-                                HorizontalAlignment="Left" Width="115" Margin="0,0,0,-8"/>
+                                HorizontalAlignment="Left" Width="115" Margin="10,0,0,120"/>
                         <TextBox x:Name="txtProjectId" Height="34" 
                                 Background="#2A2A2A" Foreground="White" 
                                 BorderBrush="#FF71737B" FontSize="18" 
-                                FontFamily="Calisto MT" HorizontalAlignment="Left" Margin="159,79,0,-4" Width="360" />
-                        <Label x:Name="lblGreeting" Content="" FontSize="20" FontFamily="Calisto MT" 
-                               Foreground="White" Width="279" Background="Red" 
-                               HorizontalAlignment="Left" Margin="539,0,0,0" Height="54" VerticalAlignment="Top"/>
+                                FontFamily="Calisto MT" HorizontalAlignment="Left" Margin="159,10,0,124" Width="360" />
+
                         <Label Content="Name:" Foreground="White" 
                                 FontFamily="Calisto MT" FontSize="20" 
                                 Height="38"  VerticalAlignment="Bottom" 
-                                HorizontalAlignment="Left" Width="115" Margin="0,0,0,-53"/>
+                                HorizontalAlignment="Left" Width="115" Margin="10,0,0,69"/>
                         <TextBox x:Name="txtProjectName" Height="34" 
                                    Background="#2A2A2A" Foreground="White" 
                                    BorderBrush="#FF71737B" FontSize="18" 
-                                   FontFamily="Calisto MT" HorizontalAlignment="Left" Margin="159,124,0,-49" Width="360" />
+                                   FontFamily="Calisto MT" HorizontalAlignment="Left" Margin="159,65,0,69" Width="360" />
                         <Label Content="Description:" Foreground="White" 
                             FontFamily="Calisto MT" FontSize="20" 
                             Height="38"  VerticalAlignment="Bottom" 
-                            HorizontalAlignment="Left" Width="115" Margin="0,0,0,-130"/>
+                            HorizontalAlignment="Left" Width="115" Margin="10,0,0,10"/>
                         <TextBox x:Name="txtProjectDescription" 
                             Background="#2A2A2A" Foreground="White" 
                             BorderBrush="#FF71737B" FontSize="18" 
-                            FontFamily="Calisto MT" HorizontalAlignment="Left" Margin="159,168,0,-202" Width="360" />
+                            FontFamily="Calisto MT" HorizontalAlignment="Left" Margin="159,120,0,-154" Width="360" />
                         <Label Content="Active:" Foreground="White" 
                             FontFamily="Calisto MT" FontSize="20" 
                             Height="38"  VerticalAlignment="Bottom" 
-                            HorizontalAlignment="Left" Width="115" Margin="0,0,0,-244"/>
-                        <CheckBox x:Name="IsActive" Margin="159,325,636,-244" 
+                            HorizontalAlignment="Left" Width="72" Margin="158,0,0,-200"/>
+                        <CheckBox x:Name="IsActive" Margin="248,335,0,-195" 
                                   Background="White" Width="28" Height="28"
-                                  BorderBrush="Black" />
+                                  BorderBrush="Black" HorizontalAlignment="Left" />
                         <Label Content="Done:" Foreground="White" 
                             FontFamily="Calisto MT" FontSize="20" 
                             Height="38"  VerticalAlignment="Bottom" 
-                            HorizontalAlignment="Left" Width="115" Margin="0,0,0,-288"/>
-                        <CheckBox x:Name="IsDone" Margin="159,368,636,-287" 
+                            HorizontalAlignment="Left" Width="65" Margin="339,0,0,-200"/>
+                        <CheckBox x:Name="IsDone" Margin="416,335,415,-195" 
                                   Background="White" Width="28" Height="28"
                                   BorderBrush="Black"/>
                         <Button Click="btnAddProject" Content="ADD" 
@@ -155,8 +156,8 @@
                                 Height="40" Background="#4C0D6D" FontSize="20"
                                 Foreground="White" FontFamily="Calisto MT" 
                                 FontWeight="Bold" Width="120" Margin="0,258,5,-196" HorizontalAlignment="Right"/>
-                        <GroupBox Margin="0,415,0,-507" Padding="0" BorderBrush="Transparent" BorderThickness="0" HorizontalAlignment="Center" Width="859">
-                            <ListView x:Name="listViewProject" Height="183" Width="Auto"
+                        <GroupBox Margin="0,447,0,-539" Padding="0" BorderBrush="Transparent" BorderThickness="0" HorizontalAlignment="Center" Height="260" Width="860">
+                            <ListView x:Name="listViewProject" Height="245" Width="Auto"
                                       BorderBrush="White" BorderThickness="2"
                                       ScrollViewer.VerticalScrollBarVisibility="Auto"
                                       Background="{StaticResource GradientBackgroundBrush}" 

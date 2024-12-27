@@ -58,7 +58,7 @@ namespace Attendance_system.Controller
                 CreatedDateOnly = p.CreatedAt.ToString("dd-MM-yyyy"),
                 UpdatedDateOnly = p.UpdatedAt.ToString("dd-MM-yyyy"),
                 Status = p.IsDone == true ? "Done" : (p.IsActive == true ? "Active" : "Inactive"),
-                CountOfTasks = p.Task != null ? 1 : 0,
+                CountOfTasks = p.Tasks != null ? p.Tasks.Count() : 0,
             }).ToList();
         }
 

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Attendance_system.View"
         mc:Ignorable="d"
-        Title="ManagerTask" Height="800" Width="1200">
+        Title="ManagerTask" Height="900" Width="1200">
     <!-- Ressourcen für das Fenster -->
     <Window.Resources>
         <LinearGradientBrush x:Key="GradientBackgroundBrush" StartPoint="0,0" EndPoint="1,1">
@@ -24,7 +24,7 @@
     </Window.Background>
     <!--scrollbar Bereich-->
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-        <Grid Margin="20">
+        <Grid Margin="20" Height="754">
             <Grid.RowDefinitions>
                 <!-- Header -->
                 <RowDefinition Height="Auto"/>
@@ -52,6 +52,9 @@
                     </Style>
                 </Label.Style>
             </Label>
+            <Label x:Name="lblGreeting" Content="" FontSize="20" FontFamily="Calisto MT" 
+                   Foreground="White" Width="279" Background="Red" 
+                   HorizontalAlignment="Left" Margin="871,13,0,0" Height="54" VerticalAlignment="Top"/>
             <!-- Hauptinhalt -->
             <Grid Grid.Row="1" Margin="0,20,0,0">
                 <Grid.ColumnDefinitions>
@@ -101,42 +104,40 @@
                         <Label Content="ID:" Foreground="White" 
                                 FontFamily="Calisto MT" FontSize="20" 
                                 Height="38"  VerticalAlignment="Bottom" 
-                                HorizontalAlignment="Left" Width="115" Margin="0,0,0,-8"/>
+                                HorizontalAlignment="Left" Width="115" Margin="0,0,0,66"/>
                         <TextBox x:Name="txtTaskId" Height="34" 
                                 Background="#2A2A2A" Foreground="White" 
                                 BorderBrush="#FF71737B" FontSize="18" 
-                                FontFamily="Calisto MT" HorizontalAlignment="Left" Margin="159,79,0,-4" Width="360" />
-                        <Label x:Name="lblGreeting" Content="" FontSize="20" FontFamily="Calisto MT" 
-                               Foreground="White" Width="279" Background="Red" 
-                               HorizontalAlignment="Left" Margin="539,0,0,0" Height="54" VerticalAlignment="Top"/>
+                                FontFamily="Calisto MT" HorizontalAlignment="Left" Margin="159,10,0,70" Width="360" />
+
                         <Label Content="Name:" Foreground="White" 
                                 FontFamily="Calisto MT" FontSize="20" 
                                 Height="38"  VerticalAlignment="Bottom" 
-                                HorizontalAlignment="Left" Width="115" Margin="0,0,0,-53"/>
+                                HorizontalAlignment="Left" Width="115" Margin="0,0,0,19"/>
                         <TextBox x:Name="txtTaskName" Height="34" 
                                    Background="#2A2A2A" Foreground="White" 
                                    BorderBrush="#FF71737B" FontSize="18" 
-                                   FontFamily="Calisto MT" HorizontalAlignment="Left" Margin="159,124,0,-49" Width="360" />
+                                   FontFamily="Calisto MT" HorizontalAlignment="Left" Margin="159,57,0,23" Width="360" />
                         <Label Content="Description:" Foreground="White" 
                             FontFamily="Calisto MT" FontSize="20" 
                             Height="38"  VerticalAlignment="Bottom" 
-                            HorizontalAlignment="Left" Width="115" Margin="0,0,0,-130"/>
-                        <TextBox x:Name="txtProjectDescription" 
+                            HorizontalAlignment="Left" Width="115" Margin="0,0,0,-30"/>
+                        <TextBox x:Name="txtTaskDescription" 
                             Background="#2A2A2A" Foreground="White" 
                             BorderBrush="#FF71737B" FontSize="18" 
-                            FontFamily="Calisto MT" HorizontalAlignment="Left" Margin="159,168,0,-150" Width="360" />
+                            FontFamily="Calisto MT" HorizontalAlignment="Left" Margin="159,106,0,-88" Width="360" />
                         <Label Content="Active:" Foreground="White" 
                             FontFamily="Calisto MT" FontSize="20" 
                             Height="38"  VerticalAlignment="Bottom" 
-                            HorizontalAlignment="Left" Width="71" Margin="159,0,0,-193"/>
-                        <CheckBox x:Name="IsActive" Margin="244,280,587,-183" 
+                            HorizontalAlignment="Left" Width="71" Margin="159,0,0,-141"/>
+                        <CheckBox x:Name="IsActive" Margin="244,228,587,-131" 
                                   Background="White" Width="28"
                                   BorderBrush="Black" />
                         <Label Content="Done:" Foreground="White" 
                             FontFamily="Calisto MT" FontSize="20" 
                             Height="38" VerticalAlignment="Bottom" 
-                            HorizontalAlignment="Left" Width="63" Margin="339,0,0,-193"/>
-                        <CheckBox x:Name="IsDone" Margin="416,281,415,-182" 
+                            HorizontalAlignment="Left" Width="63" Margin="330,0,0,-141"/>
+                        <CheckBox x:Name="IsDone" Margin="416,230,415,-131" 
                                   Background="White" Width="28"
                                   BorderBrush="Black"/>
                         <Button Click="btnAddTask" Content="ADD" 
@@ -158,10 +159,15 @@
                         <Label Content="Priority:" Foreground="White" 
                                 FontFamily="Calisto MT" FontSize="20" 
                                 Height="38"  VerticalAlignment="Bottom" 
-                                HorizontalAlignment="Left" Width="115" Margin="0,0,0,-232"/>
-                        <ComboBox x:Name="cbPriority" Margin="159,312,551,-233"/>
-                        <GroupBox Margin="0,415,0,-507" Padding="0" BorderBrush="Transparent" BorderThickness="0" HorizontalAlignment="Center" Width="859">
-                            <ListView x:Name="listViewProject" Height="183" Width="Auto"
+                                HorizontalAlignment="Left" Width="82" Margin="0,0,0,-185"/>
+                        <ComboBox Name="cbPriority" Margin="98,266,0,-188" HorizontalAlignment="Left" Width="149"/>
+                        <Label Content="Project:" Foreground="White" 
+                                FontFamily="Calisto MT" FontSize="20" 
+                                Height="38"  VerticalAlignment="Bottom" 
+                                HorizontalAlignment="Left" Width="82" Margin="268,0,0,-185"/>
+                        <ComboBox Name="cbProject" DisplayMemberPath="Name" SelectedValuePath="Id" Margin="355,266,0,-188" HorizontalAlignment="Left" Width="164"/>
+                        <GroupBox Margin="0,0,0,-504" Padding="0" BorderBrush="Transparent" BorderThickness="0" HorizontalAlignment="Center" Width="858" Height="260" VerticalAlignment="Bottom">
+                            <ListView x:Name="listViewTask" Height="240" Width="Auto"
                                       BorderBrush="White" BorderThickness="2"
                                       ScrollViewer.VerticalScrollBarVisibility="Auto"
                                       Background="{StaticResource GradientBackgroundBrush}" 
@@ -209,18 +215,20 @@
                                 </ListView.Resources>
                                 <ListView.View>
                                     <GridView>
-                                        <GridViewColumn Header="ID" Width="50" DisplayMemberBinding="{Binding Id}"/>
-                                        <GridViewColumn Header="Name" Width="160" DisplayMemberBinding="{Binding Name}" />
-                                        <GridViewColumn Header="Description" Width="200" DisplayMemberBinding="{Binding Description}" />
-                                        <GridViewColumn Header="Create At" Width="120" DisplayMemberBinding="{Binding CreatedDateOnly}" />
-                                        <GridViewColumn Header="Update At" Width="120" DisplayMemberBinding="{Binding UpdatedDateOnly}" />
-                                        <GridViewColumn Header="Status" Width="110" DisplayMemberBinding="{Binding Status}" />
-                                        <GridViewColumn Header="Tasks" Width="80" DisplayMemberBinding="{Binding CountOfTasks}" />
+                                        <GridViewColumn Header="ID" Width="40" DisplayMemberBinding="{Binding Id}"/>
+                                        <GridViewColumn Header="Name" Width="130" DisplayMemberBinding="{Binding Name}" />
+                                        <GridViewColumn Header="Description" Width="160" DisplayMemberBinding="{Binding Description}" />
+                                        <GridViewColumn Header="Create At" Width="110" DisplayMemberBinding="{Binding CreatedDateOnly}" />
+                                        <GridViewColumn Header="Update At" Width="110" DisplayMemberBinding="{Binding UpdatedDateOnly}" />
+                                        <GridViewColumn Header="Status" Width="90" DisplayMemberBinding="{Binding Status}" />
+                                        <GridViewColumn Header="Priority" Width="100" DisplayMemberBinding="{Binding Priority}" />
+                                        <GridViewColumn Header="Project" Width="100" DisplayMemberBinding="{Binding Project}" />
                                     </GridView>
                                 </ListView.View>
                             </ListView>
                         </GroupBox>
-                        
+
+
                     </Grid>
                 </StackPanel>
             </Grid>

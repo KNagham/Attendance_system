@@ -21,7 +21,9 @@ public partial class Task
 
     public string? Priority { get; set; }
 
+    public int? ProjectId { get; set; }
+
     public virtual ICollection<EmployeeProject> EmployeeProjects { get; set; } = new List<EmployeeProject>();
 
-    public virtual ICollection<Project> Projects { get; set; } = new List<Project>();
+    public virtual Project? Project { get; set; }
 }

@@ -13,8 +13,6 @@ public partial class Project
 
     public bool? IsActive { get; set; }
 
-    public int? TaskId { get; set; }
-
     public DateTime CreatedAt { get; set; }
 
     public DateTime UpdatedAt { get; set; }
@@ -23,5 +21,5 @@ public partial class Project
 
     public virtual ICollection<EmployeeProject> EmployeeProjects { get; set; } = new List<EmployeeProject>();
 
-    public virtual Task? Task { get; set; }
+    public virtual ICollection<Task> Tasks { get; set; } = new List<Task>();
 }

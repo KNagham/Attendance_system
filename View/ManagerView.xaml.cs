@@ -204,7 +204,6 @@ namespace Attendance_system.View
                     clear();
                     return;
                 }
-                
             }
         }
     }

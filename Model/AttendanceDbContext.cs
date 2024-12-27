@@ -160,10 +160,6 @@ public partial class AttendanceDbContext : DbContext
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")
                 .HasColumnName("updatedAt");
-
-            entity.HasOne(d => d.Task).WithMany(p => p.Projects)
-                .HasForeignKey(d => d.TaskId)
-                .HasConstraintName("FK__Project__TaskId__66603565");
         });
 
         modelBuilder.Entity<Task>(entity =>
@@ -189,6 +185,10 @@ public partial class AttendanceDbContext : DbContext
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")
                 .HasColumnName("updatedAt");
+
+            entity.HasOne(d => d.Project).WithMany(p => p.Tasks)
+                .HasForeignKey(d => d.ProjectId)
+                .HasConstraintName("FK__Task__ProjectId__14270015");
         });
 
         OnModelCreatingPartial(modelBuilder);
