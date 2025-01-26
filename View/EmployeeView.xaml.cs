@@ -1,4 +1,5 @@
-﻿using Attendance_system.Model;
+﻿using Attendance_system.Controller;
+using Attendance_system.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -68,6 +69,8 @@ namespace Attendance_system.View
         private void btnCheckIn(object sender, RoutedEventArgs e)
         {
             disabled(false);
+            cbProject.ItemsSource = TaskController.GetAllProjects();
+            cbTask.ItemsSource = TaskController.GetAllTasks();
 
         }
 
