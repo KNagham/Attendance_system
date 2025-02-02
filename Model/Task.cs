@@ -23,8 +23,7 @@ public partial class Task
 
     public int? ProjectId { get; set; }
 
-    public virtual ICollection<EmployeeProject> EmployeeProjects
-    { get { } set { } } = new List<EmployeeProject>();
+    public virtual ICollection<EmployeeProject> EmployeeProjects { get; set; } = new List<EmployeeProject>();
 
     public virtual Project? Project { get; set; }
 }

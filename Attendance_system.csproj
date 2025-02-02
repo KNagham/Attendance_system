@@ -10,7 +10,6 @@
 
   <ItemGroup>
     <None Remove="appsettings.json" />
-    <None Remove="Klassendiagram.cd" />
   </ItemGroup>
 
   <ItemGroup>
@@ -38,10 +37,6 @@
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.2" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <XamlAppDef Include="Klassendiagram.cd" />
   </ItemGroup>
 
 </Project>

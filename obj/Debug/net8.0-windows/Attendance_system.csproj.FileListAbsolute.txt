@@ -118,6 +118,7 @@ C:\Programmierung\C#\Attendance_system\obj\Debug\net8.0-windows\Attendance_syste
 C:\Programmierung\C#\Attendance_system\obj\Debug\net8.0-windows\View\Activate.g.cs
 C:\Programmierung\C#\Attendance_system\obj\Debug\net8.0-windows\View\EmployeeView.g.cs
 C:\Programmierung\C#\Attendance_system\obj\Debug\net8.0-windows\View\Login.g.cs
+C:\Programmierung\C#\Attendance_system\obj\Debug\net8.0-windows\View\ManagerTask.g.cs
 C:\Programmierung\C#\Attendance_system\obj\Debug\net8.0-windows\View\ManagerView.g.cs
 C:\Programmierung\C#\Attendance_system\obj\Debug\net8.0-windows\View\Register.g.cs
 C:\Programmierung\C#\Attendance_system\obj\Debug\net8.0-windows\View\ResetPassword.g.cs
@@ -128,6 +129,7 @@ C:\Programmierung\C#\Attendance_system\obj\Debug\net8.0-windows\Attendance_syste
 C:\Programmierung\C#\Attendance_system\obj\Debug\net8.0-windows\View\Activate.baml
 C:\Programmierung\C#\Attendance_system\obj\Debug\net8.0-windows\View\EmployeeView.baml
 C:\Programmierung\C#\Attendance_system\obj\Debug\net8.0-windows\View\Login.baml
+C:\Programmierung\C#\Attendance_system\obj\Debug\net8.0-windows\View\ManagerTask.baml
 C:\Programmierung\C#\Attendance_system\obj\Debug\net8.0-windows\View\ManagerView.baml
 C:\Programmierung\C#\Attendance_system\obj\Debug\net8.0-windows\View\Register.baml
 C:\Programmierung\C#\Attendance_system\obj\Debug\net8.0-windows\View\ResetPassword.baml
@@ -143,5 +145,3 @@ C:\Programmierung\C#\Attendance_system\obj\Debug\net8.0-windows\refint\Attendanc
 C:\Programmierung\C#\Attendance_system\obj\Debug\net8.0-windows\Attendance_system.pdb
 C:\Programmierung\C#\Attendance_system\obj\Debug\net8.0-windows\Attendance_system.genruntimeconfig.cache
 C:\Programmierung\C#\Attendance_system\obj\Debug\net8.0-windows\ref\Attendance_system.dll
-C:\Programmierung\C#\Attendance_system\obj\Debug\net8.0-windows\View\ManagerTask.g.cs
-C:\Programmierung\C#\Attendance_system\obj\Debug\net8.0-windows\View\ManagerTask.baml

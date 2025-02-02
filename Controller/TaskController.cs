@@ -23,7 +23,7 @@ namespace Attendance_system.Controller
                 UpdatedDateOnly = t.UpdatedAt.ToString("dd-MM-yyyy"),
                 Status = t.IsDone == true ? "Done" : (t.IsActive == true ? "Active" : "Inactive"),
                 Priority = t.Priority != null ? t.Priority : "",
-                Project = t.Project != null ? t.Project.Name : "",
+                Project = t.Project != null ? t.Project.Name: "",
             }).ToList();
         }
 
