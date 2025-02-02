@@ -1,4 +1,4 @@
-﻿using Attendance_system.Model;
+﻿using Attendance_system.DTO;
 using Attendance_system.Service;
 using Attendance_system.View;
 using Microsoft.Extensions.Configuration;
@@ -32,8 +32,10 @@ namespace Attendance_system
                 // Dash start
                 /*Login login = new Login();
                 login.Show();*/
-                EmployeeView employeeView = new EmployeeView();
-                employeeView.Show();
+                /*EmployeeView employeeView = new EmployeeView();
+                employeeView.Show();*/
+                ManagerView managerView= new ManagerView();
+                managerView.Show();
             }
             catch (Exception ex)
             {

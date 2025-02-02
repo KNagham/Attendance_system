@@ -1,4 +1,4 @@
-﻿using Attendance_system.Model;
+﻿using Attendance_system.DTO;
 using System.Net;
 using System.Net.Mail;
 using System.Text.RegularExpressions;

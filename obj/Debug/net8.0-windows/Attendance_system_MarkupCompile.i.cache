@@ -10,11 +10,17 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 C:\Programmierung\C#\Attendance_system\App.xaml
-5-2021969291
+71201381421
 11413424753
+<<<<<<< HEAD
+28-1835759165
+234-939026380
+View\Activate.xaml;View\EmployeeView.xaml;View\Login.xaml;View\ManagerTask.xaml;View\ManagerView.xaml;View\Register.xaml;View\ResetPassword.xaml;
+=======
 21-158298883
 234-939026380
 View\Activate.xaml;View\EmployeeView.xaml;View\Login.xaml;View\Register.xaml;View\ResetPassword.xaml;
+>>>>>>> main
 
 False
 

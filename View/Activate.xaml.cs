@@ -55,6 +55,7 @@ namespace Attendance_system.View
 
         private void btnActivate(object sender, RoutedEventArgs e)
         {
+        
             bool state = EmployeeController.ActivateEmployee(txtActivationCode.Text);
             if (state)
             {
@@ -65,6 +66,6 @@ namespace Attendance_system.View
             {
                 MessageBox.Show("Bitte kontrollieren Sie den angegebenen Code", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-        }
     }
+}
 }
