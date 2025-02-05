@@ -61,7 +61,8 @@ namespace Attendance_system.View
 
         private void btnEmployee(object sender, RoutedEventArgs e)
         {
-            EmployeeView employeeView = new EmployeeView();
+            // muss ändern
+            EmployeeView employeeView = new EmployeeView(null);
             employeeView.Show();
             this.Close();
         }
