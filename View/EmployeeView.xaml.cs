@@ -157,7 +157,7 @@ namespace Attendance_system.View
                         EmployeeId = _currentEmployee.Id,
                         ProjectId = (int)cbProject.SelectedValue,
                         TaskId = (int)cbTask.SelectedValue,
-                        WorkingTime =Math.Round(_inBreak ? _pausedTime.TotalMinutes : _elapsedTime.TotalMinutes,2),
+                        WorkingTime =Math.Round(_inBreak ? _pausedTime.TotalSeconds : _elapsedTime.TotalSeconds,2),
                         Note = txtEmployeeTaskNote.Text,
                     };
                 }
@@ -165,7 +165,7 @@ namespace Attendance_system.View
                 {
                     if(!_inBreak)
                     {
-                        _currentEmployeeProject.WorkingTime += Math.Round(_elapsedTime .TotalMinutes, 2);
+                        _currentEmployeeProject.WorkingTime += Math.Round(_elapsedTime .TotalSeconds, 2);
                     }
                     _currentEmployeeProject.Note = txtEmployeeTaskNote.Text;
                 }
@@ -190,13 +190,13 @@ namespace Attendance_system.View
                         EmployeeId = _currentEmployee.Id,
                         ProjectId = (int)cbProject.SelectedValue,
                         TaskId = (int)cbTask.SelectedValue,
-                        WorkingTime = _pausedTime.TotalMinutes,
+                        WorkingTime = _pausedTime.TotalSeconds,
                         Note = txtEmployeeTaskNote.Text,
                     };
                 }
                 else
                 {
-                    _currentEmployeeProject.WorkingTime = Math.Round(_pausedTime.TotalMinutes, 2);
+                    _currentEmployeeProject.WorkingTime = Math.Round(_pausedTime.TotalSeconds, 2);
                     _currentEmployeeProject.Note = txtEmployeeTaskNote.Text;
                 }
                 await EmployeeProjectController.SaveWorkingTime(_currentEmployeeProject);
