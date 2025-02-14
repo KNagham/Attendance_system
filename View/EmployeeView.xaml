@@ -90,8 +90,8 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        <Label x:Name="lblGreeting" Content="" FontSize="20" FontFamily="Calisto MT" Foreground="White" Width="279" Background="Red" HorizontalAlignment="Left" Margin="0,0,0,33"/>
-                        <Label x:Name="lblCurrentDate" Content="" FontSize="20" FontFamily="Calisto MT" Foreground="White" Background="Red" HorizontalContentAlignment="Center" Margin="511,0,0,33" HorizontalAlignment="Left" Width="302"/>
+                        <Label x:Name="lblGreeting" Content="" FontSize="20" FontFamily="Calisto MT" Foreground="White" Width="279" HorizontalAlignment="Left" Margin="0,0,0,33"/>
+                        <Label x:Name="lblCurrentDate" Content="" FontSize="20" FontFamily="Calisto MT" Foreground="White" HorizontalContentAlignment="Center" Margin="511,0,0,33" HorizontalAlignment="Left" Width="302"/>
                         <Button x:Name="btnCheckIn" Click="btnCheckInClick" Content="CheckIn" Height="50" FontWeight="Bold" FontSize="20" Width="136" Background="#FF911FCC" Foreground="White" HorizontalAlignment="Left" Margin="0,130,0,-103"/>
                         <Button x:Name="btnCheckOut" Click="btnCheckOutClick" Content="CheckOut"  Height="50" Width="136" FontWeight="Bold" FontSize="20" Background="#FF320948" Foreground="White" HorizontalAlignment="Left" Margin="154,130,0,-103"/>
                         <ComboBox Name="cbProject" DisplayMemberPath="Name" SelectedValuePath="Id" Width="200" Height="30" FontSize="18" Margin="0,277,0,-230" HorizontalAlignment="Left"/>

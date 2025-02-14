@@ -89,5 +89,71 @@ namespace Attendance_system.View
             }
         }
 
+        private void btnUpdate(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            var employeeProject = button?.DataContext as EmployeeProjectDTO;
+            if (employeeProject == null)
+            {
+                return;
+            }
+            try
+            {
+                // input validate
+                if(!double.TryParse(employeeProject.WorkingTimeFormatted.Replace(":", ""), out double totalSeconds))
+                {
+                    MessageBox.Show("Bitte geben Sie eine gültige Zeit im Format HH:MM:SS ein.",  "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                // time convert
+                var timeParts = employeeProject.WorkingTimeFormatted.Split(':');
+                if (timeParts.Length != 3)
+                {
+                    MessageBox.Show("Bitte geben Sie eine gültige Zeit im Format HH:MM:SS ein.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                int hour = int.Parse(timeParts[0]);
+                int minute = int.Parse(timeParts[1]);
+                int second = int.Parse(timeParts[2]);
+                employeeProject.WorkingTime = hour * 3600 + minute * 60 + second;
+                bool state = EmployeeProjectController.UpdateWorkingHour(employeeProject);
+                if(state)
+                {
+                    MessageBox.Show("Die Arbeitszeit erfolgreich aktualisiert", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                    listViewWorkingHour.ItemsSource = EmployeeProjectController.GetWorkingHours(_currentEmployee.Id);
+                }
+                else
+                {
+                    MessageBox.Show("Die Arbeitszeit kann nicht aktualisiert werden", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Fehler beim Aktualisieren der Arbeitszeit", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+        }
+        private void btnDelete(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            var employeeProject = button?.DataContext as EmployeeProjectDTO;
+            if (employeeProject == null)
+            {
+                return;
+            }
+            if (MessageBox.Show("Möchten Sie wirklich löschen?", "Warnung", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                bool state = EmployeeProjectController.DeleteEmployeeProject(employeeProject);
+                if(state)
+                {
+                    MessageBox.Show("Die Arbeitszeit erfolgreich gelöscht", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                    listViewWorkingHour.ItemsSource = EmployeeProjectController.GetWorkingHours(_currentEmployee.Id);
+                }
+                else
+                {
+                    MessageBox.Show("Die Arbeitszeit kann nicht gelöscht werden", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
     }
 }

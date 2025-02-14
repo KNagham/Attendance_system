@@ -148,7 +148,7 @@
                                       ScrollViewer.VerticalScrollBarVisibility="Auto"
                                       Background="{StaticResource GradientBackgroundBrush}" 
                                       Foreground="White"
-                                      FontSize="16" HorizontalAlignment="Left" >
+                                      FontSize="16" HorizontalAlignment="Center" >
                                 <ListView.Resources>
                                     <Style TargetType="ListViewItem">
                                         <Setter Property="Foreground" Value="White"/>
@@ -191,9 +191,40 @@
                                 </ListView.Resources>
                                 <ListView.View>
                                     <GridView>
-                                        <GridViewColumn Header="Project Name" Width="270" DisplayMemberBinding="{Binding Project}" />
-                                        <GridViewColumn Header="Task" Width="270" DisplayMemberBinding="{Binding Task}" />
-                                        <GridViewColumn Header="Hours" Width="290" DisplayMemberBinding="{Binding WorkingTimeFormatted}" />
+                                        <GridViewColumn Header="Project Name" Width="206" DisplayMemberBinding="{Binding Project}" />
+                                        <GridViewColumn Header="Task" Width="206" DisplayMemberBinding="{Binding Task}" />
+                                        <!-- <GridViewColumn Header="Hours" Width="206" DisplayMemberBinding="{Binding WorkingTimeFormatted}" /> -->
+                                        <GridViewColumn Header="Hours" Width="206">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                        <TextBox Text="{Binding WorkingTimeFormatted, UpdateSourceTrigger=PropertyChanged}"
+                                                                 Width="100" Height="25" 
+                                                                 Background="Transparent" 
+                                                                 Foreground="White"
+                                                                 BorderBrush="#4C0D6D"
+                                                                 BorderThickness="1"
+                                                                 Margin="0,0,10,0"/>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn Width="210">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                        <Button Content="Update" Width="60" Height="25" 
+                                                                Click="btnUpdate" 
+                                                                Background="#FF8231C8" Foreground="White"
+                                                                BorderBrush="#4C0D6D" BorderThickness="1" Margin="0,0,10,0"/>
+                                                        <Button Content="Delete" Width="60" Height="25" 
+                                                                Click="btnDelete" 
+                                                                Background="#FF8231C8" Foreground="White"
+                                                                BorderBrush="#4C0D6D" BorderThickness="1" Margin="10,0,0,0"/>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
                                     </GridView>
                                 </ListView.View>
                             </ListView>

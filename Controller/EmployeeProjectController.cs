@@ -26,38 +26,9 @@ namespace Attendance_system.Controller
             await context.SaveChangesAsync();
         }
 
-        /* delete 
-        public static async System.Threading.Tasks.Task DeleteWorkingTime(EmployeeProject employeeProject)
-        {
-            AttendanceDbContext context = new AttendanceDbContext();
-            context.EmployeeProjects.Remove(employeeProject);
-            await context.SaveChangesAsync();
-        }
-        */
         public static List<EmployeeProjectDTO> GetWorkingHoursbyDate(int employeeId, DateTime fromDate, DateTime toDate, int? projectId = null, int? taskId = null)
         {
             AttendanceDbContext context = new AttendanceDbContext();
-            /*List<EmployeeProjectDTO> result = context.EmployeeProjects.Select(ep => new EmployeeProjectDTO
-            {
-                EmployeeId = ep.EmployeeId,
-                Project = ep.Project.Name,
-                Task = ep.Task.Name,
-                WorkingTime = ep.WorkingTime,
-                Note = ep.Note,
-                UpdatedAt = DateOnly.FromDateTime(ep.UpdatedAt) // Convert DateTime to DateOnly
-            }).Where(ep => ep.EmployeeId == employeeId && (ep.UpdatedAt >= DateOnly.FromDateTime(fromDate) && ep.UpdatedAt <= DateOnly.FromDateTime(toDate))).ToList();
-            if (projectId.HasValue)
-            {
-                result = result.Where(ep => ep.Project == context.Projects.FirstOrDefault(p => p.Id == projectId).Name).ToList();
-            }
-            if (taskId != null)
-            {
-                result = result.Where(ep => ep.Task == context.Tasks.FirstOrDefault(t => t.Id == taskId).Name).ToList();
-            }*/
-            Debug.WriteLine($"Suche nach Einträgen für Mitarbeiter {employeeId}");
-            Debug.WriteLine($"Zeitraum: {fromDate} bis {toDate}");
-            Debug.WriteLine($"ProjectId: {projectId?.ToString() ?? "null"}");
-            Debug.WriteLine($"TaskId: {taskId?.ToString() ?? "null"}");
             var query = context.EmployeeProjects
                     .Include(ep => ep.Project)
                     .Include(ep => ep.Task)
@@ -73,8 +44,9 @@ namespace Attendance_system.Controller
             {
                 query = query.Where(ep => ep.TaskId == taskId);
             }
-            var result = query.Select(ep => new EmployeeProjectDTO
+            return query.Select(ep => new EmployeeProjectDTO
             {
+                Id = ep.Id,
                 EmployeeId = ep.EmployeeId,
                 Project = ep.Project.Name,
                 Task = ep.Task.Name,
@@ -82,8 +54,6 @@ namespace Attendance_system.Controller
                 Note = ep.Note,
                 UpdatedAt = DateOnly.FromDateTime(ep.UpdatedAt) 
             }).ToList();
-            Debug.WriteLine($"Gefundene Einträge: {result.Count}");
-            return result;
         }
 
         // get all WorkingHour 
@@ -92,6 +62,7 @@ namespace Attendance_system.Controller
             AttendanceDbContext context = new AttendanceDbContext();
             return context.EmployeeProjects.Select(ep => new EmployeeProjectDTO
             {
+                Id = ep.Id,
                 EmployeeId = ep.EmployeeId ,
                 Project = ep.Project.Name,
                 Task = ep.Task.Name,
@@ -144,5 +115,34 @@ namespace Attendance_system.Controller
                         Name = ep.Key,
                     }).ToList();
         }
+
+        // working hours update
+        public static bool UpdateWorkingHour(EmployeeProjectDTO employeeProjectDTO)
+        {
+            AttendanceDbContext context = new AttendanceDbContext();
+            EmployeeProject? projectAlt = context.EmployeeProjects.Where(p => p.Id == employeeProjectDTO.Id).FirstOrDefault();
+            if (projectAlt != null)
+            {
+                projectAlt.WorkingTime = employeeProjectDTO.WorkingTime;
+                context.SaveChanges();
+                return true;
+            }
+            return false;
+        }
+
+        // delete Employeeproject
+        public static bool DeleteEmployeeProject(EmployeeProjectDTO employeeProjectDTO)
+        {
+            AttendanceDbContext context = new AttendanceDbContext();
+            EmployeeProject? employeeProject = context.EmployeeProjects.Where(p => p.Id == employeeProjectDTO.Id).FirstOrDefault();
+            if (employeeProject != null)
+            {
+                context.EmployeeProjects.Remove(employeeProject);
+                context.SaveChanges();
+                return true;
+            }
+            return false;
+        }
+        
     }
 }
