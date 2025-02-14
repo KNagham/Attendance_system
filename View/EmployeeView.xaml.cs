@@ -1,5 +1,6 @@
 ﻿using Attendance_system.Controller;
 using Attendance_system.Model;
+using Attendance_system.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,7 @@ namespace Attendance_system.View
         private TimeSpan _pausedTime;
         private bool _isRunning;
         private bool _inBreak;
-        private Employee _currentEmployee;
+        private Employee _currentEmployee = EmployeeService.GetCurrentEmployee();
         private EmployeeProject _currentEmployeeProject;
 
         public EmployeeView(Employee employee)
@@ -77,17 +78,19 @@ namespace Attendance_system.View
 
         private void btnDashboard(object sender, RoutedEventArgs e)
         {
-
+            return;
         }
 
         private void btnWorkingHour(object sender, RoutedEventArgs e)
         {
-
+            EmployeeWorkingHour workingHour= new EmployeeWorkingHour();
+            workingHour.Show();
+            this.Close();
         }
 
         private void btnAttendenceStatement(object sender, RoutedEventArgs e)
         {
-
+            return;
         }
 
         private void btnCheckInClick(object sender, RoutedEventArgs e)
