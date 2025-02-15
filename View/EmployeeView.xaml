@@ -105,7 +105,7 @@
                         <Label Content="Task" FontSize="20" Foreground="White" Margin="230,240,0,-200" HorizontalAlignment="Left" Width="84"/>
                         <TextBox x:Name="txtAttendanceNote" Height="121" Background="#2A2A2A" Foreground="White" 
                                 BorderBrush="#FF71737B" FontSize="18" FontFamily="Calisto MT" Margin="561,0,0,-190" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="263" />
-                        <Label Content="Note" FontSize="20" Foreground="White" Margin="561,0,0,-69" Height="37" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="113" />
+                        <Label Content="Employee Note" FontSize="20" Foreground="White" Margin="561,0,0,-69" Height="37" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="163" />
                         <TextBox x:Name="txtEmployeeTaskNote" Height="121" Background="#2A2A2A" Foreground="White" 
                             BorderBrush="#FF71737B" FontSize="18" FontFamily="Calisto MT" Margin="0,0,0,-466" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="264"/>
                         <Label Content="Task note" FontSize="20" Foreground="White" Margin="0,385,0,-345" HorizontalAlignment="Left" Width="94"/>

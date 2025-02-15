@@ -30,6 +30,7 @@ namespace Attendance_system.View
         private bool _inBreak;
         private Employee _currentEmployee = EmployeeService.GetCurrentEmployee();
         private EmployeeProject _currentEmployeeProject;
+        private Attendance _currentAttendance;
 
         public EmployeeView(Employee employee)
         {
@@ -58,6 +59,7 @@ namespace Attendance_system.View
             _timer.Interval = TimeSpan.FromSeconds(1);
             _timer.Tick += Timer_Tick;
             lblTimer.Content = "00:00:00";
+            btnCheckOut.IsEnabled = false;
         }
 
         private void Timer_Tick(object? sender, EventArgs e)
@@ -96,6 +98,8 @@ namespace Attendance_system.View
         private void btnCheckInClick(object sender, RoutedEventArgs e)
         {
             disabled(false);
+            _currentAttendance = AttendanceController.CheckIn(_currentEmployee.Id, txtAttendanceNote.Text);
+            btnCheckOut.IsEnabled = true;
             btnStop.IsEnabled = false;
             btnResume.IsEnabled = false;
             btnPause.IsEnabled = false;
@@ -106,6 +110,9 @@ namespace Attendance_system.View
 
         private void btnCheckOutClick(object sender, RoutedEventArgs e)
         {
+            AttendanceController.CheckOut(_currentAttendance.Id, txtAttendanceNote.Text);
+            txtEmployeeTaskNote.Text = string.Empty;
+            txtAttendanceNote.Text = string.Empty;
             disabled(true);
 
         }
