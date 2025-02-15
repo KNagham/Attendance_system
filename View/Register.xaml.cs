@@ -32,9 +32,10 @@ namespace Attendance_system.View
             login.Show();
             this.Close();
         }
-
+        
         private void btnRegister(object sender, RoutedEventArgs e)
         {
+            
             if (txtFirstname.Text == string.Empty || txtLastname.Text == string.Empty || txtUsername.Text == string.Empty ||
                 txtEmail.Text == string.Empty || txtPassword.Password == string.Empty)
             {

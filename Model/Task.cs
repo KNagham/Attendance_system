@@ -17,9 +17,13 @@ public partial class Task
 
     public bool? IsActive { get; set; }
 
-    public bool? IsDeleted { get; set; }
+    public string? Name { get; set; }
 
-    public virtual ICollection<EmployeeProjekt> EmployeeProjekts { get; set; } = new List<EmployeeProjekt>();
+    public string? Priority { get; set; }
 
-    public virtual ICollection<Projekt> Projekts { get; set; } = new List<Projekt>();
+    public int? ProjectId { get; set; }
+
+    public virtual ICollection<EmployeeProject> EmployeeProjects { get; set; } = new List<EmployeeProject>();
+
+    public virtual Project? Project { get; set; }
 }

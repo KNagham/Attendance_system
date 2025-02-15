@@ -28,7 +28,7 @@ namespace Attendance_system.View
             txtCPassword.IsEnabled = false;
             txtPassword.IsEnabled = false;
         }
-
+        
         private async void btnSendCode(object sender, RoutedEventArgs e)
         {
             if (!EmployeeController.EmailValidator(txtEmail.Text) || txtEmail.Text == string.Empty)
@@ -73,7 +73,7 @@ namespace Attendance_system.View
             {
                 MessageBox.Show("Bitte geben Sie das Code ein !", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
-            }
+            } 
         }
 
         private void btnResetPassword(object sender, RoutedEventArgs e)
@@ -99,10 +99,10 @@ namespace Attendance_system.View
             else
             {
                 MessageBox.Show("Ein Fehler ist aufgetreten!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            } 
 
         }
-
+       
         private void btnBack(object sender, RoutedEventArgs e)
         {
             Login login = new Login();

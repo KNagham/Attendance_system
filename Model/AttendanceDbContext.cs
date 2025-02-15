@@ -19,11 +19,11 @@ public partial class AttendanceDbContext : DbContext
 
     public virtual DbSet<Employee> Employees { get; set; }
 
-    public virtual DbSet<EmployeeProjekt> EmployeeProjekts { get; set; }
+    public virtual DbSet<EmployeeProject> EmployeeProjects { get; set; }
 
     public virtual DbSet<Password> Passwords { get; set; }
 
-    public virtual DbSet<Projekt> Projekts { get; set; }
+    public virtual DbSet<Project> Projects { get; set; }
 
     public virtual DbSet<Task> Tasks { get; set; }
 
@@ -81,11 +81,11 @@ public partial class AttendanceDbContext : DbContext
                 .IsUnicode(false);
         });
 
-        modelBuilder.Entity<EmployeeProjekt>(entity =>
+        modelBuilder.Entity<EmployeeProject>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__Employee__3214EC0724CE640A");
 
-            entity.ToTable("EmployeeProjekt", tb => tb.HasTrigger("trg_UpdateEmployeeProjektTimestamp"));
+            entity.ToTable("EmployeeProject", tb => tb.HasTrigger("trg_EmployeeProjectTimestamp"));
 
             entity.Property(e => e.CreatedAt)
                 .HasDefaultValueSql("(getdate())")
@@ -99,15 +99,15 @@ public partial class AttendanceDbContext : DbContext
                 .HasColumnType("datetime")
                 .HasColumnName("updatedAt");
 
-            entity.HasOne(d => d.Employee).WithMany(p => p.EmployeeProjekts)
+            entity.HasOne(d => d.Employee).WithMany(p => p.EmployeeProjects)
                 .HasForeignKey(d => d.EmployeeId)
                 .HasConstraintName("FK__EmployeeP__Emplo__72C60C4A");
 
-            entity.HasOne(d => d.Projekt).WithMany(p => p.EmployeeProjekts)
-                .HasForeignKey(d => d.ProjektId)
+            entity.HasOne(d => d.Project).WithMany(p => p.EmployeeProjects)
+                .HasForeignKey(d => d.ProjectId)
                 .HasConstraintName("FK__EmployeeP__Proje__73BA3083");
 
-            entity.HasOne(d => d.Task).WithMany(p => p.EmployeeProjekts)
+            entity.HasOne(d => d.Task).WithMany(p => p.EmployeeProjects)
                 .HasForeignKey(d => d.TaskId)
                 .HasConstraintName("FK__EmployeeP__TaskI__74AE54BC");
         });
@@ -140,11 +140,11 @@ public partial class AttendanceDbContext : DbContext
                 .HasConstraintName("FK__Passowrd__Id__4BAC3F29");
         });
 
-        modelBuilder.Entity<Projekt>(entity =>
+        modelBuilder.Entity<Project>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Projekt__3214EC07D54A7192");
+            entity.HasKey(e => e.Id).HasName("PK__Project__3214EC07D54A7192");
 
-            entity.ToTable("Projekt", tb => tb.HasTrigger("trg_UpdateProjektTimestamp"));
+            entity.ToTable("Project", tb => tb.HasTrigger("trg_ProjectTimestamp"));
 
             entity.Property(e => e.CreatedAt)
                 .HasDefaultValueSql("(getdate())")
@@ -160,10 +160,6 @@ public partial class AttendanceDbContext : DbContext
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")
                 .HasColumnName("updatedAt");
-
-            entity.HasOne(d => d.Task).WithMany(p => p.Projekts)
-                .HasForeignKey(d => d.TaskId)
-                .HasConstraintName("FK__Projekt__TaskId__66603565");
         });
 
         modelBuilder.Entity<Task>(entity =>
@@ -179,10 +175,20 @@ public partial class AttendanceDbContext : DbContext
             entity.Property(e => e.Description)
                 .HasMaxLength(255)
                 .IsUnicode(false);
+            entity.Property(e => e.Name)
+                .HasMaxLength(100)
+                .IsUnicode(false);
+            entity.Property(e => e.Priority)
+                .HasMaxLength(30)
+                .IsUnicode(false);
             entity.Property(e => e.UpdatedAt)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")
                 .HasColumnName("updatedAt");
+
+            entity.HasOne(d => d.Project).WithMany(p => p.Tasks)
+                .HasForeignKey(d => d.ProjectId)
+                .HasConstraintName("FK__Task__ProjectId__14270015");
         });
 
         OnModelCreatingPartial(modelBuilder);

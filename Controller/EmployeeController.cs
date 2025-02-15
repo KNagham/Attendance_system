@@ -13,8 +13,6 @@ namespace Attendance_system.Controller
     {
         private readonly EmailService _emailService;
 
-
-
         public EmployeeController()
         {
             _emailService = App._emailService ?? throw new InvalidOperationException("EmailService is not initialized.");

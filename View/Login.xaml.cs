@@ -1,5 +1,6 @@
 ﻿using Attendance_system.Controller;
 using Attendance_system.Model;
+using Attendance_system.Service;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -38,7 +39,7 @@ namespace Attendance_system.View
         {
 
         }
-
+        
         private void btnLogin(object sender, RoutedEventArgs e)
         {
             string reason = "";
@@ -49,8 +50,8 @@ namespace Attendance_system.View
             if (state)
             {
                 MessageBox.Show(" Anmeldung ist erfolgreich.", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
-                //EmployeeView employeeView = new EmployeeView(currentEmployee);
-                EmployeeView employeeView = new EmployeeView();
+                EmployeeService.setCurrentEmployee(currentEmployee);
+                EmployeeView employeeView = new EmployeeView(currentEmployee);
                 employeeView.Show();
                 this.Close();
             }
