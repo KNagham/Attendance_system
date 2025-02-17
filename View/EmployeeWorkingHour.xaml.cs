@@ -106,7 +106,7 @@ namespace Attendance_system.View
                     return;
                 }
                 // time convert
-                var timeParts = employeeProject.WorkingTimeFormatted.Split(':');
+                string[] timeParts = employeeProject.WorkingTimeFormatted.Split(':');
                 if (timeParts.Length != 3)
                 {
                     MessageBox.Show("Bitte geben Sie eine gültige Zeit im Format HH:MM:SS ein.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -116,6 +116,7 @@ namespace Attendance_system.View
                 int minute = int.Parse(timeParts[1]);
                 int second = int.Parse(timeParts[2]);
                 employeeProject.WorkingTime = hour * 3600 + minute * 60 + second;
+                employeeProject.Note = employeeProject.Note;
                 bool state = EmployeeProjectController.UpdateWorkingHour(employeeProject);
                 if(state)
                 {

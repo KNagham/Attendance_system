@@ -11,6 +11,7 @@ namespace Attendance_system.DTO
     public class EmployeeProjectDTO
     {
         private double? _workingTime;
+        private string? _note;
         public int? Id { get; set; }
         public int? EmployeeId { get; set; }
         public string? Project { get; set; }
@@ -27,7 +28,15 @@ namespace Attendance_system.DTO
         }
         public DateOnly? CreatedAt { get; set; }
         public DateOnly? UpdatedAt { get; set; }
-        public string? Note {  get; set; }
+        public string? Note 
+        {  
+            get => _note;
+            set
+            {
+                _note = value;
+                OnPropertyChanged(nameof(Note));
+            }
+        }
 
         // formatierung for show
         public string WorkingTimeFormatted
@@ -62,5 +71,6 @@ namespace Attendance_system.DTO
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
     }
 }
