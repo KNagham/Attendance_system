@@ -124,6 +124,7 @@ namespace Attendance_system.Controller
             if (projectAlt != null)
             {
                 projectAlt.WorkingTime = employeeProjectDTO.WorkingTime;
+                projectAlt.Note = employeeProjectDTO.Note;
                 context.SaveChanges();
                 return true;
             }

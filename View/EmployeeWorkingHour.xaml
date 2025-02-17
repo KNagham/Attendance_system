@@ -142,13 +142,14 @@
                                     Height="40" Background="#4C0D6D" FontSize="20"
                                     Foreground="White" FontFamily="Calisto MT" 
                                     FontWeight="Bold" Width="120" Margin="737,579,0,-517" HorizontalAlignment="Left"/>
-                        <GroupBox Margin="0,231,1,-472" Padding="0" BorderBrush="Transparent" BorderThickness="0" HorizontalAlignment="Right" Width="856">
-                            <ListView x:Name="listViewWorkingHour" Height="324" Width="837"
+                        <GroupBox Margin="0,231,0,-472" Padding="0" BorderBrush="Transparent" BorderThickness="0" HorizontalAlignment="Center" Width="Auto">
+                            <ListView x:Name="listViewWorkingHour" Height="343"
                                       BorderBrush="White" BorderThickness="2"
                                       ScrollViewer.VerticalScrollBarVisibility="Auto"
                                       Background="{StaticResource GradientBackgroundBrush}" 
                                       Foreground="White"
-                                      FontSize="16" HorizontalAlignment="Center" >
+                                      FontSize="16" Margin="5,0,5,0"
+                                      HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                 <ListView.Resources>
                                     <Style TargetType="ListViewItem">
                                         <Setter Property="Foreground" Value="White"/>
@@ -191,20 +192,37 @@
                                 </ListView.Resources>
                                 <ListView.View>
                                     <GridView>
-                                        <GridViewColumn Header="Project Name" Width="206" DisplayMemberBinding="{Binding Project}" />
-                                        <GridViewColumn Header="Task" Width="206" DisplayMemberBinding="{Binding Task}" />
-                                        <!-- <GridViewColumn Header="Hours" Width="206" DisplayMemberBinding="{Binding WorkingTimeFormatted}" /> -->
+                                        <GridViewColumn Header="Project Name" Width="130" DisplayMemberBinding="{Binding Project}" />
+                                        <GridViewColumn Header="Task" Width="130" DisplayMemberBinding="{Binding Task}" />
+                                        <GridViewColumn Header="Note" Width="185">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                        <TextBox Text="{Binding Note, UpdateSourceTrigger=PropertyChanged}"
+                                                                Width="Auto" 
+                                                                Height="Auto"
+                                                                AcceptsReturn="True"
+                                                                TextWrapping="Wrap"
+                                                                Foreground="White"
+                                                                Background="Transparent"
+                                                                BorderBrush="#4C0D6D"
+                                                                Margin="0,0,10,0"
+                                                                HorizontalAlignment="Stretch"/>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
                                         <GridViewColumn Header="Hours" Width="206">
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
                                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                                         <TextBox Text="{Binding WorkingTimeFormatted, UpdateSourceTrigger=PropertyChanged}"
-                                                                 Width="100" Height="25" 
+                                                                 Width="Auto" Height="Auto" 
                                                                  Background="Transparent" 
                                                                  Foreground="White"
                                                                  BorderBrush="#4C0D6D"
-                                                                 BorderThickness="1"
-                                                                 Margin="0,0,10,0"/>
+                                                                 Margin="0,0,10,0"
+                                                                 HorizontalAlignment="Stretch"/>
                                                     </StackPanel>
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
