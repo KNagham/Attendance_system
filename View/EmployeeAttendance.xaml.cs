@@ -28,5 +28,25 @@ namespace Attendance_system.View
         {
 
         }
+
+        private void btnWorkingHour(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnAttendenceStatement(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnClear(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnOk(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

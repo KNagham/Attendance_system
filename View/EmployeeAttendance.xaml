@@ -32,7 +32,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <!-- Header -->
-            <Label Content="Working Hour"
+            <Label Content="Attendence Statement"
                       HorizontalAlignment="Center"
                       VerticalAlignment="Top"
                       FontSize="38"
