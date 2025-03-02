@@ -10,6 +10,9 @@
     <Compile Update="View\Activate.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\EmployeeAttendance.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\EmployeeView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
