@@ -147,3 +147,5 @@ C:\Programmierung\C#\Attendance_system\obj\Debug\net8.0-windows\Attendance_syste
 C:\Programmierung\C#\Attendance_system\obj\Debug\net8.0-windows\ref\Attendance_system.dll
 C:\Programmierung\C#\Attendance_system\obj\Debug\net8.0-windows\View\EmployeeWorkingHour.g.cs
 C:\Programmierung\C#\Attendance_system\obj\Debug\net8.0-windows\View\EmployeeWorkingHour.baml
+C:\Programmierung\C#\Attendance_system\obj\Debug\net8.0-windows\View\EmployeeAttendance.g.cs
+C:\Programmierung\C#\Attendance_system\obj\Debug\net8.0-windows\View\EmployeeAttendance.baml

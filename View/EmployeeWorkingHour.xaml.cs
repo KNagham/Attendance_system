@@ -39,7 +39,9 @@ namespace Attendance_system.View
         }
         private void btnAttendenceStatement(object sender, RoutedEventArgs e)
         {
-
+            EmployeeAttendance employeeAttendance = new EmployeeAttendance();
+            employeeAttendance.Show();
+            this.Close();
         }
         private void btnWorkingHour(object sender, RoutedEventArgs e)
         {
@@ -53,7 +55,7 @@ namespace Attendance_system.View
 
         private void btnOk(object sender, RoutedEventArgs e)
         {
-            if(!validInputs())
+            if(!AttendanceController.validInputs(datePickerFrom, datePickerTo))
             {
                 return;
             }
@@ -63,20 +65,6 @@ namespace Attendance_system.View
                                                 datePickerTo.SelectedDate.Value, projectId, taskId);
         }
 
-        private bool validInputs()
-        {
-            if(!datePickerFrom.SelectedDate.HasValue || !datePickerTo.SelectedDate.HasValue)
-            {
-                MessageBox.Show("Bitte wählen Sie gültige Datumsbereich aus", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return false;
-            }
-            if(datePickerFrom.SelectedDate.Value > datePickerTo.SelectedDate.Value)
-            {
-                MessageBox.Show("Das Startdatum kann nicht größer als das Enddatum sein", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return false;
-            }
-            return true;
-        }
         private void clear(bool listClear = false)
         {
             cbProject.SelectedIndex = -1;

@@ -180,7 +180,6 @@
                                         <Setter Property="BorderBrush" Value="#4C0D6D"/>
                                         <Setter Property="BorderThickness" Value="1,1,1,1"/>
                                     </Style>
-
                                 </ListView.Resources>
                                 <ListView.RenderTransform>
                                     <TransformGroup>
@@ -192,9 +191,9 @@
                                 </ListView.RenderTransform>
                                 <ListView.View>
                                     <GridView>
-                                        <GridViewColumn Header="User Name" Width="140" DisplayMemberBinding="{Binding Employee}" />
-                                        <GridViewColumn Header="Start" Width="140" DisplayMemberBinding="{Binding Start}" />
-                                        <GridViewColumn Header="End" Width="140" DisplayMemberBinding="{Binding End}" />
+                                        <GridViewColumn Header="User Name" Width="170" DisplayMemberBinding="{Binding Employee}" />
+                                        <GridViewColumn Header="Start" Width="180" DisplayMemberBinding="{Binding Start}" />
+                                        <GridViewColumn Header="End" Width="180" DisplayMemberBinding="{Binding Ende}" />
                                         <GridViewColumn Header="Note" Width="160">
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
@@ -214,7 +213,7 @@
                                             </GridViewColumn.CellTemplate>
                                         </GridViewColumn>
                                         <GridViewColumn Header="Hours" Width="100" DisplayMemberBinding="{Binding Hour}" />
-                                        <GridViewColumn Width="190">
+                                        <GridViewColumn Width="80">
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
                                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
@@ -222,10 +221,6 @@
                                                                 Click="btnUpdate" 
                                                                 Background="#FF8231C8" Foreground="White"
                                                                 BorderBrush="#4C0D6D" BorderThickness="1" Margin="0,0,10,0"/>
-                                                        <Button Content="Delete" Width="60" Height="25" 
-                                                                Click="btnDelete" 
-                                                                Background="#FF8231C8" Foreground="White"
-                                                                BorderBrush="#4C0D6D" BorderThickness="1" Margin="10,0,0,0"/>
                                                     </StackPanel>
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>

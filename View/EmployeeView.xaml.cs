@@ -42,17 +42,6 @@ namespace Attendance_system.View
             InitializeTimer();
 
         }
-        // muss deleted
-       /*
-        public EmployeeView()
-        {
-            InitializeComponent();
-            setCurrentDate();
-            disabled(true);
-            InitializeTimer();
-
-        }*/
-
         private void InitializeTimer()
         {
             _timer = new DispatcherTimer();
@@ -92,7 +81,9 @@ namespace Attendance_system.View
 
         private void btnAttendenceStatement(object sender, RoutedEventArgs e)
         {
-            return;
+            EmployeeAttendance employeeAttendance= new EmployeeAttendance();
+            employeeAttendance.Show();
+            this.Close();
         }
 
         private void btnCheckInClick(object sender, RoutedEventArgs e)
@@ -105,7 +96,7 @@ namespace Attendance_system.View
             btnPause.IsEnabled = false;
             cbProject.ItemsSource = TaskController.GetAllProjects();
             cbTask.ItemsSource = TaskController.GetAllTasks();
-
+            btnCheckIn.IsEnabled = false;
         }
 
         private void btnCheckOutClick(object sender, RoutedEventArgs e)
@@ -114,6 +105,7 @@ namespace Attendance_system.View
             txtEmployeeTaskNote.Text = string.Empty;
             txtAttendanceNote.Text = string.Empty;
             disabled(true);
+            btnCheckIn.IsEnabled= true;
 
         }
 
