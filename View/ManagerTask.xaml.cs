@@ -23,9 +23,15 @@ namespace Attendance_system.View
         public ManagerTask()
         {
             InitializeComponent();
+            setGreeting();
             updateListView();
             cbProject.ItemsSource = TaskController.GetAllProjects();
             loadPriority();
+        }
+
+        private void setGreeting()
+        {
+            lblGreeting.Content = $"Hello {_currentEmployee.FirstName} {_currentEmployee.LastName}";
         }
 
         // priority load

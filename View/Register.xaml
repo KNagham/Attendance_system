@@ -19,8 +19,8 @@
         </LinearGradientBrush>
     </Window.Background>
     <!--scrollbar Bereich-->
-    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-        <Grid Margin="20">
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+        <Grid Margin="20" Height="737">
             <Grid.RowDefinitions>
                 <!-- Header -->
                 <RowDefinition Height="Auto"/>
@@ -29,6 +29,8 @@
             </Grid.RowDefinitions>
 
             <!--Header-->
+            <Image Margin="30,0,0,0" Source="/View/register.png" Stretch="Fill" Height="101" VerticalAlignment="Center" HorizontalAlignment="Left" Width="134"/>
+
             <Label Content="Create a new Account" 
                    HorizontalAlignment="Center"
                    VerticalAlignment="Top"
@@ -51,7 +53,7 @@
             </Label>
 
             <!-- Hauptinhalt -->
-            <Grid Grid.Row="1" Margin="10,20,20,20">
+            <Grid Grid.Row="1" Margin="10,20,20,23">
                 <Border BorderThickness="9" CornerRadius="5" Margin="10">
                     <Border.BorderBrush>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -60,7 +62,7 @@
                             <GradientStop Color="#4C0D6D" Offset="1.0"/>
                         </LinearGradientBrush>
                     </Border.BorderBrush>
-                    <StackPanel  >
+                    <StackPanel Margin="0,0,0,14"  >
                         <Grid Grid.Column="1" Margin="20" HorizontalAlignment="Stretch">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>

@@ -43,7 +43,7 @@ namespace Attendance_system.View
             }
             else
             {
-                MessageBox.Show("An error while sending\nPlease try later", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Email not found", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

@@ -26,6 +26,7 @@ namespace Attendance_system.View
         {
             this._currentEmployee = employee;
             InitializeComponent();
+            setCurrentDate();
             setGreeting();
             updateListView();
         }
@@ -36,6 +37,10 @@ namespace Attendance_system.View
             listViewProject.ItemsSource = ProjectController.GetAllProjects();
         }
 
+        private void setCurrentDate()
+        {
+            lblCurrentDate.Content = DateTime.Now.ToString("dddd, dd. MMMM yyyy");
+        }
         private void setGreeting()
         {
             lblGreeting.Content = $"Hello {_currentEmployee.FirstName} {_currentEmployee.LastName}";

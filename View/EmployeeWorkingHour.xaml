@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Attendance_system.View"
         mc:Ignorable="d"
-        Title="Working Hour" 
+        Title="Employeeportal | Working Hour" 
         Height="900" 
         Width="1200"
         ResizeMode="NoResize">
@@ -27,7 +27,7 @@
     </Window.Background>
     <!--scrollbar Bereich-->
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-        <Grid Margin="20" Height="754">
+        <Grid Margin="20" Height="827">
             <Grid.RowDefinitions>
                 <!-- Header -->
                 <RowDefinition Height="Auto"/>
@@ -35,6 +35,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <!-- Header -->
+            <Image Margin="23,0,0,0" Source="/View/Attendance.png" Stretch="Fill" Height="111" VerticalAlignment="Center" HorizontalAlignment="Left" Width="118"/>
             <Label Content="Working Hour"
                       HorizontalAlignment="Center"
                       VerticalAlignment="Top"
@@ -93,7 +94,7 @@
                                 </LinearGradientBrush>
                             </Button.Background>
                         </Button>
-                        <Button Click="btnAttendenceStatement" Content="Attendance Statement" Height="40" Foreground="White" FontSize="20" Width="220">
+                        <Button Click="btnAttendenceStatement" Content="Attendance Statement" Margin="0,10" Height="40" Foreground="White" FontSize="20" Width="220">
                             <Button.Background>
                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                     <GradientStop Color="#000000" Offset="0.0"/>
@@ -109,6 +110,7 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
+                    <Label x:Name="lblGreeting" Content="" FontSize="20" FontFamily="Calisto MT" Foreground="White" Width="251" HorizontalAlignment="Right" Margin="0,10,22,43"/>
                         <Label Content="Select Task" Foreground="White" 
                                 FontFamily="Calisto MT" FontSize="20" 
                                 Height="38"  VerticalAlignment="Bottom" 

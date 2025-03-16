@@ -26,11 +26,16 @@ namespace Attendance_system.View
         {
             _currentEmployee = EmployeeService.GetCurrentEmployee();
             InitializeComponent();
+            setGreeting();
             cbProject.ItemsSource = EmployeeProjectController.GetAllProjectsbyEmployee(_currentEmployee.Id);
             cbTask.ItemsSource = EmployeeProjectController.GetAllTaskssbyEmployee(_currentEmployee.Id);
             listViewWorkingHour.ItemsSource = EmployeeProjectController.GetWorkingHours(_currentEmployee.Id);
         }
 
+        private void setGreeting()
+        {
+            lblGreeting.Content = $"Hello {_currentEmployee.FirstName} {_currentEmployee.LastName}";
+        }
         private void btnWelcome(object sender, RoutedEventArgs e)
         {
             Welcome welcome = new Welcome(_currentEmployee);

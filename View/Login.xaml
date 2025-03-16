@@ -29,6 +29,8 @@
             </Grid.RowDefinitions>
 
             <!--Header-->
+            <Image Margin="22,-21,0,0" Grid.RowSpan="2" Source="/View/login.png" Stretch="Fill" Height="127" VerticalAlignment="Top" HorizontalAlignment="Left" Width="143"/>
+
             <Label Content="Sign in to the Attendance system" 
                    HorizontalAlignment="Center"
                    VerticalAlignment="Top"

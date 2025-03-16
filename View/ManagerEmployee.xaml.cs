@@ -24,10 +24,15 @@ namespace Attendance_system.View
         public ManagerEmployee()
         {
             InitializeComponent();
+            setGreeting();
             cbEmployee.ItemsSource = EmployeeController.GetAllEmployees();
             listViewWorkingHour.ItemsSource = EmployeeController.GetAllWorkingHours();
         }
 
+        private void setGreeting()
+        {
+            lblGreeting.Content = $"Hello {_currentEmployee.FirstName} {_currentEmployee.LastName}";
+        }
         private void btnWelcome(object sender, RoutedEventArgs e)
         {
             Welcome welcome = new Welcome(_currentEmployee);

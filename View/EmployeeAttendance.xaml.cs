@@ -24,9 +24,14 @@ namespace Attendance_system.View
         public EmployeeAttendance()
         {
             InitializeComponent();
+            setGreeting();
             listViewWorkingHour.ItemsSource = AttendanceStatementController.GetAttendence(_currentEmployee.Id);
         }
 
+        private void setGreeting()
+        {
+            lblGreeting.Content = $"Hello {_currentEmployee.FirstName} {_currentEmployee.LastName}";
+        }
         private void btnWelcome(object sender, RoutedEventArgs e)
         {
             Welcome welcome = new Welcome(_currentEmployee);
