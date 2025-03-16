@@ -18,9 +18,6 @@ using Attendance_system.Service;
 
 namespace Attendance_system.View
 {
-    /// <summary>
-    /// Interaction logic for EmployeeAttendance.xaml
-    /// </summary>
     public partial class EmployeeAttendance : Window
     {
         private Employee _currentEmployee = EmployeeService.GetCurrentEmployee();
@@ -30,6 +27,12 @@ namespace Attendance_system.View
             listViewWorkingHour.ItemsSource = AttendanceStatementController.GetAttendence(_currentEmployee.Id);
         }
 
+        private void btnWelcome(object sender, RoutedEventArgs e)
+        {
+            Welcome welcome = new Welcome(_currentEmployee);
+            welcome.Show();
+            this.Close();
+        }
         private void btnDashboard(object sender, RoutedEventArgs e)
         {
             EmployeeView employeeView = new EmployeeView(_currentEmployee);
@@ -64,17 +67,17 @@ namespace Attendance_system.View
                 bool state = AttendanceStatementController.UpdateAttendence(employeeAttendence);
                 if (state)
                 {
-                    MessageBox.Show("Der Eintrag erfolgreich aktualisiert", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("The entry has been successfully updated", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
                     listViewWorkingHour.ItemsSource = AttendanceStatementController.GetAttendence(_currentEmployee.Id);
                 }
                 else
                 {
-                    MessageBox.Show("Der Eintrag kann nicht aktualisiert werden", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("The entry can not be updated", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Fehler beim Aktualisieren der Arbeitszeit", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Error when updating working time", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
         }
@@ -96,5 +99,6 @@ namespace Attendance_system.View
 
         }
 
+        
     }
 }

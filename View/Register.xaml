@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Attendance_system.View"
         mc:Ignorable="d"
-        Title="Sign up" Height="800" Width="1100">
+        Title="Sign up" 
+        Height="800" 
+        Width="1100"
+        ResizeMode="NoResize">
 
     <!-- Hintergrundfarbe des Windows -->
     <Window.Background>
@@ -89,6 +92,7 @@
                                      Background="#2A2A2A" Foreground="White" 
                                      BorderBrush="#FF71737B" FontSize="18" 
                                      FontFamily="Calisto MT" Margin="213,162,440,-156" />
+                            <CheckBox x:Name="IsManager" Content="Is Manager" Foreground="White" Margin="213,0,656,-478" Height="40" VerticalAlignment="Bottom"/>
                             <Label Content="E-Mail:" Foreground="White" 
                                    FontFamily="Calisto MT" FontSize="20" 
                                    Height="38"  VerticalAlignment="Bottom" 
@@ -113,12 +117,13 @@
                                          FontFamily="Calisto MT" Margin="213,393,440,-387"/>
                             <!--sign up-->
                             <Button Click="btnRegister" Content="Create Account" 
-                                    Height="40" Background="#FF8231C8" Foreground="White"
-                                    FontFamily="Calisto MT" FontWeight="Bold" FontSize="20" Margin="790,0,20,-478" VerticalAlignment="Bottom"/>
-                            <!-- Activation Button -->
-                            <Button Click="btnActivate" Content="Activate" Height="40" Background="#FF8231C8" 
+                                    Height="40" Background="#4C0D6D" FontSize="20"
                                     Foreground="White" FontFamily="Calisto MT" 
-                                    FontWeight="Bold" FontSize="20" Margin="18,478,792,-478"/>
+                                    FontWeight="Bold" Margin="790,0,20,-478" VerticalAlignment="Bottom"/>
+                            <!-- Activation Button -->
+                            <Button Click="btnActivate" Content="Activate" Height="40" Background="#4C0D6D" FontSize="20"
+                                    Foreground="White" FontFamily="Calisto MT" 
+                                    FontWeight="Bold" Margin="18,478,792,-478"/>
                             <!--sign in-->
                             <Label Content="Already have an account? Sign in" 
                                    HorizontalAlignment="Left"  VerticalAlignment="Bottom" 
@@ -139,6 +144,7 @@
                                 </Label.Style>
                             </Label>
                         </Grid>
+
                     </StackPanel>
                 </Border>
             </Grid>

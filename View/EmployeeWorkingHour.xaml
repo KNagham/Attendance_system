@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Attendance_system.View"
         mc:Ignorable="d"
-        Title="Working Hour" Height="900" Width="1200">
+        Title="Working Hour" 
+        Height="900" 
+        Width="1200"
+        ResizeMode="NoResize">
     <!-- Ressourcen für das Fenster -->
     <Window.Resources>
         <LinearGradientBrush x:Key="GradientBackgroundBrush" StartPoint="0,0" EndPoint="1,1">
@@ -53,7 +56,7 @@
                 </Label.Style>
             </Label>
             <!-- Hauptinhalt -->
-            <Grid Grid.Row="1" Margin="0,20,0,0">
+            <Grid Grid.Row="1" Margin="0,20,0,0" HorizontalAlignment="Stretch">
                 <Grid.ColumnDefinitions>
                     <!-- Linkes Menü -->
                     <ColumnDefinition Width="267*"/>
@@ -63,6 +66,15 @@
                 <!-- Linkes Menü -->
                 <Border Background="#1A0F2E" Margin="10,10,0,10" Padding="10" CornerRadius="10" HorizontalAlignment="Left" Width="240">
                     <StackPanel>
+                        <Button Click="btnWelcome" Content="Welcome" Height="40" Margin="0,10" Foreground="White" FontSize="20" Width="220">
+                            <Button.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#000000" Offset="0.0"/>
+                                    <GradientStop Color="#1A0F2E" Offset="0.5"/>
+                                    <GradientStop Color="#4C0D6D" Offset="1.0"/>
+                                </LinearGradientBrush>
+                            </Button.Background>
+                        </Button>
                         <Button Click="btnDashboard" Content="Dashboard" Height="40" Margin="0,10" Foreground="White" FontSize="20" Width="220">
                             <Button.Background>
                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -81,7 +93,7 @@
                                 </LinearGradientBrush>
                             </Button.Background>
                         </Button>
-                        <Button Click="btnAttendenceStatement" Content="Attendance Statement" Height="40" Margin="0,10" Foreground="White" FontSize="20" Width="220">
+                        <Button Click="btnAttendenceStatement" Content="Attendance Statement" Height="40" Foreground="White" FontSize="20" Width="220">
                             <Button.Background>
                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                     <GradientStop Color="#000000" Offset="0.0"/>
@@ -93,8 +105,7 @@
                     </StackPanel>
                 </Border>
                 <!-- Hauptinhalt -->
-                <StackPanel Grid.Column="1" Margin="10,0,0,0">
-                    <Grid Grid.Column="1" Margin="20" HorizontalAlignment="Stretch">
+                <Grid Grid.Column="1" Margin="10,20,20,20">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
@@ -251,7 +262,6 @@
                         </GroupBox>
 
                     </Grid>
-                </StackPanel>
             </Grid>
         </Grid>
     </ScrollViewer>

@@ -69,6 +69,7 @@ public partial class AttendanceDbContext : DbContext
             entity.Property(e => e.FirstName)
                 .HasMaxLength(100)
                 .IsUnicode(false);
+            entity.Property(e => e.IsManager).HasDefaultValue(false);
             entity.Property(e => e.LastName)
                 .HasMaxLength(100)
                 .IsUnicode(false);

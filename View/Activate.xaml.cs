@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace Attendance_system.View
 {
-    /// <summary>
-    /// Interaktionslogik für Activate.xaml
-    /// </summary>
     public partial class Activate : Window
     {
         public Activate()
@@ -36,7 +33,7 @@ namespace Attendance_system.View
         {
             if (!EmployeeController.EmailValidator(txtEmail.Text) || txtEmail.Text == string.Empty)
             {
-                MessageBox.Show("Bitte geben Sie eine gültige E-Mail Adresse ein", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Please enter a valid email address", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             EmployeeController employeeController = new EmployeeController();
@@ -44,28 +41,28 @@ namespace Attendance_system.View
             if (state)
             {
                 txtEmail.IsEnabled = false;
-                MessageBox.Show("Der Aktivierungscode wurde erfolgreich gesendet.", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("The activation code has been sent successfully", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else
             {
-                MessageBox.Show("Eine Fehler ist aufgetreten\n versuchen Sie später.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("An error while sending\nPlease try later", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
         }
 
         private void btnActivate(object sender, RoutedEventArgs e)
         {
-        
+
             bool state = EmployeeController.ActivateEmployee(txtActivationCode.Text);
             if (state)
             {
-                MessageBox.Show("Ihr Koto wurde aktiviert", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Your account has been activated", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
                 txtActivationCode.Text = string.Empty;
             }
             else
             {
-                MessageBox.Show("Bitte kontrollieren Sie den angegebenen Code", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Please check the given code", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
     }
-}
 }

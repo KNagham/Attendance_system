@@ -10,6 +10,8 @@
 
   <ItemGroup>
     <None Remove="appsettings.json" />
+    <None Remove="View\employee.png" />
+    <None Remove="View\manager.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -37,6 +39,11 @@
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.2" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="View\employee.png" />
+    <Resource Include="View\manager.png" />
   </ItemGroup>
 
 </Project>
