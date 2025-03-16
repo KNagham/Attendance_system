@@ -18,9 +18,6 @@ using System.Windows.Shapes;
 
 namespace Attendance_system.View
 {
-    /// <summary>
-    /// Interaktionslogik für Login.xaml
-    /// </summary>
     public partial class Login : Window
     {
         public Login()
@@ -35,11 +32,6 @@ namespace Attendance_system.View
             this.Close();
         }
 
-        private void btnBack(object sender, RoutedEventArgs e)
-        {
-
-        }
-        
         private void btnLogin(object sender, RoutedEventArgs e)
         {
             string reason = "";
@@ -49,10 +41,9 @@ namespace Attendance_system.View
 
             if (state)
             {
-                MessageBox.Show(" Anmeldung ist erfolgreich.", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
                 EmployeeService.setCurrentEmployee(currentEmployee);
-                EmployeeView employeeView = new EmployeeView(currentEmployee);
-                employeeView.Show();
+                Welcome welcome = new Welcome(currentEmployee);
+                welcome.Show();
                 this.Close();
             }
             else

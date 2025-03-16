@@ -23,6 +23,8 @@ public partial class Employee
 
     public DateTime UpdatedAt { get; set; }
 
+    public bool? IsManager { get; set; }
+
     public virtual ICollection<Attendance> Attendances { get; set; } = new List<Attendance>();
 
     public virtual ICollection<EmployeeProject> EmployeeProjects { get; set; } = new List<EmployeeProject>();

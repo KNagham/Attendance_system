@@ -10,6 +10,9 @@
     <Compile Update="View\Activate.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\EmployeeAttendance.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\EmployeeView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -17,6 +20,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="View\Login.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\ManagerEmployee.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="View\ManagerTask.xaml.cs">
@@ -29,6 +35,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="View\ResetPassword.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Welcome.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

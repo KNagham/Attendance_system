@@ -1,5 +1,6 @@
 ﻿using Attendance_system.Controller;
 using Attendance_system.Model;
+using Attendance_system.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,17 +17,21 @@ using System.Windows.Shapes;
 
 namespace Attendance_system.View
 {
-    /// <summary>
-    /// Interaktionslogik für ManagerTask.xaml
-    /// </summary>
     public partial class ManagerTask : Window
     {
+        private Employee _currentEmployee = EmployeeService.GetCurrentEmployee();
         public ManagerTask()
         {
             InitializeComponent();
+            setGreeting();
             updateListView();
             cbProject.ItemsSource = TaskController.GetAllProjects();
             loadPriority();
+        }
+
+        private void setGreeting()
+        {
+            lblGreeting.Content = $"Hello {_currentEmployee.FirstName} {_currentEmployee.LastName}";
         }
 
         // priority load
@@ -54,24 +59,28 @@ namespace Attendance_system.View
             cbPriority.SelectedIndex = -1;
         }
 
+        private void btnWelcome(object sender, RoutedEventArgs e)
+        {
+            Welcome welcome = new Welcome(_currentEmployee);
+            welcome.Show();
+            this.Close();
+        }
         private void btnProject(object sender, RoutedEventArgs e)
         {
-            ManagerView project = new ManagerView();
+            ManagerView project = new ManagerView(_currentEmployee);
             project.Show();
             this.Close();
         }
 
         private void btnTask(object sender, RoutedEventArgs e)
         {
-            
-
+            return;
         }
 
         private void btnEmployee(object sender, RoutedEventArgs e)
         {
-            // muss ändern
-            EmployeeView employeeView = new EmployeeView(null);
-            employeeView.Show();
+            ManagerEmployee managerEmployee = new ManagerEmployee();
+            managerEmployee.Show();
             this.Close();
         }
 
@@ -79,12 +88,12 @@ namespace Attendance_system.View
         {
             if (txtTaskName.Text == string.Empty)
             {
-                MessageBox.Show("Bitte geben Name des Task ein", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Please enter name of the task", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             if (IsActive.IsChecked == true && IsDone.IsChecked == true)
             {
-                MessageBox.Show("Ein Task kann nicht gleichzeitig 'Active' und 'Done' sein.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("A task cannot be ‘Active’ and ‘Done’ at the same time.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             Model.Task task = new Model.Task()
@@ -99,14 +108,14 @@ namespace Attendance_system.View
             if(task != null)
             {
                 TaskController.AddTask(task);
-                MessageBox.Show("Das Task wurde hinzufügt", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("The task has been successfully added", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                 clear();
                 updateListView();
                 return;
             }
             else
             {
-                MessageBox.Show("Das Task kann aktuell nicht hinzufügt werden !", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("The task cannot currently be added", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
         }
@@ -115,7 +124,7 @@ namespace Attendance_system.View
         {
             if (txtTaskId.Text == string.Empty && txtTaskName.Text == string.Empty)
             {
-                MessageBox.Show("Bitte geben Sie entweder (ID) oder (Name) eines Task ein.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Please enter either (ID) or (name) of a task.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             if (txtTaskId.Text != string.Empty)
@@ -133,7 +142,7 @@ namespace Attendance_system.View
                 }
                 else
                 {
-                    MessageBox.Show($"Task mit der ID: {txtTaskId.Text} wurde nicht gefunden", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show($"Task with ID: {txtTaskId.Text} was not found", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     clear();
                     return;
                 }
@@ -153,7 +162,7 @@ namespace Attendance_system.View
                 }
                 else
                 {
-                    MessageBox.Show($"Task mit der Name: {txtTaskName.Text} wurde nicht gefunden", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show($"Task with the name: {txtTaskName.Text} was not found", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     clear();
                     return;
                 }
@@ -163,7 +172,7 @@ namespace Attendance_system.View
         {
             if (txtTaskName.Text == string.Empty)
             {
-                MessageBox.Show("Name eines Task darf nicht leer sein.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("The name of a task must not be empty", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             Model.Task task = new Model.Task()
@@ -181,14 +190,14 @@ namespace Attendance_system.View
             bool result = TaskController.UpdateTask(task);
             if (result)
             {
-                MessageBox.Show($"Das Task {txtTaskName.Text} wurde erfolgreich aktualisiert", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show($"The task {txtTaskName.Text} has been successfully updated", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
                 clear();
                 updateListView();
                 return;
             }
             else
             {
-                MessageBox.Show($"Das Task kann aktuell nicht geändert werden", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("The task cannot currently be changed", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 clear();
                 return;
             }
@@ -197,6 +206,11 @@ namespace Attendance_system.View
 
         private void btnDeleteTask(object sender, RoutedEventArgs e)
         {
+            if (txtTaskId.Text == string.Empty && txtTaskName.Text == string.Empty)
+            {
+                MessageBox.Show("Please enter either (ID) or (name) of a task.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             MessageBoxResult result = MessageBox.Show("Do you really want to Delete this element ?", "Delete", MessageBoxButton.OKCancel, MessageBoxImage.Question);
             if (result == MessageBoxResult.OK)
             {
@@ -213,14 +227,14 @@ namespace Attendance_system.View
                 bool state = TaskController.DeleteTask(task);
                 if (state)
                 {
-                    MessageBox.Show($"Das Task {txtTaskName.Text} wurde entfernt", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show($"The task {txtTaskName.Text} has been removed", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
                     clear();
                     updateListView();
                     return;
                 }
                 else
                 {
-                    MessageBox.Show($"Das Task kann aktuell nicht entfernt werden", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show($"The task can not currently be removed", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     clear();
                     return;
                 }

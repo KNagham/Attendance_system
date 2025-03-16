@@ -16,9 +16,6 @@ using System.Windows.Shapes;
 
 namespace Attendance_system.View
 {
-    /// <summary>
-    /// Interaktionslogik für Register.xaml
-    /// </summary>
     public partial class Register : Window
     {
         public Register()
@@ -39,22 +36,22 @@ namespace Attendance_system.View
             if (txtFirstname.Text == string.Empty || txtLastname.Text == string.Empty || txtUsername.Text == string.Empty ||
                 txtEmail.Text == string.Empty || txtPassword.Password == string.Empty)
             {
-                MessageBox.Show("Bitte füllen Sie alle Felder aus ", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Please complete all fields", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             if (!EmployeeController.EmailValidator(txtEmail.Text))
             {
-                MessageBox.Show("Bitte geben Sie eine gültige E-Mail Adresse ein", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Please enter a valid email address", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             if (txtPassword.Password.Count() < 8 || txtCPassword.Password.Count() < 8)
             {
-                MessageBox.Show("Ihr Password ist schwach, es muss mind.8 Stelle sein ", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Your password is short, it must be at least 8 digits long", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             if (txtPassword.Password != txtCPassword.Password)
             {
-                MessageBox.Show("Bitte kontrollieren Sie das Password in den Beiden Felders", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Please check the password in both fields", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
@@ -65,6 +62,7 @@ namespace Attendance_system.View
                 UserName = txtUsername.Text,
                 Email = txtEmail.Text.ToLower(),
                 ActivationCode = "",
+                IsManager = IsManager.IsChecked == true ? true : false,
                 Confirmed = false
             };
             Password password = new Password() { PasswordKey = PasswordController.ComputeSHA256(txtPassword.Password) };
@@ -72,7 +70,7 @@ namespace Attendance_system.View
             bool state = EmployeeController.AddEmployee(employee, password);
             if (state)
             {
-                MessageBox.Show("Benutzer wurde registiert\n Klicken Sie auf Activate und den Code eingeben", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("User has been registered\nClick Activate and enter the code", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
                 txtFirstname.Text = "";
                 txtLastname.Text = "";
                 txtUsername.Text = "";
@@ -82,7 +80,7 @@ namespace Attendance_system.View
             }
             else
             {
-                MessageBox.Show("Email ist vorhanden", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Email exists", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

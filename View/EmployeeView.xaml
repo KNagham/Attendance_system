@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Attendance_system.View"
         mc:Ignorable="d"
-        Title="EmployeeView" Height="800" Width="1200">
+        Title="Employeeportal | Dashboard" 
+        Height="800" 
+        Width="1200"
+        ResizeMode="NoResize">
     <!-- Hintergrundfarbe des Windows -->
     <Window.Background>
         <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" MappingMode="RelativeToBoundingBox">
@@ -16,7 +19,7 @@
     </Window.Background>
     <!--scrollbar Bereich-->
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-        <Grid Margin="20">
+        <Grid Margin="20" Height="754">
             <Grid.RowDefinitions>
                 <!-- Header -->
                 <RowDefinition Height="Auto"/>
@@ -24,13 +27,14 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <!-- Header -->
+            <Image Margin="23,0,0,0" Source="/View/Attendance.png" Stretch="Fill" Height="111" VerticalAlignment="Center" HorizontalAlignment="Left" Width="118"/>
             <Label Content="Attendance System"
                       HorizontalAlignment="Center"
                       VerticalAlignment="Top"
                       FontSize="38"
                       FontFamily="Calisto MT"
                       FontWeight="Bold"
-                      Margin="10">         
+                      Margin="10">
                 <Label.Style>
                     <Style TargetType="Label">
                         <!-- Default Foreground color (white) -->
@@ -55,6 +59,15 @@
                 <!-- Linkes Menü -->
                 <Border Background="#1A0F2E" Margin="10,10,0,10" Padding="10" CornerRadius="10" HorizontalAlignment="Left" Width="240">
                     <StackPanel>
+                        <Button Click="btnWelcome" Content="Welcome" Height="40" Margin="0,10" Foreground="White" FontSize="20" Width="220">
+                            <Button.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#000000" Offset="0.0"/>
+                                    <GradientStop Color="#1A0F2E" Offset="0.5"/>
+                                    <GradientStop Color="#4C0D6D" Offset="1.0"/>
+                                </LinearGradientBrush>
+                            </Button.Background>
+                        </Button>
                         <Button Click="btnDashboard" Content="Dashboard" Height="40" Margin="0,10" Foreground="White" FontSize="20" Width="220">
                             <Button.Background>
                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -73,7 +86,7 @@
                                 </LinearGradientBrush>
                             </Button.Background>
                         </Button>
-                        <Button Click="btnAttendenceStatement" Content="Attendance Statement" Height="40" Margin="0,10" Foreground="White" FontSize="20" Width="220">
+                        <Button Click="btnAttendenceStatement" Content="Attendance Statement" Margin="0,10" Height="40" Foreground="White" FontSize="20" Width="220">
                             <Button.Background>
                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                     <GradientStop Color="#000000" Offset="0.0"/>
@@ -90,13 +103,13 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        <Label x:Name="lblGreeting" Content="" FontSize="20" FontFamily="Calisto MT" Foreground="White" Width="279" HorizontalAlignment="Left" Margin="0,0,0,33"/>
+                        <Label x:Name="lblGreeting" Content="" FontSize="20" FontFamily="Calisto MT" Foreground="White" Width="280" HorizontalAlignment="Left" Margin="10,0,0,33"/>
                         <Label x:Name="lblCurrentDate" Content="" FontSize="20" FontFamily="Calisto MT" Foreground="White" HorizontalContentAlignment="Center" Margin="511,0,0,33" HorizontalAlignment="Left" Width="302"/>
                         <Button x:Name="btnCheckIn" Click="btnCheckInClick" Content="CheckIn" Height="50" FontWeight="Bold" FontSize="20" Width="136" Background="#FF911FCC" Foreground="White" HorizontalAlignment="Left" Margin="0,130,0,-103"/>
                         <Button x:Name="btnCheckOut" Click="btnCheckOutClick" Content="CheckOut"  Height="50" Width="136" FontWeight="Bold" FontSize="20" Background="#FF320948" Foreground="White" HorizontalAlignment="Left" Margin="154,130,0,-103"/>
                         <ComboBox Name="cbProject" DisplayMemberPath="Name" SelectedValuePath="Id" Width="200" Height="30" FontSize="18" Margin="0,277,0,-230" HorizontalAlignment="Left"/>
                         <ComboBox Name="cbTask" DisplayMemberPath="Name" SelectedValuePath="Id" Width="200" Height="30" FontSize="18" Margin="230,277,0,-230" HorizontalAlignment="Left"/>
-                        <Label x:Name="lblTimer" Content="" Background="Red"  Foreground="White"  FontSize="24" FontFamily="Calisto MT" Margin="528,0,0,-325" Height="42" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="243" HorizontalContentAlignment="Center"/>
+                        <Label x:Name="lblTimer" Content="" Foreground="White"  FontSize="24" FontFamily="Calisto MT" Margin="528,0,0,-325" Height="42" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="243" HorizontalContentAlignment="Center"/>
                         <Button x:Name="btnPause" Click="btnPauseClick" Content="Pause" Height="40" Margin="678,422,0,-385" FontWeight="Bold" FontSize="20" Background="#FF1F052D" Foreground="White" HorizontalAlignment="Left" Width="93"/>
                         <Button x:Name="btnStop" Click="btnStopClick" Content="Stop" Height="40" Background="#FF1F052D" FontWeight="Bold" FontSize="20" Foreground="White" Margin="678,475,0,-438" HorizontalAlignment="Left" Width="93"/>
                         <Button x:Name="btnStart" Click="btnStartClick" Content="Start" Height="40" Background="#FF911FCC" FontWeight="Bold" FontSize="20" Foreground="White" Margin="528,422,0,-385" HorizontalAlignment="Left" Width="93"/>

@@ -1,11 +1,16 @@
-﻿using Attendance_system.Model;
+﻿using Attendance_system.DTO;
+using Attendance_system.Model;
 using Attendance_system.Service;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows;
 
 namespace Attendance_system.Controller
 {
@@ -150,6 +155,185 @@ namespace Attendance_system.Controller
 
             context.Employees.Update(employee);
             context.SaveChanges();
+            return true;
+        }
+
+        // get all active employee
+        public static List<EmployeeDTO> GetAllEmployees()
+        {
+            AttendanceDbContext context = new AttendanceDbContext();
+            return context.Employees.Where(p => p.Confirmed == true).Select(p => new EmployeeDTO 
+            { 
+                EmployeeId = p.Id, 
+                Employee = p.FirstName + " "  + p.LastName,
+            }).ToList();
+        }
+
+        // format working hour
+        private static string FormatWorkingHours(List<Attendance> attendances)
+        {
+            TimeSpan totalDuration = TimeSpan.Zero;
+
+            foreach (Attendance attendance in attendances)
+            {
+                if (attendance.Start.HasValue && attendance.Ende.HasValue)
+                {
+                    totalDuration += attendance.Ende.Value - attendance.Start.Value;
+                }
+            }
+
+            return $"{totalDuration.Hours:D2}h {totalDuration.Minutes:D2}min";
+        }
+
+        /*public static List<EmployeeDTO> GetAllWorkingHours()
+        {
+            AttendanceDbContext context = new AttendanceDbContext();
+
+            return context.Employees
+                .Include(e => e.Attendances)
+                .AsNoTracking()
+                .ToList()
+                .Select(ep => new EmployeeDTO
+                {
+                    EmployeeId = ep.Id,
+                    Employee = $"{ep.FirstName} {ep.LastName}",
+                    Confirmed = ep.Confirmed,
+
+                    // Explizite Konvertierung von DateTime zu DateOnly
+                    WorkingDate = ep.Attendances.Any() ? DateOnly.FromDateTime(
+                        ep.Attendances.Max(a => a.Start.Value)).ToString("MMMM-yyyy", CultureInfo.InvariantCulture) : null,
+
+                    Note = ep.Attendances.Any() ? ep.Attendances.LastOrDefault()?.Note : null,
+                    Hour = ep.Attendances.Any() ? FormatWorkingHours(ep.Attendances.ToList()) : null,
+                })
+                .ToList();
+        }*/
+
+        public static List<EmployeeDTO> GetAllWorkingHours()
+        {
+            AttendanceDbContext context = new AttendanceDbContext();
+
+            return context.Employees
+                .Include(e => e.Attendances)
+                .AsNoTracking()
+                .ToList()
+                .SelectMany(employee =>
+                {
+                    // Gruppiere vorhandene Arbeitszeiten nach Monat
+                    var groupedAttendances = employee.Attendances
+                        .Where(a => a.Start.HasValue && a.Ende.HasValue)
+                        .GroupBy(a => DateOnly.FromDateTime(a.Start.Value))
+                        .Select(group => new EmployeeDTO
+                        {
+                            EmployeeId = employee.Id,
+                            Employee = $"{employee.FirstName} {employee.LastName}",
+                            Confirmed = employee.Confirmed,
+                            WorkingDate = group.Key.ToString("MMMM-yyyy", CultureInfo.InvariantCulture),
+                            Note = group.LastOrDefault()?.Note,
+                            Hour = FormatWorkingHours(group.ToList())
+                        });
+
+                        // Wenn der Mitarbeiter keine Arbeitszeiten hat, füge einen leeren Eintrag hinzu
+                        if (!groupedAttendances.Any())
+                        {
+                            return new[] { new EmployeeDTO
+                            {
+                                EmployeeId = employee.Id,
+                                Employee = $"{employee.FirstName} {employee.LastName}",
+                                Confirmed = employee.Confirmed,
+                                WorkingDate = null,
+                                Note = null,
+                                Hour = null
+                            }};
+                        }
+
+                    return groupedAttendances;
+                })
+                .OrderBy(dto => dto.WorkingDate)
+                .ToList();
+        }
+
+        public static List<EmployeeDTO> GetWorkingHoursbyEmployee(int employeeId, DateTime? fromDate = null, DateTime? toDate = null)
+        {
+            AttendanceDbContext context = new AttendanceDbContext();
+            return context.Employees
+                .Include(e => e.Attendances)
+                .AsNoTracking()
+                .Where(e => e.Id == employeeId)
+                .ToList()
+                .SelectMany(employee =>
+                {
+                    // Filter by date range
+                    var filterAttendances = employee.Attendances
+                        .Where(a => a.Start.HasValue && a.Ende.HasValue)
+                        .Where(a => !fromDate.HasValue || a.Start.Value.Date >= fromDate)
+                        .Where(a => !toDate.HasValue || a.Ende.Value.Date <= toDate)
+                        .GroupBy(a => DateOnly.FromDateTime(a.Start.Value))
+                        .Select(group => new EmployeeDTO
+                        {
+                            EmployeeId = employee.Id,
+                            Employee = $"{employee.FirstName} {employee.LastName}",
+                            Confirmed = employee.Confirmed,
+                            WorkingDate = group.Key.ToString("dd-MM-yyyy"),
+                            Note = group.LastOrDefault()?.Note,
+                            Hour = FormatWorkingHours(group.ToList())
+                        });
+
+                    // Wenn der Mitarbeiter keine Arbeitszeiten hat, füge einen leeren Eintrag hinzu
+                    if (!filterAttendances.Any())
+                    {
+                        return new[] { new EmployeeDTO
+                            {
+                                EmployeeId = employee.Id,
+                                Employee = $"{employee.FirstName} {employee.LastName}",
+                                Confirmed = employee.Confirmed,
+                                WorkingDate = null,
+                                Note = null,
+                                Hour = null
+                            }};
+                    }
+
+                    return filterAttendances;
+                })
+                .OrderBy(dto => dto.WorkingDate)
+                .ToList();
+        }
+        // Disable employees
+        public static bool DisabledEmployees(List<EmployeeDTO> employeeDTO)
+        {
+            using (var context = new AttendanceDbContext())
+            {
+                foreach (var employee in employeeDTO)
+                {
+                    var employeeEntity = context.Employees
+                        .FirstOrDefault(e => e.Id == employee.EmployeeId);
+
+                    if (employeeEntity != null)
+                    {
+                        // Nur die Confirmed-Eigenschaft aktualisieren
+                        employeeEntity.Confirmed = employee.Confirmed;
+                    }
+                }
+
+                return context.SaveChanges() > 0;
+            }
+        }
+
+        public static bool validInputs(DatePicker datePickerFrom, DatePicker datePickerTo)
+        {
+            if (!datePickerFrom.SelectedDate.HasValue && !datePickerTo.SelectedDate.HasValue)
+            {
+                return true;
+            }
+            if (datePickerFrom.SelectedDate.HasValue && datePickerTo.SelectedDate.HasValue)
+            {
+                if (datePickerFrom.SelectedDate.Value > datePickerTo.SelectedDate.Value)
+                {
+                    MessageBox.Show("Das Startdatum kann nicht größer als das Enddatum sein", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
+            }
+            
             return true;
         }
     }

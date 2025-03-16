@@ -74,10 +74,8 @@
                             <!-- Send code Button -->
                             <Button Click="btnSendCode" 
                                 Content="send code" Height="40" 
-                                Background="#FF8231C8" 
-                                Foreground="White"
-                                FontFamily="Calisto MT" 
-                                FontSize="20"
+                                Background="#4C0D6D" FontSize="20"
+                                Foreground="White" FontFamily="Calisto MT" 
                                 FontWeight="Bold" Margin="390,150,376,-110"/>
                             <Label Content="Activation code" 
                                Foreground="White" 
@@ -93,17 +91,15 @@
                             <!-- Activate Button -->
                             <Button Click="btnActivate" 
                                 Content="Activate" Width="127" 
-                                Height="40" Background="#FF8231C8" 
-                                Foreground="White"
-                                FontFamily="Calisto MT" 
-                                FontWeight="Bold" 
-                                FontSize="20"
+                                Height="40" Background="#4C0D6D" FontSize="20"
+                                Foreground="White" FontFamily="Calisto MT" 
+                                FontWeight="Bold"
                                 Margin="811,383,0,-343" HorizontalAlignment="Left" RenderTransformOrigin="0.322,-0.804"/>
                             <Button Click="btnLogin" 
                                 Content="Sign in" 
-                                Height="40" Background="#FF8231C8" 
+                                Height="40" Background="#4C0D6D" FontSize="20"
                                 Foreground="White" FontFamily="Calisto MT" 
-                                FontWeight="Bold" FontSize="20"
+                                FontWeight="Bold"
                                 Margin="13,383,814,-343"/>
                         </Grid>
                     </StackPanel>

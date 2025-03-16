@@ -18,9 +18,6 @@ using System.Windows.Threading;
 
 namespace Attendance_system.View
 {
-    /// <summary>
-    /// Interaktionslogik für EmployeeView.xaml
-    /// </summary>
     public partial class EmployeeView : Window
     {
         private DispatcherTimer _timer;
@@ -42,17 +39,6 @@ namespace Attendance_system.View
             InitializeTimer();
 
         }
-        // muss deleted
-       /*
-        public EmployeeView()
-        {
-            InitializeComponent();
-            setCurrentDate();
-            disabled(true);
-            InitializeTimer();
-
-        }*/
-
         private void InitializeTimer()
         {
             _timer = new DispatcherTimer();
@@ -78,6 +64,12 @@ namespace Attendance_system.View
             lblGreeting.Content = $"Hello {_currentEmployee.FirstName} {_currentEmployee.LastName}";
         }
 
+        private void btnWelcome(object sender, RoutedEventArgs e)
+        {
+            Welcome welcome = new Welcome(_currentEmployee);
+            welcome.Show();
+            this.Close();
+        }
         private void btnDashboard(object sender, RoutedEventArgs e)
         {
             return;
@@ -92,7 +84,9 @@ namespace Attendance_system.View
 
         private void btnAttendenceStatement(object sender, RoutedEventArgs e)
         {
-            return;
+            EmployeeAttendance employeeAttendance= new EmployeeAttendance();
+            employeeAttendance.Show();
+            this.Close();
         }
 
         private void btnCheckInClick(object sender, RoutedEventArgs e)
@@ -105,7 +99,7 @@ namespace Attendance_system.View
             btnPause.IsEnabled = false;
             cbProject.ItemsSource = TaskController.GetAllProjects();
             cbTask.ItemsSource = TaskController.GetAllTasks();
-
+            btnCheckIn.IsEnabled = false;
         }
 
         private void btnCheckOutClick(object sender, RoutedEventArgs e)
@@ -114,6 +108,7 @@ namespace Attendance_system.View
             txtEmployeeTaskNote.Text = string.Empty;
             txtAttendanceNote.Text = string.Empty;
             disabled(true);
+            btnCheckIn.IsEnabled= true;
 
         }
 
@@ -121,7 +116,7 @@ namespace Attendance_system.View
         {
             if(cbProject.SelectedIndex == -1 || cbTask.SelectedIndex == -1)
             {
-                MessageBox.Show("Bitte wählen Sie Projekt und Task zuerst aus!!", "Warnung", MessageBoxButton.OK, MessageBoxImage.Hand);
+                MessageBox.Show("Please select project and task first!", "Warnung", MessageBoxButton.OK, MessageBoxImage.Hand);
                 return;
             }
             if(!_isRunning)
@@ -180,12 +175,12 @@ namespace Attendance_system.View
                     _currentEmployeeProject.Note = txtEmployeeTaskNote.Text;
                 }
                 await EmployeeProjectController.SaveWorkingTime(_currentEmployeeProject);
-                MessageBox.Show("Arbeitszeit wurde gespeichert.\nSchönen Tag", "Erfolg", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Working time has been saved.\nHave a nice day", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
 
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Fehler beim Speichern!!", "Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Error when saving", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -210,11 +205,11 @@ namespace Attendance_system.View
                     _currentEmployeeProject.Note = txtEmployeeTaskNote.Text;
                 }
                 await EmployeeProjectController.SaveWorkingTime(_currentEmployeeProject);
-                MessageBox.Show("Arbeitszeit wurde zwischen gespeichert\nMahlzeit.", "Informationen", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Working time was saved temporarily\nMeal", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Fehler beim zwischenspeichern!!", "Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Error when saving", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         private void btnPauseClick(object sender, RoutedEventArgs e)

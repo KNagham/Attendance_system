@@ -26,11 +26,22 @@ namespace Attendance_system.View
         {
             _currentEmployee = EmployeeService.GetCurrentEmployee();
             InitializeComponent();
+            setGreeting();
             cbProject.ItemsSource = EmployeeProjectController.GetAllProjectsbyEmployee(_currentEmployee.Id);
             cbTask.ItemsSource = EmployeeProjectController.GetAllTaskssbyEmployee(_currentEmployee.Id);
             listViewWorkingHour.ItemsSource = EmployeeProjectController.GetWorkingHours(_currentEmployee.Id);
         }
 
+        private void setGreeting()
+        {
+            lblGreeting.Content = $"Hello {_currentEmployee.FirstName} {_currentEmployee.LastName}";
+        }
+        private void btnWelcome(object sender, RoutedEventArgs e)
+        {
+            Welcome welcome = new Welcome(_currentEmployee);
+            welcome.Show();
+            this.Close();
+        }
         private void btnDashboard(object sender, RoutedEventArgs e)
         {
             EmployeeView employeeview = new EmployeeView(_currentEmployee);
@@ -39,7 +50,9 @@ namespace Attendance_system.View
         }
         private void btnAttendenceStatement(object sender, RoutedEventArgs e)
         {
-
+            EmployeeAttendance employeeAttendance = new EmployeeAttendance();
+            employeeAttendance.Show();
+            this.Close();
         }
         private void btnWorkingHour(object sender, RoutedEventArgs e)
         {
@@ -53,7 +66,7 @@ namespace Attendance_system.View
 
         private void btnOk(object sender, RoutedEventArgs e)
         {
-            if(!validInputs())
+            if(!AttendanceController.validInputs(datePickerFrom, datePickerTo))
             {
                 return;
             }
@@ -63,20 +76,6 @@ namespace Attendance_system.View
                                                 datePickerTo.SelectedDate.Value, projectId, taskId);
         }
 
-        private bool validInputs()
-        {
-            if(!datePickerFrom.SelectedDate.HasValue || !datePickerTo.SelectedDate.HasValue)
-            {
-                MessageBox.Show("Bitte wählen Sie gültige Datumsbereich aus", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return false;
-            }
-            if(datePickerFrom.SelectedDate.Value > datePickerTo.SelectedDate.Value)
-            {
-                MessageBox.Show("Das Startdatum kann nicht größer als das Enddatum sein", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return false;
-            }
-            return true;
-        }
         private void clear(bool listClear = false)
         {
             cbProject.SelectedIndex = -1;
@@ -102,14 +101,14 @@ namespace Attendance_system.View
                 // input validate
                 if(!double.TryParse(employeeProject.WorkingTimeFormatted.Replace(":", ""), out double totalSeconds))
                 {
-                    MessageBox.Show("Bitte geben Sie eine gültige Zeit im Format HH:MM:SS ein.",  "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Please enter a valid time in HH:MM:SS format.",  "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
                 // time convert
                 string[] timeParts = employeeProject.WorkingTimeFormatted.Split(':');
                 if (timeParts.Length != 3)
                 {
-                    MessageBox.Show("Bitte geben Sie eine gültige Zeit im Format HH:MM:SS ein.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Please enter a valid time in HH:MM:SS format.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
                 int hour = int.Parse(timeParts[0]);
@@ -120,17 +119,17 @@ namespace Attendance_system.View
                 bool state = EmployeeProjectController.UpdateWorkingHour(employeeProject);
                 if(state)
                 {
-                    MessageBox.Show("Die Arbeitszeit erfolgreich aktualisiert", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Working time successfully updated", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
                     listViewWorkingHour.ItemsSource = EmployeeProjectController.GetWorkingHours(_currentEmployee.Id);
                 }
                 else
                 {
-                    MessageBox.Show("Die Arbeitszeit kann nicht aktualisiert werden", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("The working time can not be updated", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             catch(Exception ex)
             {
-                MessageBox.Show("Fehler beim Aktualisieren der Arbeitszeit", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Error when updating the working time", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
         }
@@ -142,17 +141,17 @@ namespace Attendance_system.View
             {
                 return;
             }
-            if (MessageBox.Show("Möchten Sie wirklich löschen?", "Warnung", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            if (MessageBox.Show("Do you really want to delete it?", "Warnung", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 bool state = EmployeeProjectController.DeleteEmployeeProject(employeeProject);
                 if(state)
                 {
-                    MessageBox.Show("Die Arbeitszeit erfolgreich gelöscht", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Working time successfully deleted", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
                     listViewWorkingHour.ItemsSource = EmployeeProjectController.GetWorkingHours(_currentEmployee.Id);
                 }
                 else
                 {
-                    MessageBox.Show("Die Arbeitszeit kann nicht gelöscht werden", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("The working time can not be deleted", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }

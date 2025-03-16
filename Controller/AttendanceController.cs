@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows;
 using Attendance_system.DTO;
 using Attendance_system.Model;
 using Microsoft.EntityFrameworkCore;
@@ -47,6 +49,25 @@ namespace Attendance_system.Controller
             activeAttendance.Ende = DateTime.Now;
             activeAttendance.Note = note;
             context.SaveChanges();
+        }
+
+        public static bool validInputs(DatePicker datePickerFrom, DatePicker datePickerTo)
+        {
+            if (!datePickerFrom.SelectedDate.HasValue)
+            {
+                MessageBox.Show("Bitte wählen Sie gültige Datumsbereich aus", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            if(!datePickerTo.SelectedDate.HasValue)
+            {
+                datePickerTo.SelectedDate = DateTime.Now; 
+            }
+            if (datePickerFrom.SelectedDate.Value > datePickerTo.SelectedDate.Value)
+            {
+                MessageBox.Show("Das Startdatum kann nicht größer als das Enddatum sein", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            return true;
         }
     }
 }

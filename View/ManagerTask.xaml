@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Attendance_system.View"
         mc:Ignorable="d"
-        Title="ManagerTask" Height="900" Width="1200">
+        Title="Managerportal | Task" 
+        Height="900" 
+        Width="1200"
+        ResizeMode="NoResize">
     <!-- Ressourcen für das Fenster -->
     <Window.Resources>
         <LinearGradientBrush x:Key="GradientBackgroundBrush" StartPoint="0,0" EndPoint="1,1">
@@ -23,8 +26,8 @@
         </LinearGradientBrush>
     </Window.Background>
     <!--scrollbar Bereich-->
-    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-        <Grid Margin="20" Height="754">
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+        <Grid Margin="20" Height="793">
             <Grid.RowDefinitions>
                 <!-- Header -->
                 <RowDefinition Height="Auto"/>
@@ -32,6 +35,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <!-- Header -->
+            <Image Margin="23,0,0,0" Source="/View/Attendance.png" Stretch="Fill" Height="111" VerticalAlignment="Center" HorizontalAlignment="Left" Width="118"/>
             <Label Content="Attendance System"
                       HorizontalAlignment="Center"
                       VerticalAlignment="Top"
@@ -52,9 +56,7 @@
                     </Style>
                 </Label.Style>
             </Label>
-            <Label x:Name="lblGreeting" Content="" FontSize="20" FontFamily="Calisto MT" 
-                   Foreground="White" Width="279" Background="Red" 
-                   HorizontalAlignment="Left" Margin="871,13,0,0" Height="54" VerticalAlignment="Top"/>
+
             <!-- Hauptinhalt -->
             <Grid Grid.Row="1" Margin="0,20,0,0">
                 <Grid.ColumnDefinitions>
@@ -66,6 +68,15 @@
                 <!-- Linkes Menü -->
                 <Border Background="#1A0F2E" Margin="10,10,0,10" Padding="10" CornerRadius="10" HorizontalAlignment="Left" Width="240">
                     <StackPanel>
+                        <Button Click="btnWelcome" Content="Welcome" Height="40" Margin="0,10" Foreground="White" FontSize="20" Width="220">
+                            <Button.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#000000" Offset="0.0"/>
+                                    <GradientStop Color="#1A0F2E" Offset="0.5"/>
+                                    <GradientStop Color="#4C0D6D" Offset="1.0"/>
+                                </LinearGradientBrush>
+                            </Button.Background>
+                        </Button>
                         <Button Click="btnProject" Content="Project" Height="40" Margin="0,10" Foreground="White" FontSize="20" Width="220">
                             <Button.Background>
                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -84,7 +95,7 @@
                                 </LinearGradientBrush>
                             </Button.Background>
                         </Button>
-                        <Button Click="btnEmployee" Content="Employee" Height="40" Margin="0,10" Foreground="White" FontSize="20" Width="220">
+                        <Button Click="btnEmployee" Content="Employee" Margin="0,10" Height="40" Foreground="White" FontSize="20" Width="220">
                             <Button.Background>
                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                     <GradientStop Color="#000000" Offset="0.0"/>
@@ -101,6 +112,8 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
+                        <Label x:Name="lblGreeting" Content="" FontSize="20" FontFamily="Calisto MT" 
+                               Foreground="White" Margin="580,-71,1,131"/>
                         <Label Content="ID:" Foreground="White" 
                                 FontFamily="Calisto MT" FontSize="20" 
                                 Height="38"  VerticalAlignment="Bottom" 
@@ -218,8 +231,8 @@
                                         <GridViewColumn Header="ID" Width="40" DisplayMemberBinding="{Binding Id}"/>
                                         <GridViewColumn Header="Name" Width="130" DisplayMemberBinding="{Binding Name}" />
                                         <GridViewColumn Header="Description" Width="160" DisplayMemberBinding="{Binding Description}" />
-                                        <GridViewColumn Header="Create At" Width="110" DisplayMemberBinding="{Binding CreatedDateOnly}" />
-                                        <GridViewColumn Header="Update At" Width="110" DisplayMemberBinding="{Binding UpdatedDateOnly}" />
+                                        <GridViewColumn Header="Created at" Width="110" DisplayMemberBinding="{Binding CreatedDateOnly}" />
+                                        <GridViewColumn Header="Updated at" Width="110" DisplayMemberBinding="{Binding UpdatedDateOnly}" />
                                         <GridViewColumn Header="Status" Width="90" DisplayMemberBinding="{Binding Status}" />
                                         <GridViewColumn Header="Priority" Width="100" DisplayMemberBinding="{Binding Priority}" />
                                         <GridViewColumn Header="Project" Width="100" DisplayMemberBinding="{Binding Project}" />

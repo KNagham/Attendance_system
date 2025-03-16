@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Attendance_system.View"
         mc:Ignorable="d"
-        Title="Sign in" Height="800" Width="1100">
+        Title="Sign in" 
+        Height="800" 
+        Width="1100"
+        ResizeMode="NoResize">
     <!-- Hintergrundfarbe des Windows -->
     <Window.Background>
         <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" MappingMode="RelativeToBoundingBox">
@@ -26,6 +29,8 @@
             </Grid.RowDefinitions>
 
             <!--Header-->
+            <Image Margin="22,-21,0,0" Grid.RowSpan="2" Source="/View/login.png" Stretch="Fill" Height="127" VerticalAlignment="Top" HorizontalAlignment="Left" Width="143"/>
+
             <Label Content="Sign in to the Attendance system" 
                    HorizontalAlignment="Center"
                    VerticalAlignment="Top"
@@ -79,13 +84,9 @@
                                          FontSize="18" FontFamily="Calisto MT" Margin="347,305,305,-299" />
                             <!-- Sign In Button -->
                             <Button Click="btnLogin" Content="Sign in" 
-                                    Width="120" Height="40" FontSize="20"
-                                    Background="#FF8231C8" Foreground="White"
-                                    FontFamily="Calisto MT" FontWeight="Bold" Margin="810,0,22,-482" VerticalAlignment="Bottom" />
-                            <Button Click="btnBack" Content="Back" 
-                                    Height="40" Background="#FF8231C8" FontSize="20"
+                                    Width="120" Height="40" Background="#4C0D6D" FontSize="20"
                                     Foreground="White" FontFamily="Calisto MT" 
-                                    FontWeight="Bold" Margin="24,0,808,-482" VerticalAlignment="Bottom" />
+                                    FontWeight="Bold" Margin="810,0,22,-482" VerticalAlignment="Bottom" />
                             <!--sign up-->
                             <Label Content="New to the Attendance system? Sign Up" VerticalAlignment="Bottom" Cursor="Hand" AllowDrop="True" 
                                    MouseLeftButtonDown="btnSignUp" 
