@@ -19,7 +19,8 @@ The Attendance System provides a robust platform for managing employee attendanc
   * Customizable time reports
   * Employee performance insights
 ### Sign in
-![image](https://github.com/user-attachments/assets/dc15e277-96eb-4480-9f09-4ef51be5cb2b)
+![image](https://github.com/user-attachments/assets/a40926a9-7579-4b2c-b2ff-a983a419ad50)
 ### Welcome 
-![image](https://github.com/user-attachments/assets/75e1d1da-6861-43a1-b863-0c6f35e9c92f)
+![image](https://github.com/user-attachments/assets/4d70f57a-3c77-4ada-a248-0f24b42050fd)
+
 
