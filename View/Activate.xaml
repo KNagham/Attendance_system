@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Attendance_system.View"
         mc:Ignorable="d"
-        Title="Activate" Height="700" Width="1100">
+        Icon="/View/password.png"
+        Title="Activate" Height="800" Width="1100"
+        ResizeMode="NoResize">
     <!-- Hintergrundfarbe des Windows -->
     <Window.Background>
         <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" MappingMode="RelativeToBoundingBox">
@@ -15,8 +17,8 @@
         </LinearGradientBrush>
     </Window.Background>
     <!--scrollbar Bereich-->
-    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-        <Grid Margin="20">
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Disabled">
+        <Grid Margin="20" Height="718">
             <Grid.RowDefinitions>
                 <!-- Header -->
                 <RowDefinition Height="Auto"/>
@@ -25,6 +27,8 @@
             </Grid.RowDefinitions>
 
             <!--Header-->
+            <!--logo-->
+            <Image HorizontalAlignment="Left" Height="109" Margin="34,0,0,0" VerticalAlignment="Center" Width="155" Source="/View/password.png"/>
             <Label Content="Activation your Account" 
                    HorizontalAlignment="Center"
                    VerticalAlignment="Top"
@@ -55,7 +59,7 @@
                             <GradientStop Color="#4C0D6D" Offset="1.0"/>
                         </LinearGradientBrush>
                     </Border.BorderBrush>
-                    <StackPanel  >
+                    <StackPanel Margin="0,0,0,-9"  >
                         <Grid Grid.Column="1" Margin="20" HorizontalAlignment="Stretch">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
@@ -94,13 +98,13 @@
                                 Height="40" Background="#4C0D6D" FontSize="20"
                                 Foreground="White" FontFamily="Calisto MT" 
                                 FontWeight="Bold"
-                                Margin="811,383,0,-343" HorizontalAlignment="Left" RenderTransformOrigin="0.322,-0.804"/>
+                                Margin="794,453,0,-413" HorizontalAlignment="Left" RenderTransformOrigin="0.322,-0.804"/>
                             <Button Click="btnLogin" 
                                 Content="Sign in" 
                                 Height="40" Background="#4C0D6D" FontSize="20"
                                 Foreground="White" FontFamily="Calisto MT" 
                                 FontWeight="Bold"
-                                Margin="13,383,814,-343"/>
+                                Margin="21,453,806,-413"/>
                         </Grid>
                     </StackPanel>
                 </Border>
