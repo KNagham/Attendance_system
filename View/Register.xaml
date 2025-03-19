@@ -6,8 +6,9 @@
         xmlns:local="clr-namespace:Attendance_system.View"
         mc:Ignorable="d"
         Title="Sign up" 
-        Height="800" 
+        Height="850" 
         Width="1100"
+        Icon="/View/register.png"
         ResizeMode="NoResize">
 
     <!-- Hintergrundfarbe des Windows -->
@@ -19,8 +20,8 @@
         </LinearGradientBrush>
     </Window.Background>
     <!--scrollbar Bereich-->
-    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" HorizontalAlignment="Left" Width="1130">
-        <Grid Margin="20" Height="737">
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Disabled">
+        <Grid Margin="20" Height="775">
             <Grid.RowDefinitions>
                 <!-- Header -->
                 <RowDefinition Height="Auto"/>
@@ -94,7 +95,7 @@
                                      Background="#2A2A2A" Foreground="White" 
                                      BorderBrush="#FF71737B" FontSize="18" 
                                      FontFamily="Calisto MT" Margin="213,162,440,-156" />
-                            <CheckBox x:Name="IsManager" Content="Is Manager" Foreground="White" Margin="213,0,656,-478" Height="40" VerticalAlignment="Bottom" FontSize="18" FontFamily="Calisto MT"/>
+                            <CheckBox x:Name="IsManager" Content="Is Manager" Foreground="White" Margin="213,0,0,-478" Height="40" VerticalAlignment="Bottom" FontSize="18" FontFamily="Calisto MT" HorizontalAlignment="Left" Width="126"/>
                             <Label Content="E-Mail:" Foreground="White" 
                                    FontFamily="Calisto MT" FontSize="20" 
                                    Height="38"  VerticalAlignment="Bottom" 
@@ -121,7 +122,7 @@
                             <Button Click="btnRegister" Content="Create Account" 
                                     Height="40" Background="#4C0D6D" FontSize="20"
                                     Foreground="White" FontFamily="Calisto MT" 
-                                    FontWeight="Bold" Margin="790,0,20,-478" VerticalAlignment="Bottom"/>
+                                    FontWeight="Bold" Margin="747,0,0,-478" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="165"/>
                             <!-- Activation Button -->
                             <Button Click="btnActivate" Content="Activate" Height="40" Background="#4C0D6D" FontSize="20"
                                     Foreground="White" FontFamily="Calisto MT" 

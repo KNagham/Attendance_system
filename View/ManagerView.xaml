@@ -8,6 +8,7 @@
         Title="Managerportal | project" 
         Height="942" 
         Width="1200"
+        Icon="/View/Attendance.png"
         ResizeMode="NoResize">
     <!-- Ressourcen für das Fenster -->
     <Window.Resources>

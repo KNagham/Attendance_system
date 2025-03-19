@@ -8,6 +8,7 @@
         Title="Employeeportal | Dashboard" 
         Height="800" 
         Width="1200"
+        Icon="/View/Attendance.png"
         ResizeMode="NoResize">
     <!-- Hintergrundfarbe des Windows -->
     <Window.Background>
