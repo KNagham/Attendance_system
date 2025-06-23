@@ -12,6 +12,7 @@ namespace Attendance_system.Controller
 {
     public class EmployeeProjectController
     {
+        // save working time
         public static async System.Threading.Tasks.Task SaveWorkingTime(EmployeeProject employeeProject)
         {
             AttendanceDbContext context = new AttendanceDbContext();
@@ -26,6 +27,7 @@ namespace Attendance_system.Controller
             await context.SaveChangesAsync();
         }
 
+        // get all working hours by date
         public static List<EmployeeProjectDTO> GetWorkingHoursbyDate(int employeeId, DateTime fromDate, DateTime toDate, int? projectId = null, int? taskId = null)
         {
             AttendanceDbContext context = new AttendanceDbContext();
