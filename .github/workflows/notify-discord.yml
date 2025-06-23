@@ -3,7 +3,7 @@ name: Notify Discord on Merge to Staging
 on:
   push:
     branches:
-      - development
+      - main
 
 jobs:
   discord-notify:
@@ -13,5 +13,5 @@ jobs:
         run: |
           curl -H "Content-Type: application/json" \
                -X POST \
-               -d "{\"content\": \"✅ Ein Pull Request wurde in **development** gemerged!\n🔗 $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/commit/$GITHUB_SHA\"}" \
+               -d "{\"content\": \"✅ Ein Pull Request wurde in **main** gemerged!\n🔗 $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/commit/$GITHUB_SHA\"}" \
                ${{ secrets.DISCORD_WEBHOOK_URL }}
