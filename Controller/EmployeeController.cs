@@ -44,7 +44,7 @@ namespace Attendance_system.Controller
             AttendanceDbContext context = new AttendanceDbContext();
             Employee? employee = null;
 
-            // check, ob iput ist e-mail
+            // check if loginInput is email or username
             if (EmailValidator(loginInput))
             {
                 employee = context.Employees.Where(x => x.Email == loginInput).FirstOrDefault();
@@ -75,7 +75,7 @@ namespace Attendance_system.Controller
             return true;
         }
 
-        // check, ob ein E-Mail vorhanden ist
+        // check if email is exist
         private static bool CheckEmailExist(string email)
         {
             AttendanceDbContext context = new AttendanceDbContext();
@@ -137,7 +137,7 @@ namespace Attendance_system.Controller
             return result;
         }
 
-        // Konto Aktivierung
+        // Account activation
         public static bool ActivateEmployee(string activationCode)
         {
             AttendanceDbContext context = new AttendanceDbContext();
