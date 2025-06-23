@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
 C:\Programmierung\C#\Attendance_system\App.xaml
-71201381421
+112083706531
 11413424753
-28-1835759165
+40994130360
 234-238771302
-View\Activate.xaml;View\EmployeeView.xaml;View\Login.xaml;View\ManagerTask.xaml;View\ManagerView.xaml;View\Register.xaml;View\ResetPassword.xaml;
+View\Activate.xaml;View\EmployeeAttendance.xaml;View\EmployeeView.xaml;View\EmployeeWorkingHour.xaml;View\Login.xaml;View\ManagerEmployee.xaml;View\ManagerTask.xaml;View\ManagerView.xaml;View\Register.xaml;View\ResetPassword.xaml;View\Welcome.xaml;
 
-True
+False
 

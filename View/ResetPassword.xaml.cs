@@ -16,9 +16,6 @@ using System.Windows.Shapes;
 
 namespace Attendance_system.View
 {
-    /// <summary>
-    /// Interaktionslogik für ResetPassword.xaml
-    /// </summary>
     public partial class ResetPassword : Window
     {
         public ResetPassword()
@@ -33,7 +30,7 @@ namespace Attendance_system.View
         {
             if (!EmployeeController.EmailValidator(txtEmail.Text) || txtEmail.Text == string.Empty)
             {
-                MessageBox.Show("Bitte geben Sie eine gültige E-Mail Adresse ein", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Please enter a valid email address", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             PasswordController passwordController= new PasswordController();
@@ -41,12 +38,12 @@ namespace Attendance_system.View
             if (state)
             {
                 txtEmail.IsEnabled = false;
-                MessageBox.Show("Der Bestätigungscode wurde erfolgreich gesendet.", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("The activation code has been sent successfully", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
                 txtResetCode.IsEnabled = true;
             }
             else
             {
-                MessageBox.Show("Eine Fehler ist aufgetreten\n versuchen Sie später.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Email not found", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -57,7 +54,7 @@ namespace Attendance_system.View
                 bool state = PasswordController.ConfirmedResetPassword(txtResetCode.Text);
                 if (state)
                 {
-                    MessageBox.Show("Ihr Koto wurde bestätigt", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Your account has been confirmed", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
                     txtResetCode.Text = string.Empty;
                     txtPassword.IsEnabled = true;
                     txtCPassword.IsEnabled = true;
@@ -66,12 +63,12 @@ namespace Attendance_system.View
                 }
                 else
                 {
-                    MessageBox.Show("Bitte kontrollieren Sie den angegebenen Code", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Please check the given code", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             else
             {
-                MessageBox.Show("Bitte geben Sie das Code ein !", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Please enter the code", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             } 
         }
@@ -80,25 +77,25 @@ namespace Attendance_system.View
         {
             if (txtPassword.Password.Count() < 8 || txtCPassword.Password.Count() < 8)
             {
-                MessageBox.Show("Ihr Password ist schwach, es muss mind.8 Stelle sein ", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Your password is short, it must be at least 8 digits long", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             if (txtPassword.Password != txtCPassword.Password)
             {
-                MessageBox.Show("Bitte kontrollieren Sie das Password in den Beiden Felders", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Please check the password in both fields", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             bool state = PasswordController.UpdatePassword(txtEmail.Text, txtPassword.Password);
             if (state)
             {
-                MessageBox.Show("Ihr Password wurde wurde geändert\nSie können sich wieder im System anmelden", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Your password has been changed\nYou can log in to the system again", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
                 //txtEmail.Text = "";
                 txtPassword.Password = "";
                 txtCPassword.Password = "";
             }
             else
             {
-                MessageBox.Show("Ein Fehler ist aufgetreten!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Error when updating the password", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             } 
 
         }

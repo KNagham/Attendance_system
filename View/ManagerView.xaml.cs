@@ -1,9 +1,11 @@
 ﻿using Attendance_system.Controller;
 using Attendance_system.Model;
+using Attendance_system.Service;
 using Microsoft.EntityFrameworkCore.Query;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -17,14 +19,15 @@ using System.Windows.Shapes;
 
 namespace Attendance_system.View
 {
-    /// <summary>
-    /// Interaktionslogik für ManagerView.xaml
-    /// </summary>
     public partial class ManagerView : Window
     {
-        public ManagerView()
+        private Employee _currentEmployee = EmployeeService.GetCurrentEmployee();
+        public ManagerView(Employee employee)
         {
+            this._currentEmployee = employee;
             InitializeComponent();
+            setCurrentDate();
+            setGreeting();
             updateListView();
         }
 
@@ -32,6 +35,15 @@ namespace Attendance_system.View
         private void updateListView()
         {
             listViewProject.ItemsSource = ProjectController.GetAllProjects();
+        }
+
+        private void setCurrentDate()
+        {
+            lblCurrentDate.Content = DateTime.Now.ToString("dddd, dd. MMMM yyyy");
+        }
+        private void setGreeting()
+        {
+            lblGreeting.Content = $"Hello {_currentEmployee.FirstName} {_currentEmployee.LastName}";
         }
 
         // clear fields
@@ -44,11 +56,16 @@ namespace Attendance_system.View
             IsDone.IsChecked = false;
         }
 
-        
+        private void btnWelcome(object sender, RoutedEventArgs e)
+        {
+            Welcome welcome = new Welcome(_currentEmployee);
+            welcome.Show();
+            this.Close();
+        }
 
         private void btnProject(object sender, RoutedEventArgs e)
         {
-
+            return;
         }
 
         private void btnTask(object sender, RoutedEventArgs e)
@@ -61,8 +78,8 @@ namespace Attendance_system.View
 
         private void btnEmployee(object sender, RoutedEventArgs e)
         {
-            EmployeeView employeeView = new EmployeeView();
-            employeeView.Show();
+            ManagerEmployee managerEmployee = new ManagerEmployee();
+            managerEmployee.Show();
             this.Close();
         }
 
@@ -72,12 +89,12 @@ namespace Attendance_system.View
         
             if (txtProjectName.Text == string.Empty)
             {
-                MessageBox.Show("Bitte geben Name des Projekts ein", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Please enter name of the project", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             if (IsActive.IsChecked == true && IsDone.IsChecked == true)
             {
-                MessageBox.Show("Ein Projekt kann nicht gleichzeitig 'Active' und 'Done' sein.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("A project can not be ‘Active’ and ‘Done’ at the same time.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             Project project= new Project()
@@ -91,13 +108,13 @@ namespace Attendance_system.View
             bool state = ProjectController.AddProject(project);
             if (state)
             {
-                MessageBox.Show("Project wurde hinzufügt", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("The project has been successfully added", "Success" ,MessageBoxButton.OK, MessageBoxImage.Information);
                 clear();
                 updateListView();
             }
             else
             {
-                MessageBox.Show("Project ist vorhanden", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Project exists", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
         }
@@ -107,7 +124,7 @@ namespace Attendance_system.View
         
             if(txtProjectId.Text == string.Empty && txtProjectName.Text == string.Empty)
             {
-                MessageBox.Show("Bitte geben Sie entweder (ID) oder (Name) eines Projekt ein.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Please enter either (ID) or (name) of a project", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             if(txtProjectId.Text != string.Empty)
@@ -122,7 +139,7 @@ namespace Attendance_system.View
                 }
                 else
                 {
-                    MessageBox.Show($"Project mit der ID: {txtProjectId.Text} wurde nicht gefunden", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show($"Project with the ID: {txtProjectId.Text} was not found", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     clear();
                 }
             }
@@ -138,7 +155,7 @@ namespace Attendance_system.View
                 }
                 else
                 {
-                    MessageBox.Show($"Project mit der Name: {txtProjectName.Text} wurde nicht gefunden", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show($"Project with the name: {txtProjectName.Text} was not found", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     clear();
                 }
             }
@@ -150,7 +167,7 @@ namespace Attendance_system.View
         
             if(txtProjectName.Text == string.Empty)
             {
-                MessageBox.Show("Name eines Projects darf nicht leer sein.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Name of a project must not be empty", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             Project project = new Project()
@@ -165,14 +182,14 @@ namespace Attendance_system.View
             bool result = ProjectController.UpdateProject(project);
             if (result)
             {
-                MessageBox.Show($"Das Project {txtProjectName.Text} wurde erfolgreich aktualisiert", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show($"The project {txtProjectName.Text} has been successfully updated", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
                 clear();
                 updateListView();
                 return;
             }
             else
             {
-                MessageBox.Show($"Das Project kann aktuell nicht geändert werden", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("The project cannot currently be changed", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 clear();
                 return;
             }
@@ -181,6 +198,11 @@ namespace Attendance_system.View
 
         private void btnDeleteProject(object sender, RoutedEventArgs e)
         {
+            if (txtProjectId.Text == string.Empty && txtProjectName.Text == string.Empty)
+            {
+                MessageBox.Show("Please enter either (ID) or (name) of a project", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             MessageBoxResult result = MessageBox.Show( "Do you really want to Delete this element ?", "Delete", MessageBoxButton.OKCancel, MessageBoxImage.Question);
             if (result == MessageBoxResult.OK)
             {
@@ -195,14 +217,14 @@ namespace Attendance_system.View
                 bool state = ProjectController.DeleteProject(project);
                 if (state)
                 {
-                    MessageBox.Show($"Das Project {txtProjectName.Text} wurde entfernt", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show($"The project {txtProjectName.Text} has been removed", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
                     clear();
                     updateListView();
                     return;
                 }
                 else
                 {
-                    MessageBox.Show($"Das Project kann aktuell nicht entfernt werden", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("The project cannot currently be removed", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     clear();
                     return;
                 }
